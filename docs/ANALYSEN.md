@@ -1,0 +1,215 @@
+# Analysen — Archiv
+
+Alle Messungen, die in den Lektionen und im `REPORT.md` verwendet werden.
+Jede Analyse nennt Quelle, Methode, Zahlen, Einordnung und die Lektion, in der
+sie erzählt wird.
+
+## Übersicht
+
+| # | Analyse | Datum | Kernzahl | Lektion |
+|---|---|---|---|---|
+| A1 | Messkette gegen bekannte Pegel | 26.11.2026 | 13/13 Prüfungen | 01 |
+| A2 | Synthetische Signale | 26.11.2026 | LUFS mono/stereo, TP +0,90 | 01 |
+| A3 | Plugin nativ (Latenz, TP, Alias) | 26.11.2026 | 102 Samples, −105 dBc | 03 |
+| A4 | End-to-End Loop | 26.11.2026 | −11,0 → −8,5 LUFS | 03, 06 |
+| A5 | Erste echte Exporte (Under One Sun) | 26.11.2026 | Rohmix −18,3 LUFS | 01, 06 |
+| A6 | Rohmix-Sweep (Trim × Clip) | 26.11.2026 | 8 Korridor-Treffer | 03, 06 |
+| A7 | Bandpass-Leckage vs. FFT | 26.11.2026 | −25 dBFS war Leckage | 02 |
+| A8 | Normalisierungsfalle | 25./26.11.2026 | Peak exakt −0,09 dBFS | 01 |
+
+---
+
+## A1 — Messkette gegen bekannte Pegel
+
+**Quelle:** `tests/selftest.py`, Testsignale aus `tools/make-signals.py`.
+**Methode:** Signale mit analytisch bekannten Werten, Vergleich mit Toleranz.
+**Ergebnis:** 13/13.
+
+| Prüfung | Soll | Ist |
+|---|---|---|
+| Sinus 997 Hz, A = 0,5, Peak | −6,02 dBFS | −6,02 |
+| derselbe Sinus, RMS | −9,03 dBFS | −9,03 |
+| derselbe Sinus, mono, LUFS | −9,0 | −9,00 |
+| derselbe Sinus, stereo, LUFS | −6,0 | −6,00 |
+| Dirac, Peak | −0,92 dBFS | −0,92 |
+| Pink Noise, RMS | −20,0 dBFS | −20,00 |
+| Anti-Phase 60 Hz, Korrelation | −1,0 | −1,000 |
+| Anti-Phase, Mid | null | null |
+| Release-Guard auf nicht releasefähigem Loop | FAIL | FAIL (erwartet) |
+
+**Einordnung:** Ohne diesen Test sind alle anderen Zahlen wertlos. Der Test
+prüft die Messkette, nicht das Plugin.
+**Lektion:** 01, Abschnitt „Testmethoden".
+
+---
+
+## A2 — Synthetische Signale
+
+**Quelle:** `tools/make-signals.py`, 44,1 kHz, 16 Bit, stereo.
+
+| Signal | Dauer | Peak | RMS | LUFS | TP | PLR | LRA |
+|---|---|---|---|---|---|---|---|
+| Sinus 997, A = 0,5, mono | 5 s | −6,02 | −9,03 | −9,0 | −6,0 | 3,0 | 0,0 |
+| Sinus 997, stereo identisch | 5 s | −6,02 | −9,03 | −6,0 | −6,0 | 0,0 | 0,0 |
+| Sinus 997, nur links | 5 s | −6,02 | −12,04 | −9,0 | −6,0 | 3,0 | 0,0 |
+| Dirac | 1 s | −0,92 | — | — | −0,90 | — | — |
+| Pink Noise, RMS −20 | 10 s | −7,41 | −20,00 | −18,8 | −7,4 | 11,4 | 0,1 |
+| Anti-Phase 60 Hz | 5 s | −6,02 | −9,03 | −9,6 | −6,0 | 3,6 | 0,0 |
+| Loop (Kick/Bass/Snare/Hat) | 20 s | −1,01 | −10,25 | −11,0 | **+0,90** | 11,9 | 0,8 |
+
+**Befunde:**
+- Stereo summiert +3,01 dB (Leistungssumme der Kanäle).
+- Links-only: RMS über alle Samples −12,04, Loudness −9,0 — RMS und LUFS sind
+  nicht dasselbe.
+- Der Loop hat bei −1,01 dBFS Sample-Peak **+0,90 dBTP**: 1,91 dB
+  Intersample-Überschreitung.
+**Lektion:** 01.
+
+---
+
+## A3 — Plugin nativ
+
+**Quelle:** `host_sim`, `tests/plugin-check.py`, `tests/alias-check.py`.
+**Build:** ARM64/ARM32, `validate.py` 0 Fehler / 0 Warnungen.
+
+| Prüfung | Ergebnis |
+|---|---|
+| Latenz Master | 102 Samples gemessen, 102 gemeldet |
+| Latenz Bus | 102 Samples, identisch |
+| TP default (Clip 30) | −1,40 dBTP |
+| TP Clip 100 | −1,20 dBTP |
+| TP Ceiling −2 | −2,40 dBTP |
+| Alias Clip 0 | −120,0 dBc |
+| Alias Clip 100 | −105,4 dBc bei 19175 Hz |
+| Programme | Init, CD Loud, Streaming Safe, Bus Drums, Bus 808 |
+| Mode automatisierbar | nein |
+
+**Aufbau:** Clipper bei 2× (31-Tap-Halfband), Limiter bei 1× mit
+4×-Detektor (zwei Halfband-Stufen) und 0,40 dB Guard.
+**Lektion:** 03; die Alias-Methode in 02.
+
+---
+
+## A4 — End-to-End Loop
+
+**Quelle:** `tools/render.cpp`, Programm „CD Loud" (Index 1).
+**Eingang:** `loud_loop.wav` (A2).
+
+| Größe | vorher | nachher |
+|---|---|---|
+| Integrated | −11,0 LUFS | **−8,5 LUFS** |
+| True Peak | +0,90 dBTP | **−1,10 dBTP** |
+| PLR | 11,9 | **7,4** |
+| Clipping | 0 | 0 |
+
+**Lektion:** 03, 06.
+
+---
+
+## A5 — Erste echte Exporte: „90 Under One Sun"
+
+**Quelle:** SSD, 44,1 kHz, 24 Bit, 19,46 s.
+**Dateien:**
+- `90-Under-One-Sun-NoFx.wav` (alt, normalisiert)
+- `90-Under-One-Sun-Fx.wav` (alt, normalisiert)
+- `90-Under-One-Sun-FX-master.wav` (Bus-Modus)
+- `90-Under-One-Sun-FX-master-2.wav` (Master-Modus)
+- `90-Under-One-Sun-FX-157.wav` (**Rohmix, ohne Master-Effekt**)
+
+| Datei | Modus | LUFS | TP | PLR | LRA | Side−Mid |
+|---|---|---|---|---|---|---|
+| NoFx (alt) | ohne FX | −7,6 | +0,1 | 7,7 | 1,2 | −29,0 |
+| Fx (alt) | mit FX | −8,0 | +0,2 | 8,2 | 1,4 | −30,4 |
+| FX-master | Bus | −18,3 | −0,6 | 17,7 | 3,1 | −23,9 |
+| FX-master-2 | Master | −14,0 | −0,5 | 13,5 | 2,4 | −41,0 |
+| **FX-157** | **roh** | **−18,3** | **−0,6** | **17,7** | 3,1 | −23,9 |
+
+**Befunde:**
+1. Die alten Referenzen peakten exakt bei −0,09 dBFS → **normalisiert**.
+   Die neuen peakten bei −0,53/−0,64 → unnormalisiert. Der echte Mix liegt bei
+   **−18,3 LUFS**, nicht bei −8.
+2. `FX-master` (Bus) ist praktisch identisch mit dem Rohmix: Clip 41 hat bei
+   diesem niedrigen Eingangspegel fast nichts getan; ohne Limiter bleibt
+   PLR 17,7.
+3. `FX-master-2` (Master) arbeitet, ist aber mit Trim +3,8 / Clip 18 nur
+   −14,0 LUFS. Für −8 fehlen rund 6 dB.
+4. Mono 200 Hz ist zu aggressiv: Side−Mid −41 dB; 110–120 Hz reichen.
+
+**Lektion:** 01 (Normalisierung), 03 (Limiter/Mono), 06 (Programmwahl).
+
+---
+
+## A6 — Rohmix-Sweep (Trim × Clip)
+
+**Quelle:** `raw-157` durch `build/render`, Master-Modus, Ceiling −1,
+Release 45, Mono 120, Tilt 0.
+**Raster:** Trim +4…+12 × Clip 30…75 = 25 Läufe.
+**Korridor:** −9…−7 LUFS, TP ≤ −1,0, PLR 6–8 → **8 Treffer**.
+
+| Trim | Clip | LUFS | TP | PLR |
+|---|---|---|---|---|
+| **+8** | **55** | **−8,1** | **−1,40** | **6,70** |
+| +6 | 65 | −8,6 | −1,40 | 7,20 |
+| +10 | 30 | −8,8 | −1,40 | 7,40 |
+| +8 | 45 | −8,9 | −1,40 | 7,50 |
+| +10 | 45 | −7,6 | −1,40 | 6,20 |
+| +12 | 30 | −7,5 | −1,40 | 6,10 |
+| +6 | 75 | −7,9 | −1,40 | 6,50 |
+| +8 | 65 | −7,4 | −1,40 | 6,00 |
+
+Zu heiß: Trim +10/Clip 55 → −6,9 LUFS, PLR 5,5; Trim +12/Clip 45 → −6,5, PLR 5,2.
+
+**Empfehlung:** Trim +8, Clip 55, Ceiling −1,0, Release 45, Mono 120.
+**Caveat:** Der Rohmix hat PLR 17,7; für −8 müssen ~10 dB Spitzenkontrolle
+geleistet werden. Das ist die Obergrenze des Materials — bei einem dichteren
+Mix klingt derselbe Korridor besser.
+**Lektion:** 03 (Ballistik), 06 (Capstone).
+
+---
+
+## A7 — Bandpass-Leckage vs. FFT
+
+**Quelle:** 997-Hz-Ton, Clip 100, Ausgang des Plugins.
+**Methode 1:** `bandpass=f=…:width_type=q:w=30` + `astats`.
+**Ergebnis 1:** „Alias" bei 1229 Hz mit −25,3 dBFS — **unverändert**, egal ob
+15 oder 31 Filter-Taps. Verdacht: Messfehler.
+**Methode 2:** FFT, 65536 Punkte, Hann-Fenster, Bin 0,67 Hz.
+**Ergebnis 2:** stärkster echter Alias **−105,4 dBc** bei 19175 Hz.
+
+**Erklärung:** Ein Bandpass 2. Ordnung mit Q = 30 dämpft einen 232 Hz
+entfernten Ton nur um ~22 dB. Aus −3,2 dBFS Grundton wird −25,3 dBFS
+„Alias" — reine Leckage.
+
+**Regel:** Ändert sich ein Ergebnis nicht, wenn man das System ändert, ist die
+Messung verdächtig.
+**Lektion:** 02.
+
+---
+
+## A8 — Normalisierungsfalle
+
+**Quelle:** MPC-Exporte aus mehreren Sessions.
+**Beobachtung:** Alle alten Exporte peakten exakt bei −0,09 dBFS, auch ein
+Delta-Signal, das leiser sein muss.
+**Konsequenz:** Absolute Pegel zwischen Exporten sind unbrauchbar; nur
+Verhältnisse innerhalb einer Datei sind belastbar.
+**Bestätigung:** Die unnormalisierten Exporte (A5) peaken bei −0,53/−0,64 und
+zeigen den wahren Mix bei −18,3 LUFS.
+**Lektion:** 01, Abschnitt „Fehler".
+
+---
+
+## Reproduktion
+
+```bash
+python3 tools/make-signals.py /tmp/qm-signals
+python3 tests/selftest.py
+python3 tests/plugin-check.py
+python3 tests/alias-check.py 997 --clip 1.0
+python3 tests/loudness-check.py
+python3 tools/measure.py /tmp/opencode/exports/raw-157.wav
+build/render build/native/qmaster.so in.wav out.wav --program 1
+```
+
+Die Rohdaten der Exporte liegen nicht im Repo (Musik, Größe). Die Tabellen
+enthalten alle Werte, die für die Lektionen gebraucht werden.

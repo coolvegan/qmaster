@@ -52,6 +52,8 @@ to it. `scripts/install-mpc.sh` copies the folder to a connected MPC drive.
 ```
 PLAN.md              scope, phases, acceptance criteria, QA
 REPORT.md            measured baseline and open items
+docs/ANALYSEN.md     every measurement, with lesson mapping
+docs/WERKZEUGE.md    tools, shell recipes, conventions
 tools/               measure.py, make-signals.py
 scripts/             release-check.sh, codec-check.sh, publish-lessons.sh
 tests/               selftest.py (tests the measurement chain)

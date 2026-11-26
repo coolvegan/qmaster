@@ -3,6 +3,10 @@
 Die Lektionen entstehen **während** der Entwicklung, werden aber **erst am Ende
 als Ganzes** veröffentlicht. Bis dahin sind sie Drafts im Repo.
 
+Quellen für Zahlen und Befehle:
+[`docs/ANALYSEN.md`](../docs/ANALYSEN.md) und
+[`docs/WERKZEUGE.md`](../docs/WERKZEUGE.md).
+
 ## Regel
 
 1. Jede Phase schreibt ihre Lektion (Body, Szenen, Quiz) direkt in

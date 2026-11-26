@@ -180,9 +180,9 @@ ohne die Offline-Messung hätte die Ursache Tage gekostet.
 
 ## Erste echte Exporte — „90 Under One Sun“ (2026-11-26)
 
-Vier Dateien von der MPC/SSD, 44,1 kHz, 24 Bit, 19,46 s. Die alten Referenzen
-(`Fx`, `NoFx`) stammen noch aus der normalisierten Zeit; die beiden neuen
-`master`-Exporte sind unnormalisiert.
+Fünf Dateien von der MPC/SSD, 44,1 kHz, 24 Bit, 19,46 s. Die alten
+Referenzen (`Fx`, `NoFx`) stammen noch aus der normalisierten Zeit; `FX-157`
+ist der Rohmix **ohne Master-Effekt**.
 
 | Datei | Modus | Integrated | True Peak | PLR | LRA | Mono Side−Mid |
 |---|---|---|---|---|---|---|
@@ -190,38 +190,50 @@ Vier Dateien von der MPC/SSD, 44,1 kHz, 24 Bit, 19,46 s. Die alten Referenzen
 | `Fx` (alt) | mit FX | −8,0 LUFS | +0,2 dBTP | 8,2 | 1,4 | −30,4 dB |
 | `FX-master` | Bus | −18,3 LUFS | −0,6 dBTP | 17,7 | 3,1 | −23,9 dB |
 | `FX-master-2` | Master | −14,0 LUFS | −0,5 dBTP | 13,5 | 2,4 | −41,0 dB |
+| **`FX-157`** | **roh** | **−18,3 LUFS** | **−0,6 dBTP** | **17,7** | 3,1 | −23,9 dB |
 
 ### Befunde
 
 1. **Die alten Referenzen waren normalisiert.** Beide peakten exakt bei
    −0,09 dBFS. Die neuen Exporte peaken bei −0,53 und −0,64 dBFS — also
-   tatsächlich unnormalisiert. Der rohe Mix liegt damit bei etwa **−18 LUFS**,
-   nicht bei −8.
-2. **Bus-Modus auf dem Master ist keine Finishing-Kette.** Ohne Limiter
-   bleiben die Spitzen stehen: PLR 17,7, 4,3 dB leiser als der Master-Export.
+   tatsächlich unnormalisiert. Der rohe Mix liegt bei **−18,3 LUFS**.
+2. **Bus-Modus auf dem Master ist keine Finishing-Kette.** `FX-master` ist
+   praktisch identisch mit dem Rohmix: Clip 41 hat bei diesem Pegel fast
+   nichts getan, ohne Limiter bleibt PLR 17,7.
 3. **Master-Modus arbeitet, aber der Eingang ist zu leise.** Ceiling −0,1 wird
-   eingehalten (−0,5 dBTP inkl. Guard), Trim +3,8 und Clip 18 reichen aber nur
-   für −14 LUFS. Für −8 fehlen rund 6 dB.
+   eingehalten (−0,5 dBTP inkl. Guard); Trim +3,8 und Clip 18 reichen nur für
+   −14 LUFS.
 4. **Mono 200 Hz ist sehr aggressiv.** Side−Mid fällt auf −41 dB; alles unter
-   200 Hz ist mono. 110–120 Hz reichen für Bass-Kompatibilität.
+   200 Hz ist mono. 110–120 Hz reichen.
 
-### Gegenprobe mit stärkerem Master
+### Sweep auf dem Rohmix
 
-Der Bus-Export wurde durch den Master-Modus geschickt:
+`FX-157` durch den Master-Modus, 25 Kombinationen (Trim +4…+12 × Clip 30…75),
+Ceiling −1, Release 45, Mono 120. Acht Treffer im Korridor:
 
-| Einstellung | Integrated | True Peak | PLR |
-|---|---|---|---|
-| Trim +8, Clip 55, Ceiling −1, Release 45, Mono 120 | **−8,1 LUFS** | −1,4 dBTP | **6,7** |
-| Trim +12, Clip 60, Ceiling −1, Release 45, Mono 120 | −5,5 LUFS | −1,3 dBTP | 4,2 |
+| Trim | Clip | Integrated | True Peak | PLR |
+|---|---|---|---|---|
+| **+8** | **55** | **−8,1 LUFS** | **−1,40 dBTP** | **6,70** |
+| +6 | 65 | −8,6 LUFS | −1,40 dBTP | 7,20 |
+| +10 | 30 | −8,8 LUFS | −1,40 dBTP | 7,40 |
+| +8 | 45 | −8,9 LUFS | −1,40 dBTP | 7,50 |
+| +10 | 45 | −7,6 LUFS | −1,40 dBTP | 6,20 |
+| +12 | 30 | −7,5 LUFS | −1,40 dBTP | 6,10 |
+| +6 | 75 | −7,9 LUFS | −1,40 dBTP | 6,50 |
+| +8 | 65 | −7,4 LUFS | −1,40 dBTP | 6,00 |
 
-Die erste Kombination trifft den Korridor. Die zweite zeigt die Grenze: Ab
-PLR 4 klingt es nicht mehr nach Master, sondern nach Brei.
+Zu heiß: Trim +10/Clip 55 → −6,9 LUFS bei PLR 5,5; Trim +12/Clip 45 →
+−6,5 LUFS bei PLR 5,2.
 
 ### Empfehlung
 
-Den Mix selbst um etwa 6 dB anheben (Busse/Pegel), dann reicht auf dem Master:
-Trim +4…+6, Clip 45…55, Ceiling −1,0, Release 45, Mono 110–120. Prüfen mit
-`release-check.sh`; bei PLR unter 6 ist es zu viel.
+Auf dem Master mit diesem Rohmix: **Trim +8, Clip 55, Ceiling −1,0,
+Release 45, Mono 110–120**. Das ergibt −8,1 LUFS, −1,40 dBTP, PLR 6,7.
+
+Der Rohmix hat PLR 17,7; für −8 müssen rund 10 dB Spitzenkontrolle geleistet
+werden. Das ist die Obergrenze des Materials. Ein dichterer Mix (Busse 4–6 dB
+lauter, weniger Crest) klingt im selben Korridor deutlich besser. Bei PLR unter
+6 ist es zu viel — dann `release-check.sh` ernst nehmen.
 
 ## Offen (Phase 1)
 
