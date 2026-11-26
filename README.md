@@ -87,6 +87,12 @@ the target corridor and the measured data. Yellow cells are inputs.
 - [REPORT.md](REPORT.md) — what the harness measures, including its limits.
 - [lessons/README.md](lessons/README.md) — lesson workflow and freeze checklist.
 
+## MPC Sample
+
+On an MPC Sample (firmware 1.4.0+, Custom Plug-In Support) QMaster runs as a
+Knob FX: knobs = Clip, Trim, Ceiling; SHIFT = Release, Mono, Tilt. Mode stays
+Master; the Bus topology is not reachable there.
+
 ## License
 
 GPL-3.0-or-later.
