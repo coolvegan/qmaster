@@ -35,7 +35,7 @@ namespace
 // Both modes use the same lookahead delay so switching modes never shifts time.
 constexpr int kUpDownLatency = 14;
 constexpr int kLookahead = 88;
-constexpr int kLatency = 102;  // measured with the impulse test
+constexpr int kLatency = kUpDownLatency + kLookahead;   // 102 samples, measured
 
 constexpr float kClipKnee = 0.96f;       // -0.35 dBFS
 constexpr float kOutputGuard = 0.995f;   // decimation safety
@@ -448,7 +448,7 @@ public:
         i.name = "QMaster";
         i.vendor = "r3d0xStyle";
         i.uniqueId = MPC_FOURCC ('q', 'm', 's', 't');
-        i.version = 1000;
+        i.version = 1001;
         i.isInstrument = false;
         i.numInputs = 2;
         i.numOutputs = 2;

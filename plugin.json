@@ -1,7 +1,7 @@
 {
   "name": "QMaster",
   "manufacturer": "r3d0xStyle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "format": "vst2",
   "kind": "effect",
   "uid": "qmst",
@@ -10,14 +10,32 @@
   "category": "Effect",
   "shortName": "QMaster",
   "knobs": [
-    { "parameter": 3, "label": "Clip" },
-    { "parameter": 1, "label": "Trim" },
-    { "parameter": 5, "label": "Ceiling" }
+    {
+      "parameter": 3,
+      "label": "Clip"
+    },
+    {
+      "parameter": 1,
+      "label": "Trim"
+    },
+    {
+      "parameter": 5,
+      "label": "Ceiling"
+    }
   ],
   "shiftKnobs": [
-    { "parameter": 6, "label": "Release" },
-    { "parameter": 7, "label": "Mono" },
-    { "parameter": 2, "label": "Tilt" }
+    {
+      "parameter": 6,
+      "label": "Release"
+    },
+    {
+      "parameter": 7,
+      "label": "Mono"
+    },
+    {
+      "parameter": 2,
+      "label": "Tilt"
+    }
   ],
   "file32": "VST/qmaster-arm32.so",
   "file64": "VST/qmaster-arm64.so",
