@@ -15,7 +15,7 @@ sie erzählt wird.
 | A5 | Erste echte Exporte (Under One Sun) | 26.11.2026 | Rohmix −18,3 LUFS | 01, 06 |
 | A6 | Rohmix-Sweep (Trim × Clip) | 26.11.2026 | 8 Korridor-Treffer | 03, 06 |
 | A7 | Bandpass-Leckage vs. FFT | 26.11.2026 | −25 dBFS war Leckage | 02 |
-| A8 | Normalisierungsfalle | 25./26.11.2026 | Peak exakt −0,09 dBFS | 01 |
+| A8 | Fehlinterpretation „Normalisierung“ | 26.11.2026 | PLR 7,7 ≠ 17,7 | 01, 05 |
 
 ---
 
@@ -110,8 +110,8 @@ prüft die Messkette, nicht das Plugin.
 
 **Quelle:** SSD, 44,1 kHz, 24 Bit, 19,46 s.
 **Dateien:**
-- `90-Under-One-Sun-NoFx.wav` (alt, normalisiert)
-- `90-Under-One-Sun-Fx.wav` (alt, normalisiert)
+- `90-Under-One-Sun-NoFx.wav` (alt, alte Master-Kette)
+- `90-Under-One-Sun-Fx.wav` (alt, alte Master-Kette)
 - `90-Under-One-Sun-FX-master.wav` (Bus-Modus)
 - `90-Under-One-Sun-FX-master-2.wav` (Master-Modus)
 - `90-Under-One-Sun-FX-157.wav` (**Rohmix, ohne Master-Effekt**)
@@ -125,9 +125,11 @@ prüft die Messkette, nicht das Plugin.
 | **FX-157** | **roh** | **−18,3** | **−0,6** | **17,7** | 3,1 | −23,9 |
 
 **Befunde:**
-1. Die alten Referenzen peakten exakt bei −0,09 dBFS → **normalisiert**.
-   Die neuen peakten bei −0,53/−0,64 → unnormalisiert. Der echte Mix liegt bei
-   **−18,3 LUFS**, nicht bei −8.
+1. **Die MPC normalisiert nicht** (vom Nutzer bestätigt). Die alten Referenzen
+   peakten zwar exakt bei −0,09 dBFS, aber das war der **Limiter der alten
+   Master-Kette**: 309 bzw. 261 Samples liegen auf 0,99, und der PLR ist 7,7
+   statt 17,7. Eine reine Pegelanhebung kann den PLR nicht ändern. Der Rohmix
+   liegt bei **−18,3 LUFS**.
 2. `FX-master` (Bus) ist praktisch identisch mit dem Rohmix: Clip 41 hat bei
    diesem niedrigen Eingangspegel fast nichts getan; ohne Limiter bleibt
    PLR 17,7.
@@ -186,16 +188,25 @@ Messung verdächtig.
 
 ---
 
-## A8 — Normalisierungsfalle
+## A8 — Fehlinterpretation: scheinbare Normalisierung
 
-**Quelle:** MPC-Exporte aus mehreren Sessions.
-**Beobachtung:** Alle alten Exporte peakten exakt bei −0,09 dBFS, auch ein
-Delta-Signal, das leiser sein muss.
-**Konsequenz:** Absolute Pegel zwischen Exporten sind unbrauchbar; nur
-Verhältnisse innerhalb einer Datei sind belastbar.
-**Bestätigung:** Die unnormalisierten Exporte (A5) peaken bei −0,53/−0,64 und
-zeigen den wahren Mix bei −18,3 LUFS.
-**Lektion:** 01, Abschnitt „Fehler".
+**Quelle:** alte MPC-Exporte (`NoFx`, `Fx`), 44,1 kHz, 24 Bit.
+**Beobachtung:** Beide peakten exakt bei −0,09 dBFS. Daraus wurde geschlossen:
+„der MPC-Export normalisiert“.
+**Korrektur (Nutzer, 26.11.2026):** Die MPC nimmt **keine** Normalisierung vor.
+**Gegenbeweis:**
+
+- PLR 7,7 bzw. 8,2 gegen 17,7 beim Rohmix. Eine Pegelanhebung verschiebt TP und
+  LUFS gemeinsam und lässt den PLR unverändert. Der Unterschied ist also
+  Dynamikbearbeitung, keine Verstärkung.
+- 309 bzw. 261 Samples liegen bei 0,99 — eine Limiter-Decke, nicht ein
+  einzelner normalisierter Spitzenwert.
+
+**Ursache:** Der Limiter der alten Master-Kette saß bei −0,09 dBFS.
+**Lehre:** Eine einzelne Zahl ist kein Ursachenbeweis. Zweite, unabhängige
+Metrik prüfen (PLR, Sample-Verteilung), sonst wird aus einem Limiter eine
+Normalisierung.
+**Lektion:** 01 (Fehler), 05 (Fehlerkatalog, Vorgehen).
 
 ---
 

@@ -47,7 +47,7 @@ einseitigen Signalen um 3 dB daneben.
 
 ### 2. True Peak ist nicht Sample Peak
 
-Der Loop ist auf **−1,01 dBFS Sample Peak** normalisiert — und misst trotzdem
+Der Test-Loop ist auf **−1,01 dBFS Sample Peak** ausgesteuert — und misst trotzdem
 **+0,90 dBTP**. Das sind **1,91 dB Überschreitung** zwischen den Samples. Genau
 deshalb ist der Deckel −1,0 dBTP und nicht −1,0 dBFS. Ein reiner Sample-Peak-
 Meter hätte das Signal für sicher erklärt.
@@ -82,7 +82,7 @@ Ausreißer zu zeigen, ohne bei sauberem Material grundlos rot zu werden.
 
 | Punkt | Warum blockiert | Nächster Schritt |
 |---|---|---|
-| MPC-Export normalisiert? | braucht das Gerät | eine bekannte Datei exportieren, Peak messen; erwartet −0,09 dBFS, wenn normalisiert |
+| MPC-Export normalisiert? | **geklärt: nein** (Nutzer bestätigt) | der Peak von −0,09 dBFS kam vom Limiter der alten Master-Kette |
 | Echte Beats | liegen nicht im Repo | 3 Beats dry/FX exportieren, unnormalisiert |
 | LRA | braucht ≥ 20 s Material | mit den echten Beats erledigen |
 
@@ -181,8 +181,9 @@ ohne die Offline-Messung hätte die Ursache Tage gekostet.
 ## Erste echte Exporte — „90 Under One Sun“ (2026-11-26)
 
 Fünf Dateien von der MPC/SSD, 44,1 kHz, 24 Bit, 19,46 s. Die alten
-Referenzen (`Fx`, `NoFx`) stammen noch aus der normalisierten Zeit; `FX-157`
-ist der Rohmix **ohne Master-Effekt**.
+Referenzen (`Fx`, `NoFx`) stammen aus der Zeit mit der alten Master-Kette;
+`FX-157` ist der Rohmix **ohne Master-Effekt**. Die MPC normalisiert nicht
+(vom Nutzer bestätigt).
 
 | Datei | Modus | Integrated | True Peak | PLR | LRA | Mono Side−Mid |
 |---|---|---|---|---|---|---|
@@ -194,9 +195,11 @@ ist der Rohmix **ohne Master-Effekt**.
 
 ### Befunde
 
-1. **Die alten Referenzen waren normalisiert.** Beide peakten exakt bei
-   −0,09 dBFS. Die neuen Exporte peaken bei −0,53 und −0,64 dBFS — also
-   tatsächlich unnormalisiert. Der rohe Mix liegt bei **−18,3 LUFS**.
+1. **Die MPC normalisiert nicht** (vom Nutzer bestätigt). Die alten Referenzen
+   peakten zwar exakt bei −0,09 dBFS, aber das war der **Limiter der alten
+   Master-Kette**, nicht der Export: 309 bzw. 261 Samples liegen auf 0,99, und
+   der PLR ist 7,7 statt 17,7. Eine reine Pegelanhebung kann den PLR nicht
+   ändern. Der Rohmix mit QMaster ohne Master-Effekt liegt bei **−18,3 LUFS**.
 2. **Bus-Modus auf dem Master ist keine Finishing-Kette.** `FX-master` ist
    praktisch identisch mit dem Rohmix: Clip 41 hat bei diesem Pegel fast
    nichts getan, ohne Limiter bleibt PLR 17,7.

@@ -130,5 +130,16 @@
     ],
     "answer": 1,
     "explanation": "Mono-Downmix addiert die Kanäle; zwei Korrelierte Pegel von 0,89 ergeben rund 1,78, nach der ffmpeg-Skalierung 1,25. Der Datei-Peak bleibt −1,03 dBFS. Deshalb wird immer der Stereo-Peak gemessen, nie ein Downmix."
+  },
+  {
+    "question": "Zwei Exporte peaken exakt bei −0,09 dBFS. Der Rohmix hat PLR 17,7, die Exporte PLR 7,7. Was folgt daraus?",
+    "options": [
+      "Die MPC hat normalisiert",
+      "Ein Limiter hat die Dynamik reduziert",
+      "Der Export wurde leiser",
+      "Die Samplerate wurde geändert"
+    ],
+    "answer": 1,
+    "explanation": "Normalisierung verschiebt True Peak und Loudness gemeinsam; der PLR bleibt gleich. Ein Limiter senkt die Spitzen und damit den PLR. Zusätzlich liegen hunderte Samples auf 0,99 — eine Limiter-Decke, kein einzelner normalisierter Peak."
   }
 ]

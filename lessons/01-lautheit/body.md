@@ -260,10 +260,15 @@ nicht die Amplitude, die man erwartet: Der „−6-dB-Sinus" maß −27,1 dBFS. 
 die Ursache zu suchen, generieren wir die Testsignale jetzt selbst — mit
 bekannter Amplitude, in Python, ohne versteckte Skalierung.
 
-**Der MPC-Export normalisiert.** Alle Testexporte peakten bei −0,09 dBFS. Ein
-Delta-Signal, das eigentlich leiser sein muss, lag plötzlich genauso hoch.
-Erst nach dem Abschalten der Normalisierung sind absolute Pegel vergleichbar.
-Die Regel: **erst den Exportpfad messen, dann das DSP.**
+**Ich hielt −0,09 dBFS für Normalisierung — falsch.** Alle alten Exporte
+peakten exakt dort, und ich schloss auf den Export. Die MPC normalisiert aber
+nicht: Der Limiter der alten Master-Kette saß bei −0,09 dBFS. Der Beweis ist
+der PLR — 7,7 gegen 17,7 beim Rohmix. Eine Pegelanhebung verschiebt TP und
+LUFS gemeinsam und lässt den PLR unverändert. Zusätzlich liegen 309 Samples
+auf 0,99, nicht nur ein Spitzenwert.
+
+Die Regel: **eine Zahl ist kein Ursachenbeweis. Prüfe eine zweite,
+unabhängige Metrik.**
 
 **Der Mono-Downmix log.** `ffmpeg -ac 1` summiert die Kanäle; ein Stereo-Peak
 von −1,03 dBFS erschien als +1,25 im Downmix. Das ist keine Clipping-Stelle im

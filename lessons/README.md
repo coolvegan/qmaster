@@ -52,7 +52,7 @@ Fundstelle, Ursache und dem Test, der ihn verhindert.
 | OLA-Ring-Offset (QDSSD) | 05 | Impuls an erwarteter Position |
 | Absolute statt relative dB (QDSSD) | 05, 01 | Gain-Invarianz der Maske |
 | Lazy Bus Open (QDSSD) | 05 | Empfänger vor Sender konstruieren |
-| MPC-Export normalisiert | 01 | Export-Peak messen |
+| Fehlinterpretation: −0,09 dBFS als Normalisierung gedeutet (eigentlich Master-Limiter) | 01, 05 | PLR vergleichen, Samples an der Decke zählen |
 | Mono-Downmix überschreitet 0 dBFS (ffmpeg) | 01 | Stereo-Peak, nie Downmix |
 | Bandpass-Leckage als „Alias" gedeutet | 02 | FFT statt Bandpass |
 | 24-Bit-WAV falsch geschrieben | 05 | Erwarteter Peak nach dem Render |
@@ -73,6 +73,7 @@ Fundstelle, Ursache und dem Test, der ihn verhindert.
 | Null-/Unity-Test | 04 | Kein versteckter Gain |
 | Crosstalk-Test | 05 | Kanäle teilen keinen Zustand |
 | Gain-Invarianz | 05 | Relative statt absolute Pegel |
+| Zwei unabhängige Metriken (PLR + Sample-Verteilung) | 01, 05 | Unterscheidet Limiter von Normalisierung |
 | State-Roundtrip | 06 | Preset überlebt Neustart |
 | 10-Minuten-Soak | 06 | Keine Xruns, kein Drift |
 
