@@ -237,6 +237,14 @@ Kompressor der alten Kette hat die Gain Reduction gleichmäßiger verteilt.
 Konsequenz: Für dieselbe Dynamik muss die Reduction vor dem Master passieren
 (Bus-Modus auf Drums/808) oder ein späterer Glue-Comp-Modus dazukommen.
 
+### Bestätigung auf dem Gerät (13:00)
+
+Export mit **Bus Drums** auf dem Drum-Bus und **CD Loud** auf dem Master:
+**−7,8 LUFS, −1,30 dBTP, PLR 6,5**, kein Clipping, Mono Side−Mid −32 dB.
+Der Korridor ist getroffen. Gegenüber dem einzelnen CD-Loud-Master ist es nur
+0,3 dB lauter — der Bus-Clip verschiebt die Lautheit kaum, der Master macht die
+Hauptarbeit. Für mehr Dynamik: Master-Clip ~48, Trim +7 (→ −8,7 / 7,3).
+
 ### Empfehlung
 
 Auf dem Master mit diesem Rohmix: **Trim +8, Clip 55, Ceiling −1,0,

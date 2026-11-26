@@ -16,6 +16,7 @@ sie erzählt wird.
 | A6 | Rohmix-Sweep (Trim × Clip) | 26.11.2026 | 8 Korridor-Treffer | 03, 06 |
 | A7 | Bandpass-Leckage vs. FFT | 26.11.2026 | −25 dBFS war Leckage | 02 |
 | A8 | Fehlinterpretation „Normalisierung“ | 26.11.2026 | PLR 7,7 ≠ 17,7 | 01, 05 |
+| A9 | CD-Loud-Export, verteilte Kette | 26.11.2026 | −7,8 LUFS, PLR 6,5 | 03, 06 |
 
 ---
 
@@ -182,6 +183,37 @@ Gain Reduction gleichmäßiger verteilt als Clipper plus Limiter.
 geleistet werden. Das ist die Obergrenze des Materials — bei einem dichteren
 Mix klingt derselbe Korridor besser.
 **Lektion:** 03 (Ballistik), 06 (Capstone).
+
+---
+
+## A9 — CD-Loud-Export mit verteilter Kette
+
+**Quelle:** `90-Under-One-Sun-FX-Cd-loud-preset.wav`, 44,1 kHz, 24 Bit,
+19,46 s.
+**Aufbau:** QMaster **Bus Drums** auf dem Drum-Bus, QMaster **CD Loud** auf dem
+Master. Rohmix davor −18,3 LUFS (A5).
+
+| Größe | Ergebnis |
+|---|---|
+| Integrated | **−7,8 LUFS** |
+| True Peak | **−1,30 dBTP** |
+| PLR | **6,5** |
+| LRA | 1,3 LU |
+| Mono Side−Mid | −32,0 dB |
+| Clipping | 0 |
+
+**Einordnung:** Der Korridor ist getroffen (−8 ±1, TP ≤ −1, PLR 6–8).
+Gegenüber dem einzelnen CD-Loud-Master (−8,1 / 6,7) ist das nur 0,3 dB lauter
+und 0,2 dB dichter: Der Bus-Clip verschiebt die Lautheit kaum, der Master
+macht die Hauptarbeit.
+
+Die alte Vierer-Kette lag bei −8,0 / PLR 8,2. Für mehr Dynamik müsste der
+Master-Clip auf ~48 und Trim auf +7 (A6: −8,7 / 7,3), der Bus dafür heißer.
+
+LRA 1,3 ist kein Fehler: Der Ausschnitt ist 19,5 s und repetitiv; die alten
+Referenzen lagen ebenfalls bei 1,2–1,4.
+
+**Lektion:** 06 (Capstone), 03 (Gain-Reduction-Verteilung).
 
 ---
 
