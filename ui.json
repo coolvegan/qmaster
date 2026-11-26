@@ -1,5 +1,8 @@
 {
-  "kit": { "theme": "cyan" },
+  "kit": {
+    "theme": "cyan",
+    "accent": "ff22e6ff"
+  },
   "qlinkGroups": "rows",
   "style": {
     "background": "ff0d1216",
@@ -11,15 +14,56 @@
     {
       "name": "MASTER",
       "controls": [
-        { "param": "Mode", "widget": "switch" },
-        { "param": "Trim", "widget": "knob" },
-        { "param": "Tilt", "widget": "knob" },
-        { "param": "Clip", "widget": "knob" },
-        { "param": "Transient", "widget": "knob", "visibleWhen": { "param": "Mode", "choice": "Bus" } },
-        { "param": "Ceiling", "widget": "knob", "visibleWhen": { "param": "Mode", "choice": "Master" } },
-        { "param": "Release", "widget": "knob", "visibleWhen": { "param": "Mode", "choice": "Master" } },
-        { "param": "Mono", "widget": "knob", "visibleWhen": { "param": "Mode", "choice": "Master" } }
-      ]
+        {
+          "param": "Mode",
+          "widget": "switch"
+        },
+        {
+          "param": "Trim",
+          "widget": "knob"
+        },
+        {
+          "param": "Tilt",
+          "widget": "knob"
+        },
+        {
+          "param": "Clip",
+          "widget": "knob"
+        },
+        {
+          "param": "Transient",
+          "widget": "knob",
+          "visibleWhen": {
+            "param": "Mode",
+            "choice": "Bus"
+          }
+        },
+        {
+          "param": "Ceiling",
+          "widget": "knob",
+          "visibleWhen": {
+            "param": "Mode",
+            "choice": "Master"
+          }
+        },
+        {
+          "param": "Release",
+          "widget": "knob",
+          "visibleWhen": {
+            "param": "Mode",
+            "choice": "Master"
+          }
+        },
+        {
+          "param": "Mono",
+          "widget": "knob",
+          "visibleWhen": {
+            "param": "Mode",
+            "choice": "Master"
+          }
+        }
+      ],
+      "background": "qmaster-bg.png"
     }
   ]
 }

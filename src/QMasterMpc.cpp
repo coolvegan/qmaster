@@ -448,7 +448,7 @@ public:
         i.name = "QMaster";
         i.vendor = "r3d0xStyle";
         i.uniqueId = MPC_FOURCC ('q', 'm', 's', 't');
-        i.version = 1001;
+        i.version = 1002;
         i.isInstrument = false;
         i.numInputs = 2;
         i.numOutputs = 2;

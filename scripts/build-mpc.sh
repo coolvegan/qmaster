@@ -31,8 +31,10 @@ echo "== 2/6  generate the MPC touch UI"
 "$PY" "$ROOT/tools/gen_ui.py" \
     --params "$ROOT/params.json" \
     --ui "$ROOT/ui.json" \
+    --assets-dir "$ROOT/assets" \
     --out "$BUILD/Plugin Skins" \
     --kit-cache "$BUILD"
+cp "$ROOT/assets/qmaster-bg.png" "$BUILD/Plugin Skins/"
 
 echo "== 3/6  build the cross-compiler image"
 docker build -q -t "$IMAGE" -f "$ROOT/docker/Dockerfile.mpc-cross" "$ROOT"
@@ -95,7 +97,7 @@ shifts the timing.
 EOF
 
 cat > "$PKG/README.txt" <<'EOF'
-QMaster 1.0.1 - master and bus processor for Akai MPC
+QMaster 1.0.2 - master and bus processor for Akai MPC
 =====================================================
 
 QMaster is the finish stage for a dense rap mix: a 2x oversampled clipper and
@@ -149,7 +151,7 @@ echo "== 6/6  validate and zip"
 import os, shutil, sys
 pkg = sys.argv[1]
 root = os.path.dirname(os.path.dirname(pkg))
-archive = os.path.join(root, "r3d0xStyle - VST - QMaster-1.0.1")
+archive = os.path.join(root, "r3d0xStyle - VST - QMaster-1.0.2")
 shutil.make_archive(archive, "zip", os.path.dirname(pkg), os.path.basename(pkg))
 print("wrote " + archive + ".zip")
 PY
