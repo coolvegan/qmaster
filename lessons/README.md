@@ -52,7 +52,7 @@ Fundstelle, Ursache und dem Test, der ihn verhindert.
 | OLA-Ring-Offset (QDSSD) | 05 | Impuls an erwarteter Position |
 | Absolute statt relative dB (QDSSD) | 05, 01 | Gain-Invarianz der Maske |
 | Lazy Bus Open (QDSSD) | 05 | Empfänger vor Sender konstruieren |
-| Fehlinterpretation: −0,09 dBFS als Normalisierung gedeutet (eigentlich Master-Limiter) | 01, 05 | PLR vergleichen, Samples an der Decke zählen |
+| Fehlinterpretation: −0,09 dBFS als Normalisierung gedeutet (eigentlich Limiter der alten Vierer-Kette) | 01, 05 | PLR vergleichen, Samples an der Decke zählen |
 | Mono-Downmix überschreitet 0 dBFS (ffmpeg) | 01 | Stereo-Peak, nie Downmix |
 | Bandpass-Leckage als „Alias" gedeutet | 02 | FFT statt Bandpass |
 | 24-Bit-WAV falsch geschrieben | 05 | Erwarteter Peak nach dem Render |
@@ -114,7 +114,7 @@ Die Meta-Lektion erzählt den Arbeitsablauf, nicht nur den Code:
 | 00 Lernpfad | — | Übersicht, Reihenfolge, Fehler- und Testversprechen |
 | 01 Lautheit | 0 | dB, RMS, LUFS, True Peak, PLR, Messtraps |
 | 02 Clipper | 1 | Transferfunktion, Harmonische, Aliasing, FFT-Test |
-| 03 Limiter | 1 | Hüllkurve, Lookahead, 4×-Detektor, Latenz |
+| 03 Limiter | 1 | Hüllkurve, Lookahead, 4×-Detektor, Latenz, Verteilung der Gain Reduction |
 | 04 Filter und Mono | 2 | Biquad, Pole, Shelf, M/S, Unity-Test |
 | 05 Code-Generierung | 2/3 | Vorgehen, Fehlerkatalog, Testvertrag, Review |
 | 06 Capstone | 3 | Beat mastern, Programme messen, Release |

@@ -262,7 +262,8 @@ bekannter Amplitude, in Python, ohne versteckte Skalierung.
 
 **Ich hielt −0,09 dBFS für Normalisierung — falsch.** Alle alten Exporte
 peakten exakt dort, und ich schloss auf den Export. Die MPC normalisiert aber
-nicht: Der Limiter der alten Master-Kette saß bei −0,09 dBFS. Der Beweis ist
+nicht: Der Limiter der alten Master-Kette saß bei −0,09 dBFS. Diese Kette hatte
+vier Plugins — Kompressor, Clipper, Maximizer und ein weiteres. Der Beweis ist
 der PLR — 7,7 gegen 17,7 beim Rohmix. Eine Pegelanhebung verschiebt TP und
 LUFS gemeinsam und lässt den PLR unverändert. Zusätzlich liegen 309 Samples
 auf 0,99, nicht nur ein Spitzenwert.

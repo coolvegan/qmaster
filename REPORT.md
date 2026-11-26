@@ -200,6 +200,8 @@ Referenzen (`Fx`, `NoFx`) stammen aus der Zeit mit der alten Master-Kette;
    Master-Kette**, nicht der Export: 309 bzw. 261 Samples liegen auf 0,99, und
    der PLR ist 7,7 statt 17,7. Eine reine Pegelanhebung kann den PLR nicht
    ändern. Der Rohmix mit QMaster ohne Master-Effekt liegt bei **−18,3 LUFS**.
+   Die alte Kette bestand aus **vier Plugins**, darunter Kompressor, Clipper und
+   Maximizer (Nutzerangabe); der Maximizer bildete die Decke bei −0,09 dBFS.
 2. **Bus-Modus auf dem Master ist keine Finishing-Kette.** `FX-master` ist
    praktisch identisch mit dem Rohmix: Clip 41 hat bei diesem Pegel fast
    nichts getan, ohne Limiter bleibt PLR 17,7.
@@ -228,10 +230,18 @@ Ceiling −1, Release 45, Mono 120. Acht Treffer im Korridor:
 Zu heiß: Trim +10/Clip 55 → −6,9 LUFS bei PLR 5,5; Trim +12/Clip 45 →
 −6,5 LUFS bei PLR 5,2.
 
+Feinsweep um die alte Dynamik (Trim +6,5…+8 × Clip 48…56): −8,1 LUFS bei
+PLR 6,7; −8,4 bei 7,0; −8,7 bei 7,3. Die alte Vierer-Kette erreichte −8,0 bei
+PLR 7,7–8,2. QMaster allein ist bei gleicher Lautheit rund 1 dB dichter — der
+Kompressor der alten Kette hat die Gain Reduction gleichmäßiger verteilt.
+Konsequenz: Für dieselbe Dynamik muss die Reduction vor dem Master passieren
+(Bus-Modus auf Drums/808) oder ein späterer Glue-Comp-Modus dazukommen.
+
 ### Empfehlung
 
 Auf dem Master mit diesem Rohmix: **Trim +8, Clip 55, Ceiling −1,0,
 Release 45, Mono 110–120**. Das ergibt −8,1 LUFS, −1,40 dBTP, PLR 6,7.
+Für mehr Dynamik: **Trim +7,5, Clip 56** → −8,4 LUFS, PLR 7,0.
 
 Der Rohmix hat PLR 17,7; für −8 müssen rund 10 dB Spitzenkontrolle geleistet
 werden. Das ist die Obergrenze des Materials. Ein dichterer Mix (Busse 4–6 dB

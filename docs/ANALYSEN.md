@@ -129,7 +129,9 @@ prüft die Messkette, nicht das Plugin.
    peakten zwar exakt bei −0,09 dBFS, aber das war der **Limiter der alten
    Master-Kette**: 309 bzw. 261 Samples liegen auf 0,99, und der PLR ist 7,7
    statt 17,7. Eine reine Pegelanhebung kann den PLR nicht ändern. Der Rohmix
-   liegt bei **−18,3 LUFS**.
+   liegt bei **−18,3 LUFS**. Die alte Kette bestand aus vier Plugins —
+   Kompressor, Clipper, Maximizer und ein weiteres (Nutzerangabe); der
+   Maximizer bildete die Decke bei −0,09 dBFS.
 2. `FX-master` (Bus) ist praktisch identisch mit dem Rohmix: Clip 41 hat bei
    diesem niedrigen Eingangspegel fast nichts getan; ohne Limiter bleibt
    PLR 17,7.
@@ -160,6 +162,20 @@ Release 45, Mono 120, Tilt 0.
 | +8 | 65 | −7,4 | −1,40 | 6,00 |
 
 Zu heiß: Trim +10/Clip 55 → −6,9 LUFS, PLR 5,5; Trim +12/Clip 45 → −6,5, PLR 5,2.
+
+**Feinsweep** (Trim +6,5…+8 × Clip 48…56):
+
+| Trim | Clip | LUFS | PLR |
+|---|---|---|---|
+| +8,0 | 56 | −8,1 | 6,7 |
+| +7,5 | 56 | −8,4 | 7,0 |
+| +8,0 | 52 | −8,4 | 7,0 |
+| +7,0 | 56 | −8,7 | 7,3 |
+| +6,5 | 56 | −9,0 | 7,6 |
+
+Die alte Vierer-Kette erreichte −8,0 bei PLR 7,7–8,2. QMaster allein ist bei
+gleicher Lautheit rund 1 dB dichter: Der Kompressor der alten Kette hat die
+Gain Reduction gleichmäßiger verteilt als Clipper plus Limiter.
 
 **Empfehlung:** Trim +8, Clip 55, Ceiling −1,0, Release 45, Mono 120.
 **Caveat:** Der Rohmix hat PLR 17,7; für −8 müssen ~10 dB Spitzenkontrolle

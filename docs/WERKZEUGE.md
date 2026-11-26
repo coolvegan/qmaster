@@ -146,6 +146,6 @@ PUBLISH_CONFIRM=yes ./scripts/publish-lessons.sh
 | Ausgabe 48 dB zu leise | 24-Bit-WAV falsches Byte zuerst | erwarteten Peak vergleichen |
 | TP über dem Deckel | Detektor zu flach / Guard zu klein | `tests/plugin-check.py` |
 | „Alias" ändert sich nicht mit der Filterlänge | Bandpass-Leckage | `tests/alias-check.py` (FFT) |
-| Export plötzlich laut | MPC normalisiert | Peak messen: −0,09 dBFS = normalisiert |
+| Export plötzlich laut | andere Master-Kette oder anderer Projektstand | PLR und Sample-Verteilung prüfen; die MPC normalisiert nicht |
 | Mono-Pegel über 0 dBFS | Downmix summiert Kanäle | Stereo-Peak messen |
 | Bass verschwindet auf dem Handy | Side-Anteil unter 120 Hz | `measure.py`, Mono-Zeile |
