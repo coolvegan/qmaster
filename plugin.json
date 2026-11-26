@@ -1,0 +1,16 @@
+{
+  "name": "QMaster",
+  "manufacturer": "r3d0xStyle",
+  "version": "1.0.0",
+  "format": "vst2",
+  "kind": "effect",
+  "uid": "qmst",
+  "numInputs": 2,
+  "numOutputs": 2,
+  "category": "Effect",
+  "file32": "VST/qmaster-arm32.so",
+  "file64": "VST/qmaster-arm64.so",
+  "description": "Master and bus processor for the MPC: trim, tilt, mono maker, 2x oversampled clipper and true-peak limiter in Master mode; trim, transient and clipper in Bus mode. Identical latency in both modes, 102 samples.",
+  "author": "r3d0xStyle",
+  "license": "GPL-3.0-or-later"
+}

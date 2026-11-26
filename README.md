@@ -7,7 +7,8 @@ QMaster exists to make a dense rap mix reach competitive CD loudness without
 destroying it — and to do it on a device that has no loudness meter and no
 sidechain bus. Everything is measured offline; nothing is guessed.
 
-**Status: Phase 0** — measurement harness. No DSP yet.
+**Status: Phase 1** — Master and Bus modes are built and natively verified.
+Device verification (install, CPU, state round-trip) is still open.
 
 ## Targets
 
@@ -30,14 +31,18 @@ sidechain bus. Everything is measured offline; nothing is guessed.
 ## Quick start
 
 ```bash
+./scripts/build-mpc.sh          # native test, UI, cross-compile, validate, zip
+./scripts/check.sh              # measurement chain + plugin + alias checks
+
 python3 tools/make-signals.py /tmp/qm-signals
-python3 tests/selftest.py
 python3 tools/measure.py /tmp/qm-signals/loud_loop.wav
-scripts/release-check.sh /tmp/qm-signals/loud_loop.wav   # expected: FAIL
-scripts/codec-check.sh  /tmp/qm-signals/loud_loop.wav   # expected: PASS
 ```
 
-Requirements: `ffmpeg`, `ffprobe`, `python3` (standard library only).
+Requirements: `docker`, `ffmpeg`, `ffprobe`, `python3` (standard library only),
+`g++`.
+
+The build writes `dist/mpc/r3d0xStyle - VST - QMaster/` and a release ZIP next
+to it. `scripts/install-mpc.sh` copies the folder to a connected MPC drive.
 
 ## Layout
 

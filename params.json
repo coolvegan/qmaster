@@ -1,0 +1,15 @@
+{
+  "name": "QMaster", "vendor": "r3d0xStyle", "uid": "qmst", "uidInt": 1902998388, "version": 1000,
+  "isInstrument": false, "numInputs": 2, "numOutputs": 2, "numPrograms": 5,
+  "programs": ["Init", "CD Loud", "Streaming Safe", "Bus Drums", "Bus 808"],
+  "params": [
+    {"index": 0, "id": null, "name": "Mode", "label": "", "display": "Master", "default": 0.0, "automatable": false, "kind": "choice", "choices": ["Master", "Bus"]},
+    {"index": 1, "id": null, "name": "Trim", "label": "dB", "display": "0.0", "default": 0.5, "automatable": true, "kind": "float", "choices": []},
+    {"index": 2, "id": null, "name": "Tilt", "label": "dB", "display": "0.0", "default": 0.5, "automatable": true, "kind": "float", "choices": []},
+    {"index": 3, "id": null, "name": "Clip", "label": "%", "display": "30", "default": 0.3, "automatable": true, "kind": "int", "choices": []},
+    {"index": 4, "id": null, "name": "Transient", "label": "%", "display": "0", "default": 0.0, "automatable": true, "kind": "int", "choices": []},
+    {"index": 5, "id": null, "name": "Ceiling", "label": "dBTP", "display": "-1.0", "default": 0.5, "automatable": true, "kind": "float", "choices": []},
+    {"index": 6, "id": null, "name": "Release", "label": "%", "display": "50", "default": 0.5, "automatable": true, "kind": "int", "choices": []},
+    {"index": 7, "id": null, "name": "Mono", "label": "Hz", "display": "120", "default": 0.6, "automatable": true, "kind": "int", "choices": []}
+  ]
+}

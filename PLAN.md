@@ -119,6 +119,10 @@ Gate:
 
 Aufwand: ~4–5 Tage.
 
+Status 2026-11-26: gebaut und nativ geprüft. `host_sim` 20/20, `validate.py`
+0/0, Plugin-Check 9/9, Alias-Check −105 dBc, Latenz 102 in beiden Modi.
+Offen: Installation und CPU-Messung auf der MPC, echte Beats.
+
 ## 6. Phase 2 — Bus-Modus
 
 Deliverables:
@@ -132,6 +136,9 @@ Gate:
 - 5 Instanzen + Master: keine Xruns im 10-min-Loop.
 
 Aufwand: ~2–3 Tage.
+
+Status 2026-11-26: Bus-Modus ist im Phase-1-Build enthalten (Trim, Transient,
+Clipper, Latenz-Pad). Offen ist die Gerätemessung mit fünf Instanzen.
 
 ## 7. Phase 3 — CD-Finish und Release
 

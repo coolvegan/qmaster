@@ -106,3 +106,52 @@ scripts/codec-check.sh  /tmp/qm-signals/loud_loop.wav   # erwartet: PASS
   Bandpegel nicht.
 - Der Mono-Check filtert mit LR4 bei 120 Hz. Andere Grenzfrequenzen ändern das
   Ergebnis; die Grenze ist eine Konvention, keine Wahrheit.
+
+## Phase 1 — QMaster nativ (2026-11-26)
+
+Der native Build läuft durch: `host_sim` 20/20, `validate.py` 0 Fehler /
+0 Warnungen, `plugin-check.py` 9/9, `alias-check.py` bestanden.
+
+| Prüfung | Ergebnis |
+|---|---|
+| Latenz Master | 102 Samples gemessen, 102 gemeldet |
+| Latenz Bus | 102 Samples, identisch zu Master |
+| True Peak, Default (Clip 30 %) | −1,20 dBTP |
+| True Peak, Clip 100 % | −1,00 dBTP |
+| Ceiling −2 dBTP | −2,20 dBTP |
+| Alias, Clip 0 % | −120,0 dBc |
+| Alias, Clip 100 % | −105,3 dBc bei 19175 Hz |
+
+### Was der Alias-Test gelehrt hat
+
+Die erste Messung mit `bandpass` + `astats` zeigte „Aliase" bei −25 dBFS — und
+zwar unverändert, egal ob 15 oder 31 Taps im Oversampler. Das war kein DSP-
+Fehler, sondern **Leckage des Messfilters**: Ein Bandpass mit Q = 30 dämpft
+einen 232 Hz entfernten 997-Hz-Ton nur um etwa 22 dB. Genau dieser Wert erschien
+als „Alias".
+
+Die Wahrheit liefert eine FFT: 65536 Punkte, Hann-Fenster, Bins von 0,67 Hz.
+Damit liegt der stärkste echte Alias bei **−105 dBc**. Der Test misst jetzt die
+Messkette mit, nicht nur das Plugin.
+
+### Warum die Kette so aufgebaut ist
+
+- **Clipper bei 2×** — die Harmonischen entstehen oberhalb der Basis-Nyquist,
+  der 31-Tap-Halbband filtert sie vor der Dezimierung weg.
+- **Limiter bei 1×** — er muss die Spitzen des *fertigen* Signals kontrollieren,
+  nicht die eines Zwischensignals.
+- **4×-Detektor** — interpoliert zwischen den 1×-Samples und sieht damit die
+  Spitzen, die ein Sample-Peak-Meter verpasst.
+- **0,25 dB Guard** — deckt den Restfehler des Detektors bei starker
+  Übersteuerung ab.
+
+## Offen (Phase 1)
+
+| Punkt | Warum blockiert | Nächster Schritt |
+|---|---|---|
+| Installation auf der MPC | Gerät nicht angeschlossen | `scripts/install-mpc.sh` bei verbundenem Laufwerk |
+| CPU mit 1× Master + 5× Bus | nur Desktop-Messung (0,32 %) | 10-Minuten-Loop auf dem Gerät |
+| State-Roundtrip auf dem Gerät | `.xpj` undurchsichtig | Preset speichern, MPC neu starten, laden |
+| Echte Beats durch QMaster | kein WAV-Renderer im Harness | Renderer-Tool oder MPC-Export |
+| −8 LUFS aus einem echten Mix | braucht die Beats | Release-Check auf dem Export |
+
