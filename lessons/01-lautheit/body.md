@@ -224,7 +224,61 @@ python3 tests/selftest.py
 Er prüft bekannte Pegel (Sinus, Dirac, Anti-Phase, Pink Noise) und ob der
 Release-Guard einen nicht release-fähigen Loop ablehnt.
 
-## 10. Was das für QMaster heißt
+## 10. Testmethoden, die diese Zahlen tragen
+
+Eine Zahl ist nur so gut wie das Signal, an dem sie gemessen wurde. Deshalb
+gibt es Signale mit bekanntem Pegel:
+
+| Signal | Erwartung | Gemessen |
+|---|---|---|
+| Sinus 997 Hz, A = 0,5, mono | Peak −6,02, RMS −9,03, LUFS −9,0 | exakt |
+| Derselbe Sinus stereo | LUFS −6,0 | exakt |
+| Dirac | Peak −0,92 dBFS | −0,92 |
+| Pink Noise, RMS −20 dBFS | RMS −20,0 | −20,00 |
+| Anti-Phase 60 Hz | Korrelation −1,0, Mid = null | exakt |
+
+`tests/selftest.py` prüft 13 dieser Erwartungen. Der Test testet die
+**Messkette**, nicht das Plugin. Wenn er rot ist, sind alle Zahlen wertlos —
+auch die schönen.
+
+Drei Regeln, die daraus folgen:
+
+1. **Nicht „plausibel" prüfen, sondern „erwartet".** −9,0 LUFS ist ein
+   Prüfwert, weil A/√2 und die K-Wichtung bei 997 Hz bekannt sind.
+2. **Das Messwerkzeug mitprüfen.** Ein Bandpass mit Q = 30 dämpft einen 232 Hz
+   entfernten Ton nur um etwa 22 dB. Wer damit „Aliase" misst, misst die
+   Leckage des eigenen Filters (Lektion 02 zeigt die FFT-Lösung).
+3. **LRA erst ab 20 s.** Darunter ist die Perzentil-Verteilung nicht sinnvoll;
+   der Release-Check überspringt sie dann bewusst.
+
+## 11. Fehler, die zu diesen Zahlen geführt haben
+
+Diese Lektion ist nicht vom Himmel gefallen. Drei Messfehler waren nötig:
+
+**Der erste Testsinus war 21 dB zu leise.** `ffmpeg -f lavfi -i sine` liefert
+nicht die Amplitude, die man erwartet: Der „−6-dB-Sinus" maß −27,1 dBFS. Statt
+die Ursache zu suchen, generieren wir die Testsignale jetzt selbst — mit
+bekannter Amplitude, in Python, ohne versteckte Skalierung.
+
+**Der MPC-Export normalisiert.** Alle Testexporte peakten bei −0,09 dBFS. Ein
+Delta-Signal, das eigentlich leiser sein muss, lag plötzlich genauso hoch.
+Erst nach dem Abschalten der Normalisierung sind absolute Pegel vergleichbar.
+Die Regel: **erst den Exportpfad messen, dann das DSP.**
+
+**Der Mono-Downmix log.** `ffmpeg -ac 1` summiert die Kanäle; ein Stereo-Peak
+von −1,03 dBFS erschien als +1,25 im Downmix. Das ist keine Clipping-Stelle im
+Signal, sondern die Summe zweier Kanäle. Gemessen wird deshalb der
+**Stereo-Peak**, nie ein Downmix.
+
+Dazu kommt der beruhigende Fall: Ein Ergebnis, das sich **nicht ändert**, wenn
+man das System ändert, ist verdächtig. Die „Aliase" bei −25 dBFS blieben
+identisch, egal ob 15 oder 31 Filter-Taps — weil sie gar keine Aliase waren.
+Diese Geschichte steht in Lektion 02, wo die FFT sie auflöst.
+
+Die Programme (`CD Loud`, `Bus Drums`, …) bekommen ihre Zahlen in Lektion 03
+und im Capstone; hier stehen nur die Messprinzipien.
+
+## 12. Was das für QMaster heißt
 
 1. Der Limiter arbeitet auf **True Peak**, nicht auf Sample Peak.
 2. Das Oversampling ist kein Luxus: Es verhindert, dass der Clipper neue

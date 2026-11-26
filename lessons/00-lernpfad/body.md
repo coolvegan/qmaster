@@ -13,16 +13,29 @@ Jede Zahl stammt aus einem Messlauf, jede Behauptung hat einen Test.
 
 ## Wie du liest
 
-Jedes Kapitel hat vier Schritte:
+Jedes Kapitel hat sechs Schritte:
 
 1. **Die Frage** — das Problem, das wirklich anlag.
 2. **Die Mathematik** — eine Herleitung, mit den Zahlen aus dem Projekt.
 3. **Der Code** — die Stelle im Repo, die daraus wurde.
-4. **Die Messung** — was der Test zeigt, und was passiert, wenn man es falsch
-   macht.
+4. **Die Messung** — was der Test zeigt.
+5. **Fehler & Test** — was schiefging, wie es gefunden wurde und welcher Test
+   es heute verhindert.
+6. **Anwendung** — welches Programm, welcher Regler, welche Zahl.
 
-Am Ende jedes Kapitels stehen Rechenaufgaben. Wer nur lesen will, kann sie
+Am Ende jeder Lektion stehen Rechenaufgaben. Wer nur lesen will, kann sie
 überspringen; wer rechnen kann, versteht den Code danach anders.
+
+## Fehler gehören dazu
+
+Diese Reihe zeigt nicht nur, wie es am Ende aussieht. Sie zeigt die Irrwege:
+einen geteilten Puffer zwischen zwei Kanälen, einen falsch geschriebenen
+24-Bit-WAV, einen Ceiling-Glätter, der 20 ms lang ungeguardet war, und einen
+„4×"-Detektor, der nur 2× war. Jeder dieser Fehler steht in der Lektion, in der
+er passiert ist — mit dem Test, der ihn heute verhindert.
+
+Das ist kein Selbstzweck. Wer nur Rezepte liest, erkennt den Fehler nicht, wenn
+er das nächste Mal anders aussieht.
 
 ## Die sechs Lektionen
 
