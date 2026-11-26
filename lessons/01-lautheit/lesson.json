@@ -1,0 +1,7 @@
+{
+  "title": "Lautheit: Peak, RMS, LUFS und True Peak",
+  "summary": "Warum −6 dBFS Peak nicht −6 LUFS bedeutet, warum Stereo 3 dB lauter ist als mono, wie K-Wichtung und Gating funktionieren und warum ein Signal bei −1 dBFS Sample Peak trotzdem +0,9 dBTP messen kann.",
+  "tags": ["dsp", "audio", "mpc", "lautheit", "lufs", "true-peak", "mastering", "mathematik"],
+  "level": "fortgeschritten",
+  "status": "draft"
+}

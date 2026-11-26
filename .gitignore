@@ -1,0 +1,12 @@
+build/
+dist/
+__pycache__/
+*.pyc
+*.wav
+*.aif
+*.aiff
+*.flac
+*.ogg
+*.mp3
+*.zip
+.env

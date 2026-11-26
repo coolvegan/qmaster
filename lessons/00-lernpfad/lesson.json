@@ -1,0 +1,7 @@
+{
+  "title": "QMaster-Lernpfad",
+  "summary": "Sechs Lektionen vom dB über Clipper und Limiter bis zur Code-Generierung: wie QMaster entsteht, welche Mathematik dahintersteht und wie man einen Agenten kontrolliert, statt ihm zu vertrauen.",
+  "tags": ["dsp", "audio", "mpc", "mastering", "lautheit", "clipper", "limiter", "code-generation", "mathematik", "lernpfad"],
+  "level": "fortgeschritten",
+  "status": "draft"
+}

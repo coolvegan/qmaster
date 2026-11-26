@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Eine Amplitude von 0,25 entspricht welchem Pegel?",
+    "options": ["−6,02 dB", "−12,04 dB", "−18,06 dB", "−24,08 dB"],
+    "answer": 1,
+    "explanation": "20 · log10(0,25) = −12,04 dB. Halbe Amplitude sind −6,02 dB, ein Viertel also −12,04 dB."
+  },
+  {
+    "question": "Ein Sinus hat einen Peak von −6,02 dBFS. Wie hoch ist sein RMS?",
+    "options": ["−3,01 dBFS", "−6,02 dBFS", "−9,03 dBFS", "−12,04 dBFS"],
+    "answer": 2,
+    "explanation": "Für einen Sinus gilt RMS = A/√2. Das sind −3,01 dB unter dem Peak, also −6,02 − 3,01 = −9,03 dBFS."
+  },
+  {
+    "question": "Derselbe Sinus liegt mono und stereo-identisch vor. Wie unterscheiden sich die LUFS-Werte?",
+    "options": ["gar nicht", "stereo ist 3,01 dB lauter", "stereo ist 6,02 dB lauter", "stereo ist 3,01 dB leiser"],
+    "answer": 1,
+    "explanation": "Loudness summiert die Kanalleistungen. Zwei identische Kanäle verdoppeln die Leistung: +10·log10(2) = +3,01 dB. Gemessen: mono −9,0 LUFS, stereo −6,0 LUFS."
+  },
+  {
+    "question": "Warum wird vor der Loudness-Messung eine K-Wichtung angewendet?",
+    "options": [
+      "um den Bass zu verstärken",
+      "um die Frequenzempfindlichkeit des Ohrs nachzubilden",
+      "um Clipping zu erkennen",
+      "um die Samplerate zu erhöhen"
+    ],
+    "answer": 1,
+    "explanation": "Die K-Wichtung besteht aus einem Hochpass um 38 Hz und einem Hoch-Shelf von +4 dB über etwa 1,5 kHz. Sie bildet nach, dass tiefe und sehr hohe Frequenzen bei gleichem Pegel leiser empfunden werden."
+  },
+  {
+    "question": "Ab welchem Pegel greift das absolute Gate der integrierten Loudness?",
+    "options": ["−70 LUFS", "−40 LUFS", "−23 LUFS", "−10 LUFS"],
+    "answer": 0,
+    "explanation": "Blöcke unter −70 LUFS werden verworfen. Zusätzlich gibt es das relative Gate: alles, was mehr als 10 LU unter dem Mittel der verbleibenden Blöcke liegt."
+  },
+  {
+    "question": "Ein Loop ist auf −1,01 dBFS Sample Peak normalisiert und misst +0,90 dBTP. Was bedeutet das?",
+    "options": [
+      "Der Messwert ist falsch",
+      "Zwischen den Samples liegen Spitzen 1,91 dB über dem Sample-Peak",
+      "Der Loop ist mono",
+      "Der Codec hat den Peak gesenkt"
+    ],
+    "answer": 1,
+    "explanation": "True Peak schätzt den Verlauf zwischen den Abtastpunkten per Oversampling. +0,90 dBTP bei −1,01 dBFS Sample Peak heißt 1,91 dB Überschreitung — deshalb ist der Deckel −1,0 dBTP."
+  },
+  {
+    "question": "Ein Master liegt bei −8 LUFS und −1 dBTP. Wie groß ist der PLR?",
+    "options": ["5 dB", "6 dB", "7 dB", "9 dB"],
+    "answer": 2,
+    "explanation": "PLR = True Peak − Integrated = −1 − (−8) = 7 dB. Das liegt im Zielkorridor 6–8 dB."
+  },
+  {
+    "question": "Welche Rolle spielt −14 LUFS?",
+    "options": [
+      "Es ist der Pflichtwert für CD-Master",
+      "Es ist die Wiedergabe-Referenz von Spotify, kein Mastering-Ziel",
+      "Es ist die Grenze für True Peak",
+      "Es ist die Loudness eines Sinus bei 0 dBFS"
+    ],
+    "answer": 1,
+    "explanation": "Spotify normalisiert die Wiedergabe auf etwa −14 LUFS. Ein lauterer Master wird abgesenkt und klingt dort genauso laut. −14 ist also eine Playback-Referenz, kein Produktionsziel."
+  },
+  {
+    "question": "Ein Sinus hat Peak −6,02 dBFS und RMS −9,03 dBFS. Wie groß ist der Crest-Faktor?",
+    "options": ["0 dB", "3,01 dB", "6,02 dB", "9,03 dB"],
+    "answer": 1,
+    "explanation": "Crest = Peak − RMS = −6,02 − (−9,03) = 3,01 dB. Ein Sinus hat keine Transienten, deshalb ist der Crest so klein."
+  },
+  {
+    "question": "Ein Stereo-Signal liegt nur links an. Der RMS über alle Samples ist −12,04 dBFS, die Loudness −9,0 LUFS. Warum?",
+    "options": [
+      "Weil Loudness nur den aktiven Kanal zählt",
+      "Weil RMS falsch berechnet wurde",
+      "Weil der rechte Kanal phasengedreht ist",
+      "Weil Loudness immer 3 dB lauter ist"
+    ],
+    "answer": 0,
+    "explanation": "Der RMS über alle Samples halbiert sich, weil die Hälfte der Samples null ist (−3,01 dB). Loudness summiert die Kanalleistungen; der stille Kanal trägt nichts bei, also bleibt es bei der Loudness des linken Kanals."
+  }
+]

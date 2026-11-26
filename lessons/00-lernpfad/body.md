@@ -1,0 +1,54 @@
+## Worum es geht
+
+QMaster ist ein Master- und Bus-Plug-in für die Akai MPC. Es soll einen dichten
+Rap-Mix auf kompetitive CD-Lautheit bringen, ohne ihn zu zerstören — und dabei
+auf einem Gerät laufen, das weder Meter noch Sidechain-Bus kennt.
+
+Diese Lektionen sind kein Marketing. Sie sind der Versuch, die Mathematik und
+den Code hinter dem Plugin so zu erklären, dass man beides selbst prüfen kann.
+Jede Zahl stammt aus einem Messlauf, jede Behauptung hat einen Test.
+
+> **Status: Draft.** Die Lektionen werden während der Entwicklung geschrieben
+> und erst veröffentlicht, wenn alle Teile fertig und geprüft sind.
+
+## Wie du liest
+
+Jedes Kapitel hat vier Schritte:
+
+1. **Die Frage** — das Problem, das wirklich anlag.
+2. **Die Mathematik** — eine Herleitung, mit den Zahlen aus dem Projekt.
+3. **Der Code** — die Stelle im Repo, die daraus wurde.
+4. **Die Messung** — was der Test zeigt, und was passiert, wenn man es falsch
+   macht.
+
+Am Ende jedes Kapitels stehen Rechenaufgaben. Wer nur lesen will, kann sie
+überspringen; wer rechnen kann, versteht den Code danach anders.
+
+## Die sechs Lektionen
+
+| # | Lektion | Frage | Was du danach kannst |
+|---|---|---|---|
+| 01 | **Lautheit** | Warum ist −14 LUFS kein Mastering-Ziel? | LUFS, True Peak und PLR messen und einordnen |
+| 02 | **Clipper** | Warum klingt laut oft billig? | Harmonische und Aliasing vorhersagen, Oversampling begründen |
+| 03 | **Limiter** | Wie folgt ein Gain ohne zu pumpen? | Attack, Release und Lookahead dimensionieren |
+| 04 | **Filter und Mono** | Warum verschwindet der Bass auf dem Handy? | Biquads, Pole und M/S verstehen |
+| 05 | **Code-Generierung** | Wie kontrolliert man einen Agenten? | Spezifikation, Testvertrag und Review beherrschen |
+| 06 | **Capstone** | Klingt es wirklich? | Einen Beat mastern und die Ziele nachweisen |
+
+## Die zwei Spuren
+
+**Verstehen** führt über die Mathematik. **Bauen** führt über den Code. Beide
+treffen sich in der Messung. Wer nur eine Spur geht, bekommt entweder Theorie
+ohne Gefühl oder Code ohne Begründung.
+
+## Was am Ende steht
+
+Kein „so klingt highend", sondern eine überprüfbare Kette:
+
+- integrierte Lautheit im Zielkorridor,
+- True Peak unter dem Deckel,
+- keine Aliasing-Artefakte,
+- Mono-Kompatibilität unter 120 Hz,
+- und ein Mix, der auch leise noch funktioniert.
+
+Der Rest ist Musik.
