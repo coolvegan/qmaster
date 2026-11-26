@@ -1,0 +1,7 @@
+{
+  "title": "Code-Generierung: Wie man einem Agenten traut",
+  "summary": "Spezifikation, Test, Code, Messung: wie QMaster aus params.json eine MPC-Oberfläche generiert, warum check.sh die einzige Wahrheit ist, wie Toleranzen, dBc und PLR einen Fehler entlarven und warum −0,09 dBFS kein Beweis für Normalisierung war.",
+  "tags": ["dsp", "mpc", "code-generation", "testen", "workflow", "fehlerkultur"],
+  "level": "fortgeschritten",
+  "status": "final"
+}

@@ -1,0 +1,325 @@
+{
+  "width": 1000,
+  "height": 560,
+  "steps": [
+    {
+      "caption": "Vier DSP-Fehler, vier Invarianten. Jeder Fehler hat einen Test hinterlassen, der nicht nur den alten Fall, sondern die ganze Klasse verhindert.",
+      "duration": 5200,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 45,
+          "text": "Fehlerkatalog: DSP und Zustand",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "r0",
+          "type": "rect",
+          "x": 50,
+          "y": 105,
+          "w": 900,
+          "h": 62,
+          "rx": 8,
+          "label": "Geteilter FFT-Puffer L/R   ·   Crosstalk L≠R < −100 dB"
+        },
+        {
+          "id": "r1",
+          "type": "rect",
+          "x": 50,
+          "y": 180,
+          "w": 900,
+          "h": 62,
+          "rx": 8,
+          "label": "OLA-Ring-Offset   ·   Impuls an Position, Rekonstruktion = 1"
+        },
+        {
+          "id": "r2",
+          "type": "rect",
+          "x": 50,
+          "y": 255,
+          "w": 900,
+          "h": 62,
+          "rx": 8,
+          "label": "Absolute dB im Spektrum   ·   Gain-Invarianz der Maske"
+        },
+        {
+          "id": "r3",
+          "type": "rect",
+          "x": 50,
+          "y": 330,
+          "w": 900,
+          "h": 62,
+          "rx": 8,
+          "label": "Lazy Bus Open   ·   Empfänger vor Sender, 1000 Frames"
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 435,
+          "text": "QDSSD: ein Spektrum für zwei Kanäle, ein Ringplatz zu weit, ein absoluter Pegel, ein zu früher Konstruktor.",
+          "size": 18
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 485,
+          "text": "Vier Fehler, vier Tests — keiner davon prüft „klingt gut“.",
+          "size": 18
+        }
+      ]
+    },
+    {
+      "caption": "Render- und Detektorfehler. Alle drei wären auf der MPC als „irgendwie leise“ aufgefallen; offline waren sie in Minuten zu finden.",
+      "duration": 5200,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 45,
+          "text": "Fehlerkatalog: Render, Glätter, Detektor",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "r0",
+          "type": "rect",
+          "x": 50,
+          "y": 105,
+          "w": 900,
+          "h": 82,
+          "rx": 8
+        },
+        {
+          "id": "e0",
+          "type": "text",
+          "x": 500,
+          "y": 137,
+          "text": "24-Bit-WAV: s >> 8 statt s & 0xff",
+          "size": 19,
+          "weight": 700
+        },
+        {
+          "id": "e1",
+          "type": "text",
+          "x": 500,
+          "y": 168,
+          "text": "48,2 dB zu leise — gefunden durch den erwarteten Peak",
+          "size": 18
+        },
+        {
+          "id": "r1",
+          "type": "rect",
+          "x": 50,
+          "y": 235,
+          "w": 900,
+          "h": 82,
+          "rx": 8
+        },
+        {
+          "id": "e2",
+          "type": "text",
+          "x": 500,
+          "y": 267,
+          "text": "Ceiling-Smoother startet ungeguardet",
+          "size": 19,
+          "weight": 700
+        },
+        {
+          "id": "e3",
+          "type": "text",
+          "x": 500,
+          "y": 298,
+          "text": "0,25 dB zu heiß in den ersten 20 ms — globaler Peak bei 5 ms",
+          "size": 18
+        },
+        {
+          "id": "r2",
+          "type": "rect",
+          "x": 50,
+          "y": 365,
+          "w": 900,
+          "h": 82,
+          "rx": 8
+        },
+        {
+          "id": "e4",
+          "type": "text",
+          "x": 500,
+          "y": 397,
+          "text": "Der „4×“-Detektor war nur 2×",
+          "size": 19,
+          "weight": 700
+        },
+        {
+          "id": "e5",
+          "type": "text",
+          "x": 500,
+          "y": 428,
+          "text": "TP −0,1 dBTP gegen Sample −1,25 dBFS — Lücke 1,15 dB, Guard nur 0,40 dB",
+          "size": 18
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 495,
+          "text": "Alle drei waren offline sichtbar, bevor die MPC sie hörte.",
+          "size": 18
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 535,
+          "text": "Der Test ist der erwartete Wert, nicht der zufällig gemessene.",
+          "size": 17
+        }
+      ]
+    },
+    {
+      "caption": "Zwei Deutungsfehler. Beide entstanden aus einer einzelnen Zahl ohne zweite, unabhängige Metrik.",
+      "duration": 5200,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "Fehlerkatalog: Messung und Deutung",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "l0",
+          "type": "rect",
+          "x": 50,
+          "y": 115,
+          "w": 420,
+          "h": 285,
+          "rx": 10
+        },
+        {
+          "id": "l1",
+          "type": "text",
+          "x": 260,
+          "y": 160,
+          "text": "Bandpass-Leckage",
+          "size": 21,
+          "weight": 700
+        },
+        {
+          "id": "l2",
+          "type": "text",
+          "x": 260,
+          "y": 210,
+          "text": "−25,3 dBFS bei 1229 Hz",
+          "size": 18
+        },
+        {
+          "id": "l3",
+          "type": "text",
+          "x": 260,
+          "y": 255,
+          "text": "Q = 30 dämpft 232 Hz nur um ~22 dB",
+          "size": 18
+        },
+        {
+          "id": "l4",
+          "type": "text",
+          "x": 260,
+          "y": 300,
+          "text": "FFT mit 65536 Punkten und Hann",
+          "size": 18
+        },
+        {
+          "id": "l5",
+          "type": "text",
+          "x": 260,
+          "y": 345,
+          "text": "echter Alias: −105,4 dBc",
+          "size": 18
+        },
+        {
+          "id": "r0",
+          "type": "rect",
+          "x": 530,
+          "y": 115,
+          "w": 420,
+          "h": 285,
+          "rx": 10
+        },
+        {
+          "id": "r1",
+          "type": "text",
+          "x": 740,
+          "y": 160,
+          "text": "−0,09 dBFS = Normalisierung?",
+          "size": 21,
+          "weight": 700
+        },
+        {
+          "id": "r2",
+          "type": "text",
+          "x": 740,
+          "y": 210,
+          "text": "PLR 7,7 statt 17,7",
+          "size": 18
+        },
+        {
+          "id": "r3",
+          "type": "text",
+          "x": 740,
+          "y": 255,
+          "text": "309 / 261 Samples auf 0,99",
+          "size": 18
+        },
+        {
+          "id": "r4",
+          "type": "text",
+          "x": 740,
+          "y": 300,
+          "text": "eine Pegelanhebung lässt PLR unverändert",
+          "size": 18
+        },
+        {
+          "id": "r5",
+          "type": "text",
+          "x": 740,
+          "y": 345,
+          "text": "Ursache: Limiter der alten Kette",
+          "size": 18
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 450,
+          "text": "Eine Zahl ist kein Ursachenbeweis.",
+          "size": 20
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 495,
+          "text": "Zwei unabhängige Metriken sind einer.",
+          "size": 18
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 535,
+          "text": "Ändert sich ein Ergebnis nicht, wenn man das Messsystem ändert, ist die Messung verdächtig.",
+          "size": 17
+        }
+      ]
+    }
+  ]
+}

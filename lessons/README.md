@@ -7,6 +7,18 @@ Quellen für Zahlen und Befehle:
 [`docs/ANALYSEN.md`](../docs/ANALYSEN.md) und
 [`docs/WERKZEUGE.md`](../docs/WERKZEUGE.md).
 
+## Veröffentlicht (2026-11-26)
+
+| Lektion | URL |
+|---|---|
+| 00 Lernpfad | https://marcokittel.de/lesson/4ca48031-1624-4d83-9042-40fb6b3d3542 |
+| 01 Lautheit | https://marcokittel.de/lesson/19c51f56-cdc1-4610-b883-b1ea29cc4540 |
+| 02 Clipper | https://marcokittel.de/lesson/482db70e-d09d-4d6f-b54c-183b64972491 |
+| 03 Limiter | https://marcokittel.de/lesson/f8d09145-6f1e-4b59-98a0-3ddff283ca3a |
+| 04 Filter und Mono | https://marcokittel.de/lesson/eda3d6ed-27cd-4a80-b946-5c09808f854a |
+| 05 Code-Generierung | https://marcokittel.de/lesson/ddfe2add-5451-4b3d-a48c-866c2b6215f3 |
+| 06 Capstone | https://marcokittel.de/lesson/94f4b4a8-23ad-4751-8778-59e8fc2c8f8f |
+
 ## Regel
 
 1. Jede Phase schreibt ihre Lektion (Body, Szenen, Quiz) direkt in

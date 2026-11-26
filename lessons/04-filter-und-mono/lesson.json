@@ -1,0 +1,7 @@
+{
+  "title": "Filter und Mono: Warum der Bass auf dem Handy verschwindet",
+  "summary": "Biquad-Differenzengleichung, Pole und Stabilität, RBJ-Koeffizienten, die feste 24-Hz-Flanke, Tilt aus zwei Shelves und der Mono Maker als Mid/Side-Hochpass — mit den Messwerten aus A2, A5, A9 und A10.",
+  "tags": ["dsp", "audio", "mpc", "filter", "mono", "mid-side", "mathematik"],
+  "level": "fortgeschritten",
+  "status": "final"
+}

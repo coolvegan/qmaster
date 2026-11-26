@@ -1,0 +1,596 @@
+{
+  "width": 1000,
+  "height": 560,
+  "steps": [
+    {
+      "caption": "Beide Ketten liegen über dem PLR-Korridor. Die neue ist näher heran, aber nicht am Ziel.",
+      "duration": 5800,
+      "objects": [
+        {
+          "id": "s3a_title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Seele: alte Kette vs. QMaster",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s3a_sub",
+          "type": "text",
+          "x": 500,
+          "y": 75,
+          "text": "PLR im Vergleich, Zielkorridor 6–8 dB",
+          "size": 18
+        },
+        {
+          "id": "s3a_xax",
+          "type": "line",
+          "x1": 120,
+          "y1": 390,
+          "x2": 900,
+          "y2": 390
+        },
+        {
+          "id": "s3a_yax",
+          "type": "line",
+          "x1": 120,
+          "y1": 150,
+          "x2": 120,
+          "y2": 390
+        },
+        {
+          "id": "s3a_x0",
+          "type": "text",
+          "x": 120.0,
+          "y": 412,
+          "text": "0",
+          "size": 15
+        },
+        {
+          "id": "s3a_x2",
+          "type": "text",
+          "x": 224.0,
+          "y": 412,
+          "text": "2",
+          "size": 15
+        },
+        {
+          "id": "s3a_x4",
+          "type": "text",
+          "x": 328.0,
+          "y": 412,
+          "text": "4",
+          "size": 15
+        },
+        {
+          "id": "s3a_x6",
+          "type": "text",
+          "x": 432.0,
+          "y": 412,
+          "text": "6",
+          "size": 15
+        },
+        {
+          "id": "s3a_x8",
+          "type": "text",
+          "x": 536.0,
+          "y": 412,
+          "text": "8",
+          "size": 15
+        },
+        {
+          "id": "s3a_x10",
+          "type": "text",
+          "x": 640.0,
+          "y": 412,
+          "text": "10",
+          "size": 15
+        },
+        {
+          "id": "s3a_x12",
+          "type": "text",
+          "x": 744.0,
+          "y": 412,
+          "text": "12",
+          "size": 15
+        },
+        {
+          "id": "s3a_x14",
+          "type": "text",
+          "x": 848.0,
+          "y": 412,
+          "text": "14",
+          "size": 15
+        },
+        {
+          "id": "s3a_xname",
+          "type": "text",
+          "x": 860,
+          "y": 440,
+          "text": "PLR (dB)",
+          "size": 16
+        },
+        {
+          "id": "s3a_old",
+          "type": "rect",
+          "x": 120,
+          "y": 190,
+          "w": 722.8000000000001,
+          "h": 44,
+          "rx": 4
+        },
+        {
+          "id": "s3a_oldlab",
+          "type": "text",
+          "x": 250,
+          "y": 178,
+          "text": "Alt: 4 Plugins (Kompressor, Clipper, Maximizer +1)",
+          "size": 15
+        },
+        {
+          "id": "s3a_oldval",
+          "type": "text",
+          "x": 875,
+          "y": 178,
+          "text": "+13,9 dB",
+          "size": 17,
+          "weight": 700
+        },
+        {
+          "id": "s3a_new",
+          "type": "rect",
+          "x": 120,
+          "y": 280,
+          "w": 546.0,
+          "h": 44,
+          "rx": 4
+        },
+        {
+          "id": "s3a_newlab",
+          "type": "text",
+          "x": 250,
+          "y": 268,
+          "text": "Neu: Bus Drums + CD Loud",
+          "size": 15
+        },
+        {
+          "id": "s3a_newval",
+          "type": "text",
+          "x": 700,
+          "y": 307,
+          "text": "+10,5 dB",
+          "size": 17,
+          "weight": 700
+        },
+        {
+          "id": "s3a_note1",
+          "type": "text",
+          "x": 500,
+          "y": 475,
+          "text": "Alt: −12,5 LUFS, +1,40 dBTP · neu: −10,9 LUFS, −0,40 dBTP",
+          "size": 16
+        },
+        {
+          "id": "s3a_note2",
+          "type": "text",
+          "x": 500,
+          "y": 510,
+          "text": "Die neue Kette ist 1,6 dB lauter und 3,4 dB dichter — aber noch außerhalb.",
+          "size": 16
+        },
+        {
+          "id": "s3a_z6",
+          "type": "line",
+          "x1": 432.0,
+          "y1": 150,
+          "x2": 432.0,
+          "y2": 390,
+          "dash": "6 6"
+        },
+        {
+          "id": "s3a_z8",
+          "type": "line",
+          "x1": 536.0,
+          "y1": 150,
+          "x2": 536.0,
+          "y2": 390,
+          "dash": "6 6"
+        },
+        {
+          "id": "s3a_zlab",
+          "type": "text",
+          "x": 484,
+          "y": 140,
+          "text": "Ziel 6–8",
+          "size": 15
+        }
+      ]
+    },
+    {
+      "caption": "Die neue Kette gewinnt bei True Peak, PLR und Mono. Sie verliert aber die Mitten.",
+      "duration": 5800,
+      "objects": [
+        {
+          "id": "s3b_title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Was sich geändert hat",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s3b_h1",
+          "type": "text",
+          "x": 150,
+          "y": 120,
+          "text": "Größe",
+          "size": 18,
+          "weight": 700
+        },
+        {
+          "id": "s3b_h2",
+          "type": "text",
+          "x": 520,
+          "y": 120,
+          "text": "alt",
+          "size": 18,
+          "weight": 700
+        },
+        {
+          "id": "s3b_h3",
+          "type": "text",
+          "x": 760,
+          "y": 120,
+          "text": "neu",
+          "size": 18,
+          "weight": 700
+        },
+        {
+          "id": "s3b_rule",
+          "type": "line",
+          "x1": 100,
+          "y1": 140,
+          "x2": 900,
+          "y2": 140
+        },
+        {
+          "id": "s3b_n0",
+          "type": "text",
+          "x": 150,
+          "y": 185,
+          "text": "Integrated",
+          "size": 17
+        },
+        {
+          "id": "s3b_o0",
+          "type": "text",
+          "x": 520,
+          "y": 185,
+          "text": "−12,5 LUFS",
+          "size": 17
+        },
+        {
+          "id": "s3b_v0",
+          "type": "text",
+          "x": 760,
+          "y": 185,
+          "text": "−10,9 LUFS",
+          "size": 17
+        },
+        {
+          "id": "s3b_n1",
+          "type": "text",
+          "x": 150,
+          "y": 245,
+          "text": "True Peak",
+          "size": 17
+        },
+        {
+          "id": "s3b_o1",
+          "type": "text",
+          "x": 520,
+          "y": 245,
+          "text": "+1,40 dBTP",
+          "size": 17
+        },
+        {
+          "id": "s3b_v1",
+          "type": "text",
+          "x": 760,
+          "y": 245,
+          "text": "−0,40 dBTP",
+          "size": 17
+        },
+        {
+          "id": "s3b_n2",
+          "type": "text",
+          "x": 150,
+          "y": 305,
+          "text": "PLR",
+          "size": 17
+        },
+        {
+          "id": "s3b_o2",
+          "type": "text",
+          "x": 520,
+          "y": 305,
+          "text": "13,9",
+          "size": 17
+        },
+        {
+          "id": "s3b_v2",
+          "type": "text",
+          "x": 760,
+          "y": 305,
+          "text": "10,5",
+          "size": 17
+        },
+        {
+          "id": "s3b_n3",
+          "type": "text",
+          "x": 150,
+          "y": 365,
+          "text": "LRA",
+          "size": 17
+        },
+        {
+          "id": "s3b_o3",
+          "type": "text",
+          "x": 520,
+          "y": 365,
+          "text": "6,1 LU",
+          "size": 17
+        },
+        {
+          "id": "s3b_v3",
+          "type": "text",
+          "x": 760,
+          "y": 365,
+          "text": "7,6 LU",
+          "size": 17
+        },
+        {
+          "id": "s3b_n4",
+          "type": "text",
+          "x": 150,
+          "y": 425,
+          "text": "Mono Side−Mid",
+          "size": 17
+        },
+        {
+          "id": "s3b_o4",
+          "type": "text",
+          "x": 520,
+          "y": 425,
+          "text": "−29,8 dB",
+          "size": 17
+        },
+        {
+          "id": "s3b_v4",
+          "type": "text",
+          "x": 760,
+          "y": 425,
+          "text": "−37,4 dB",
+          "size": 17
+        },
+        {
+          "id": "s3b_note",
+          "type": "text",
+          "x": 500,
+          "y": 505,
+          "text": "Mitten 204 Hz–13 kHz relativ zum Sub: 3–5,6 dB leiser.",
+          "size": 18
+        }
+      ]
+    },
+    {
+      "caption": "Alle vier Kriterien werden verfehlt. Der Master hat den Pegel verbessert, nicht die Produktion.",
+      "duration": 6000,
+      "objects": [
+        {
+          "id": "s3c_title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Drei Hauptkriterien, drei Verfehlungen",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s3c_h1",
+          "type": "text",
+          "x": 180,
+          "y": 120,
+          "text": "Kriterium",
+          "size": 18,
+          "weight": 700
+        },
+        {
+          "id": "s3c_h2",
+          "type": "text",
+          "x": 480,
+          "y": 120,
+          "text": "Ist",
+          "size": 18,
+          "weight": 700
+        },
+        {
+          "id": "s3c_h3",
+          "type": "text",
+          "x": 700,
+          "y": 120,
+          "text": "Ziel",
+          "size": 18,
+          "weight": 700
+        },
+        {
+          "id": "s3c_h4",
+          "type": "text",
+          "x": 850,
+          "y": 120,
+          "text": "Status",
+          "size": 18,
+          "weight": 700
+        },
+        {
+          "id": "s3c_rule",
+          "type": "line",
+          "x1": 100,
+          "y1": 140,
+          "x2": 900,
+          "y2": 140
+        },
+        {
+          "id": "s3c_n0",
+          "type": "text",
+          "x": 180,
+          "y": 175,
+          "text": "Loudness",
+          "size": 17
+        },
+        {
+          "id": "s3c_i0",
+          "type": "text",
+          "x": 480,
+          "y": 175,
+          "text": "−10,9 LUFS",
+          "size": 17
+        },
+        {
+          "id": "s3c_z0",
+          "type": "text",
+          "x": 700,
+          "y": 175,
+          "text": "−9…−7",
+          "size": 17
+        },
+        {
+          "id": "s3c_s0",
+          "type": "text",
+          "x": 850,
+          "y": 175,
+          "text": "FAIL",
+          "size": 17,
+          "weight": 700
+        },
+        {
+          "id": "s3c_n1",
+          "type": "text",
+          "x": 180,
+          "y": 235,
+          "text": "True Peak",
+          "size": 17
+        },
+        {
+          "id": "s3c_i1",
+          "type": "text",
+          "x": 480,
+          "y": 235,
+          "text": "−0,4 dBTP",
+          "size": 17
+        },
+        {
+          "id": "s3c_z1",
+          "type": "text",
+          "x": 700,
+          "y": 235,
+          "text": "≤ −1,0",
+          "size": 17
+        },
+        {
+          "id": "s3c_s1",
+          "type": "text",
+          "x": 850,
+          "y": 235,
+          "text": "FAIL",
+          "size": 17,
+          "weight": 700
+        },
+        {
+          "id": "s3c_n2",
+          "type": "text",
+          "x": 180,
+          "y": 295,
+          "text": "PLR",
+          "size": 17
+        },
+        {
+          "id": "s3c_i2",
+          "type": "text",
+          "x": 480,
+          "y": 295,
+          "text": "10,5",
+          "size": 17
+        },
+        {
+          "id": "s3c_z2",
+          "type": "text",
+          "x": 700,
+          "y": 295,
+          "text": "6…8",
+          "size": 17
+        },
+        {
+          "id": "s3c_s2",
+          "type": "text",
+          "x": 850,
+          "y": 295,
+          "text": "FAIL",
+          "size": 17,
+          "weight": 700
+        },
+        {
+          "id": "s3c_n3",
+          "type": "text",
+          "x": 180,
+          "y": 355,
+          "text": "LRA",
+          "size": 17
+        },
+        {
+          "id": "s3c_i3",
+          "type": "text",
+          "x": 480,
+          "y": 355,
+          "text": "7,6 LU",
+          "size": 17
+        },
+        {
+          "id": "s3c_z3",
+          "type": "text",
+          "x": 700,
+          "y": 355,
+          "text": "4…7",
+          "size": 17
+        },
+        {
+          "id": "s3c_s3",
+          "type": "text",
+          "x": 850,
+          "y": 355,
+          "text": "FAIL",
+          "size": 17,
+          "weight": 700
+        },
+        {
+          "id": "s3c_note1",
+          "type": "text",
+          "x": 500,
+          "y": 470,
+          "text": "Der Master kann nicht mischen: 1,6 dB lauter, 3,4 dB dichter, Mitten 3–5,6 dB leiser.",
+          "size": 16
+        },
+        {
+          "id": "s3c_note2",
+          "type": "text",
+          "x": 500,
+          "y": 510,
+          "text": "Nächster Schritt: Roh-Export ohne Master-Kette.",
+          "size": 16
+        }
+      ]
+    }
+  ]
+}

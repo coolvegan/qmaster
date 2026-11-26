@@ -7,9 +7,6 @@ Diese Lektion baut die Messkette von Grund auf: Peak, RMS, dB, Stereo-Summe,
 K-Wichtung, LUFS, Gating, True Peak, PLR. Jede Zahl stammt aus einem Lauf des
 Harness im Repo, nicht aus einem Lehrbuch.
 
-> **Status: Draft.** Diese Lektion wird während der Entwicklung geschrieben und
-> erst veröffentlicht, wenn alle Teile geprüft sind.
-
 ## 1. Peak ist nicht Lautheit
 
 Ein Sinus mit Amplitude 0,5 hat einen Sample-Peak von

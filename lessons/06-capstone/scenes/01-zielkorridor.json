@@ -1,0 +1,653 @@
+{
+  "width": 1000,
+  "height": 560,
+  "steps": [
+    {
+      "caption": "Der Korridor ist ein Rechteck: −9 bis −7 LUFS und PLR 6 bis 8. Der Rohmix liegt weit außerhalb.",
+      "duration": 5200,
+      "objects": [
+        {
+          "id": "s1a_title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Der Zielkorridor",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s1a_sub",
+          "type": "text",
+          "x": 500,
+          "y": 75,
+          "text": "Vier Bedingungen, die gleichzeitig stimmen müssen",
+          "size": 18
+        },
+        {
+          "id": "s1a_xax",
+          "type": "line",
+          "x1": 90,
+          "y1": 470,
+          "x2": 930,
+          "y2": 470
+        },
+        {
+          "id": "s1a_yax",
+          "type": "line",
+          "x1": 90,
+          "y1": 100,
+          "x2": 90,
+          "y2": 470
+        },
+        {
+          "id": "s1a_corr",
+          "type": "rect",
+          "x": 510.0,
+          "y": 335.4545454545455,
+          "w": 210.0,
+          "h": 67.27272727272725,
+          "rx": 6
+        },
+        {
+          "id": "s1a_corrl",
+          "type": "text",
+          "x": 615.0,
+          "y": 325.4545454545455,
+          "text": "Zielkorridor",
+          "size": 16
+        },
+        {
+          "id": "s1a_v8",
+          "type": "line",
+          "x1": 615.0,
+          "y1": 100,
+          "x2": 615.0,
+          "y2": 470,
+          "dash": "6 6"
+        },
+        {
+          "id": "s1a_h7",
+          "type": "line",
+          "x1": 90,
+          "y1": 369.0909090909091,
+          "x2": 930,
+          "y2": 369.0909090909091,
+          "dash": "6 6"
+        },
+        {
+          "id": "s1a_xl12",
+          "type": "text",
+          "x": 195.0,
+          "y": 495,
+          "text": "−12",
+          "size": 16
+        },
+        {
+          "id": "s1a_xl10",
+          "type": "text",
+          "x": 405.0,
+          "y": 495,
+          "text": "−10",
+          "size": 16
+        },
+        {
+          "id": "s1a_xl8",
+          "type": "text",
+          "x": 615.0,
+          "y": 495,
+          "text": "−8",
+          "size": 16
+        },
+        {
+          "id": "s1a_xl6",
+          "type": "text",
+          "x": 825.0,
+          "y": 495,
+          "text": "−6",
+          "size": 16
+        },
+        {
+          "id": "s1a_yl6",
+          "type": "text",
+          "x": 66,
+          "y": 402.72727272727275,
+          "text": "6",
+          "size": 16
+        },
+        {
+          "id": "s1a_yl8",
+          "type": "text",
+          "x": 66,
+          "y": 335.4545454545455,
+          "text": "8",
+          "size": 16
+        },
+        {
+          "id": "s1a_yl10",
+          "type": "text",
+          "x": 66,
+          "y": 268.1818181818182,
+          "text": "10",
+          "size": 16
+        },
+        {
+          "id": "s1a_yl12",
+          "type": "text",
+          "x": 66,
+          "y": 200.90909090909093,
+          "text": "12",
+          "size": 16
+        },
+        {
+          "id": "s1a_xname",
+          "type": "text",
+          "x": 880,
+          "y": 520,
+          "text": "LUFS",
+          "size": 16
+        },
+        {
+          "id": "s1a_yname",
+          "type": "text",
+          "x": 66,
+          "y": 88,
+          "text": "PLR (dB)",
+          "size": 16
+        },
+        {
+          "id": "s1a_note",
+          "type": "text",
+          "x": 500,
+          "y": 540,
+          "text": "Rohmix: −18,3 LUFS · −0,6 dBTP · PLR 17,7",
+          "size": 16
+        }
+      ]
+    },
+    {
+      "caption": "Loop, Sweep-Empfehlung und echter Export liegen im Korridor. +10/55 liegt mit PLR 5,5 darunter.",
+      "duration": 5200,
+      "objects": [
+        {
+          "id": "s1b_title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Der Zielkorridor",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s1b_sub",
+          "type": "text",
+          "x": 500,
+          "y": 75,
+          "text": "Vier Bedingungen, die gleichzeitig stimmen müssen",
+          "size": 18
+        },
+        {
+          "id": "s1b_xax",
+          "type": "line",
+          "x1": 90,
+          "y1": 470,
+          "x2": 930,
+          "y2": 470
+        },
+        {
+          "id": "s1b_yax",
+          "type": "line",
+          "x1": 90,
+          "y1": 100,
+          "x2": 90,
+          "y2": 470
+        },
+        {
+          "id": "s1b_corr",
+          "type": "rect",
+          "x": 510.0,
+          "y": 335.4545454545455,
+          "w": 210.0,
+          "h": 67.27272727272725,
+          "rx": 6
+        },
+        {
+          "id": "s1b_corrl",
+          "type": "text",
+          "x": 615.0,
+          "y": 325.4545454545455,
+          "text": "Zielkorridor",
+          "size": 16
+        },
+        {
+          "id": "s1b_v8",
+          "type": "line",
+          "x1": 615.0,
+          "y1": 100,
+          "x2": 615.0,
+          "y2": 470,
+          "dash": "6 6"
+        },
+        {
+          "id": "s1b_h7",
+          "type": "line",
+          "x1": 90,
+          "y1": 369.0909090909091,
+          "x2": 930,
+          "y2": 369.0909090909091,
+          "dash": "6 6"
+        },
+        {
+          "id": "s1b_xl12",
+          "type": "text",
+          "x": 195.0,
+          "y": 495,
+          "text": "−12",
+          "size": 16
+        },
+        {
+          "id": "s1b_xl10",
+          "type": "text",
+          "x": 405.0,
+          "y": 495,
+          "text": "−10",
+          "size": 16
+        },
+        {
+          "id": "s1b_xl8",
+          "type": "text",
+          "x": 615.0,
+          "y": 495,
+          "text": "−8",
+          "size": 16
+        },
+        {
+          "id": "s1b_xl6",
+          "type": "text",
+          "x": 825.0,
+          "y": 495,
+          "text": "−6",
+          "size": 16
+        },
+        {
+          "id": "s1b_yl6",
+          "type": "text",
+          "x": 66,
+          "y": 402.72727272727275,
+          "text": "6",
+          "size": 16
+        },
+        {
+          "id": "s1b_yl8",
+          "type": "text",
+          "x": 66,
+          "y": 335.4545454545455,
+          "text": "8",
+          "size": 16
+        },
+        {
+          "id": "s1b_yl10",
+          "type": "text",
+          "x": 66,
+          "y": 268.1818181818182,
+          "text": "10",
+          "size": 16
+        },
+        {
+          "id": "s1b_yl12",
+          "type": "text",
+          "x": 66,
+          "y": 200.90909090909093,
+          "text": "12",
+          "size": 16
+        },
+        {
+          "id": "s1b_xname",
+          "type": "text",
+          "x": 880,
+          "y": 520,
+          "text": "LUFS",
+          "size": 16
+        },
+        {
+          "id": "s1b_yname",
+          "type": "text",
+          "x": 66,
+          "y": 88,
+          "text": "PLR (dB)",
+          "size": 16
+        },
+        {
+          "id": "s1b_note",
+          "type": "text",
+          "x": 500,
+          "y": 540,
+          "text": "Rohmix: −18,3 LUFS · −0,6 dBTP · PLR 17,7",
+          "size": 16
+        },
+        {
+          "id": "s1b_loop",
+          "type": "rect",
+          "x": 556.5,
+          "y": 349.6363636363636,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1b_loopl",
+          "type": "text",
+          "x": 562.5,
+          "y": 335.6363636363636,
+          "text": "Loop A4",
+          "size": 15
+        },
+        {
+          "id": "s1b_a6",
+          "type": "rect",
+          "x": 598.5,
+          "y": 373.1818181818182,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1b_a6l",
+          "type": "text",
+          "x": 664.5,
+          "y": 383.1818181818182,
+          "text": "A6 +8/55",
+          "size": 15
+        },
+        {
+          "id": "s1b_a9",
+          "type": "rect",
+          "x": 630.0,
+          "y": 379.90909090909093,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1b_a9l",
+          "type": "text",
+          "x": 678.0,
+          "y": 397.90909090909093,
+          "text": "A9",
+          "size": 15
+        },
+        {
+          "id": "s1b_hot",
+          "type": "rect",
+          "x": 724.5,
+          "y": 413.54545454545456,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1b_hotl",
+          "type": "text",
+          "x": 730.5,
+          "y": 445.54545454545456,
+          "text": "+10/55",
+          "size": 15
+        }
+      ]
+    },
+    {
+      "caption": "„Seele“ liegt außerhalb: zu leise und zu dynamisch. Die neue Kette ist besser, aber nicht im Korridor.",
+      "duration": 5600,
+      "objects": [
+        {
+          "id": "s1c_title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Der Zielkorridor",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s1c_sub",
+          "type": "text",
+          "x": 500,
+          "y": 75,
+          "text": "Vier Bedingungen, die gleichzeitig stimmen müssen",
+          "size": 18
+        },
+        {
+          "id": "s1c_xax",
+          "type": "line",
+          "x1": 90,
+          "y1": 470,
+          "x2": 930,
+          "y2": 470
+        },
+        {
+          "id": "s1c_yax",
+          "type": "line",
+          "x1": 90,
+          "y1": 100,
+          "x2": 90,
+          "y2": 470
+        },
+        {
+          "id": "s1c_corr",
+          "type": "rect",
+          "x": 510.0,
+          "y": 335.4545454545455,
+          "w": 210.0,
+          "h": 67.27272727272725,
+          "rx": 6
+        },
+        {
+          "id": "s1c_corrl",
+          "type": "text",
+          "x": 615.0,
+          "y": 325.4545454545455,
+          "text": "Zielkorridor",
+          "size": 16
+        },
+        {
+          "id": "s1c_v8",
+          "type": "line",
+          "x1": 615.0,
+          "y1": 100,
+          "x2": 615.0,
+          "y2": 470,
+          "dash": "6 6"
+        },
+        {
+          "id": "s1c_h7",
+          "type": "line",
+          "x1": 90,
+          "y1": 369.0909090909091,
+          "x2": 930,
+          "y2": 369.0909090909091,
+          "dash": "6 6"
+        },
+        {
+          "id": "s1c_xl12",
+          "type": "text",
+          "x": 195.0,
+          "y": 495,
+          "text": "−12",
+          "size": 16
+        },
+        {
+          "id": "s1c_xl10",
+          "type": "text",
+          "x": 405.0,
+          "y": 495,
+          "text": "−10",
+          "size": 16
+        },
+        {
+          "id": "s1c_xl8",
+          "type": "text",
+          "x": 615.0,
+          "y": 495,
+          "text": "−8",
+          "size": 16
+        },
+        {
+          "id": "s1c_xl6",
+          "type": "text",
+          "x": 825.0,
+          "y": 495,
+          "text": "−6",
+          "size": 16
+        },
+        {
+          "id": "s1c_yl6",
+          "type": "text",
+          "x": 66,
+          "y": 402.72727272727275,
+          "text": "6",
+          "size": 16
+        },
+        {
+          "id": "s1c_yl8",
+          "type": "text",
+          "x": 66,
+          "y": 335.4545454545455,
+          "text": "8",
+          "size": 16
+        },
+        {
+          "id": "s1c_yl10",
+          "type": "text",
+          "x": 66,
+          "y": 268.1818181818182,
+          "text": "10",
+          "size": 16
+        },
+        {
+          "id": "s1c_yl12",
+          "type": "text",
+          "x": 66,
+          "y": 200.90909090909093,
+          "text": "12",
+          "size": 16
+        },
+        {
+          "id": "s1c_xname",
+          "type": "text",
+          "x": 880,
+          "y": 520,
+          "text": "LUFS",
+          "size": 16
+        },
+        {
+          "id": "s1c_yname",
+          "type": "text",
+          "x": 66,
+          "y": 88,
+          "text": "PLR (dB)",
+          "size": 16
+        },
+        {
+          "id": "s1c_note",
+          "type": "text",
+          "x": 500,
+          "y": 540,
+          "text": "Rohmix: −18,3 LUFS · −0,6 dBTP · PLR 17,7",
+          "size": 16
+        },
+        {
+          "id": "s1c_loop",
+          "type": "rect",
+          "x": 556.5,
+          "y": 349.6363636363636,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1c_loopl",
+          "type": "text",
+          "x": 562.5,
+          "y": 335.6363636363636,
+          "text": "Loop",
+          "size": 15
+        },
+        {
+          "id": "s1c_a6",
+          "type": "rect",
+          "x": 598.5,
+          "y": 373.1818181818182,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1c_a6l",
+          "type": "text",
+          "x": 638.5,
+          "y": 383.1818181818182,
+          "text": "A6",
+          "size": 15
+        },
+        {
+          "id": "s1c_a9",
+          "type": "rect",
+          "x": 630.0,
+          "y": 379.90909090909093,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1c_a9l",
+          "type": "text",
+          "x": 670.0,
+          "y": 397.90909090909093,
+          "text": "A9",
+          "size": 15
+        },
+        {
+          "id": "s1c_seenew",
+          "type": "rect",
+          "x": 304.5,
+          "y": 245.36363636363637,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1c_seenewl",
+          "type": "text",
+          "x": 310.5,
+          "y": 231.36363636363637,
+          "text": "Seele neu",
+          "size": 15
+        },
+        {
+          "id": "s1c_seeold",
+          "type": "rect",
+          "x": 136.5,
+          "y": 131.0,
+          "w": 12,
+          "h": 12,
+          "rx": 2
+        },
+        {
+          "id": "s1c_seeoldl",
+          "type": "text",
+          "x": 142.5,
+          "y": 117.0,
+          "text": "Seele alt",
+          "size": 15
+        },
+        {
+          "id": "s1c_sum",
+          "type": "text",
+          "x": 500,
+          "y": 515,
+          "text": "Seele neu: −10,9 LUFS / PLR 10,5 · alt: −12,5 / 13,9",
+          "size": 16
+        }
+      ]
+    }
+  ]
+}

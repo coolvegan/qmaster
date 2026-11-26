@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Welche Differenzengleichung beschreibt einen Biquad in der im Code verwendeten Form?",
+    "options": [
+      "y[n] = b0·x[n] + b1·x[n−1] + b2·x[n−2] + a1·y[n−1] + a2·y[n−2]",
+      "y[n] = x[n] + a1·x[n−1] + a2·x[n−2]",
+      "y[n] = b0·x[n] + b1·x[n−1] + b2·x[n−2] − a1·y[n−1] − a2·y[n−2]",
+      "y[n] = b0·x[n] − b1·y[n−1]"
+    ],
+    "answer": 2,
+    "explanation": "Der Nenner der Übertragungsfunktion wird mit negativem Vorzeichen in den Sample-Loop gezogen. Nur so ergibt sich H(z) = (b0 + b1·z⁻¹ + b2·z⁻²) / (1 + a1·z⁻¹ + a2·z⁻²)."
+  },
+  {
+    "question": "Wann ist ein Biquad stabil?",
+    "options": [
+      "Wenn alle Pole innerhalb des Einheitskreises liegen",
+      "Wenn alle Pole außerhalb des Einheitskreises liegen",
+      "Wenn alle Nullstellen innerhalb des Einheitskreises liegen",
+      "Wenn alle Koeffizienten positiv sind"
+    ],
+    "answer": 0,
+    "explanation": "Stabilität verlangt |p| < 1 für alle Pole. Beim 24-Hz-Hochpass ist |p| = 0,997585, also innerhalb. Die Nullstellen bei z = 1 sagen nichts über die Stabilität aus."
+  },
+  {
+    "question": "Wie groß ist w0 für einen Hochpass bei 24 Hz und 44,1 kHz?",
+    "options": [
+      "0,000342 rad/Sample",
+      "0,0342 rad/Sample",
+      "0,00342 rad/Sample",
+      "0,342 rad/Sample"
+    ],
+    "answer": 2,
+    "explanation": "w0 = 2π·f0/fs = 2π·24/44100 = 0,003419 rad/Sample. Daraus folgt α = sin(w0)/(2Q) = 0,002418 für Q = 0,7071."
+  },
+  {
+    "question": "Ein LR4-Hochpass bei 24 Hz besteht aus zwei Biquads mit Q = 0,7071. Wie stark dämpft er bei 24 Hz?",
+    "options": [
+      "−3,01 dB",
+      "−12,04 dB",
+      "−24,08 dB",
+      "−6,02 dB"
+    ],
+    "answer": 3,
+    "explanation": "Jedes Biquad dämpft bei seiner Grenzfrequenz um 3,01 dB. Zwei identische Biquads ergeben −6,02 dB. Die Flanke ist 24 dB/Okt, nicht die Dämpfung bei 24 Hz."
+  },
+  {
+    "question": "Tilt steht auf +6 dB. Welche Shelf-Verstärkungen verwendet der Code?",
+    "options": [
+      "Low Shelf −3 dB, High Shelf +3 dB",
+      "Low Shelf −6 dB, High Shelf +6 dB",
+      "Low Shelf +3 dB, High Shelf −3 dB",
+      "Low Shelf −1,5 dB, High Shelf +1,5 dB"
+    ],
+    "answer": 0,
+    "explanation": "Der Code setzt g = db·0,5. Bei Tilt +6 dB ist g = 3 dB: Low Shelf bei 200 Hz bekommt −3 dB, High Shelf bei 3 kHz +3 dB. Die Gesamtspreizung ist 2g = 6 dB."
+  },
+  {
+    "question": "Welches Signal wird im Mono Maker hochpassgefiltert?",
+    "options": [
+      "Mid",
+      "Mid und Side gemeinsam",
+      "Side",
+      "Keines, der Mono Maker ist ein reiner Gain"
+    ],
+    "answer": 2,
+    "explanation": "Mid = ½(L+R) bleibt unverändert. Side = ½(L−R) läuft durch zwei Biquads (LR4). Danach wird mit L = Mid + Side und R = Mid − Side zurückgerechnet."
+  },
+  {
+    "question": "Warum verschwindet ein gegenphasiger Bass auf einem Handy-Lautsprecher?",
+    "options": [
+      "Weil der kleine Lautsprecher den Bass verstärkt",
+      "Weil der Bass nur im Side-Kanal liegt und sich in der Monosumme auslöscht",
+      "Weil der Limiter den Bass entfernt",
+      "Weil die Stereosumme den Bass verdoppelt"
+    ],
+    "answer": 1,
+    "explanation": "Für L = −R ist Mid = ½(L+R) = 0. Die Monosumme L+R ist ebenfalls null. Die Bassenergie steckt vollständig in Side und fällt bei Mono-Wiedergabe weg."
+  },
+  {
+    "question": "A2 misst für einen gegenphasigen 60-Hz-Ton Korrelation −1,000, Mid null und −9,6 LUFS. Was folgt daraus?",
+    "options": [
+      "Das Signal ist mono-kompatibel",
+      "Die Messung ist ungültig, weil Mid nie null sein kann",
+      "Die Loudness ist zu niedrig, um den Bass zu hören",
+      "Der Bass löscht sich in der Monosumme aus"
+    ],
+    "answer": 3,
+    "explanation": "Mid null bedeutet vollständige Auslöschung der Summe. Die Korrelation −1,000 bestätigt die Gegenphase. Genau dieser Fall ist der Grund, warum der Mono-Check unter 120 Hz so streng ist."
+  },
+  {
+    "question": "Mono 200 Hz liefert in A5 Side − Mid = −41,0 dB. Wie ist das einzuordnen?",
+    "options": [
+      "200 Hz ist zu aggressiv; 110–120 Hz reichen",
+      "200 Hz ist der minimale sinnvolle Wert",
+      "−41 dB bedeutet, dass gar kein Bass mehr vorhanden ist",
+      "Der Mono Maker hat nur den Mid-Kanal gefiltert"
+    ],
+    "answer": 0,
+    "explanation": "Der Bereich unter 200 Hz wird mono. A9 und A10 erreichen mit 120 Hz −32,0 bzw. −37,4 dB und sind damit bereits mono-kompatibel. Der Release-Check verlangt nur ≤ −3 dB; ein bestandener Check heißt nicht, dass der Eingriff klanglich richtig dosiert ist."
+  },
+  {
+    "question": "Ein Stereo-Master hat einen Peak bei −1,03 dBFS. `ffmpeg -ac 1` zeigt +1,25 dBFS. Was ist die Ursache?",
+    "options": [
+      "Intersample-Peaks",
+      "Der Limiter hat versagt",
+      "Der Downmix summiert beide Kanäle",
+      "Das WAV ist 32-Bit"
+    ],
+    "answer": 2,
+    "explanation": "Der Mono-Downmix addiert L und R. Das Ergebnis ist die Summe der Kanäle, kein Datei-Peak. Deshalb wird immer der Stereo-Peak gemessen, nie ein Downmix."
+  }
+]

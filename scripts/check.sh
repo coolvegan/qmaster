@@ -9,18 +9,8 @@ echo "== Messkette"
 python3 tests/selftest.py
 
 echo
-echo "== Lektionen (JSON)"
-python3 - <<'PY'
-import glob
-import json
-
-files = sorted(glob.glob("lessons/*/lesson.json") +
-               glob.glob("lessons/*/quiz.json") +
-               glob.glob("lessons/*/scenes/*.json"))
-for path in files:
-    json.load(open(path))
-print("  %d Dateien gültig" % len(files))
-PY
+echo "== Lektionen"
+python3 tests/lesson-check.py
 
 echo
 echo "== Plugin (nativ)"

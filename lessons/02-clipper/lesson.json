@@ -1,0 +1,7 @@
+{
+  "title": "Clipper: Warum laut oft billig klingt",
+  "summary": "Warum ein Clipper bei 0,96 clippt, wie aus einer 997-Hz-Sine ungerade Harmonische werden, warum die 25. Harmonische bei 24 925 Hz auf 19 175 Hz faltet und weshalb erst eine 65536-Punkte-FFT mit Hann-Fenster den echten Alias bei −105,4 dBc zeigt.",
+  "tags": ["dsp", "audio", "mpc", "clipper", "aliasing", "oversampling", "mathematik"],
+  "level": "fortgeschritten",
+  "status": "final"
+}

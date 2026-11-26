@@ -1,0 +1,422 @@
+{
+  "width": 1000,
+  "height": 560,
+  "steps": [
+    {
+      "caption": "Vier Stufen, eine Richtung. Die Spezifikation steht vor dem Test, der Test vor dem Code. Die Messung führt zurück zur Spezifikation.",
+      "duration": 5200,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "Spezifikation → Test → Code → Messung",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "b0",
+          "type": "rect",
+          "x": 40,
+          "y": 170,
+          "w": 200,
+          "h": 110,
+          "rx": 10,
+          "label": "1  Spezifikation"
+        },
+        {
+          "id": "b1",
+          "type": "rect",
+          "x": 270,
+          "y": 170,
+          "w": 200,
+          "h": 110,
+          "rx": 10,
+          "label": "2  Test (rot)"
+        },
+        {
+          "id": "b2",
+          "type": "rect",
+          "x": 500,
+          "y": 170,
+          "w": 200,
+          "h": 110,
+          "rx": 10,
+          "label": "3  Code"
+        },
+        {
+          "id": "b3",
+          "type": "rect",
+          "x": 730,
+          "y": 170,
+          "w": 200,
+          "h": 110,
+          "rx": 10,
+          "label": "4  Messung"
+        },
+        {
+          "id": "a0",
+          "type": "line",
+          "x1": 240,
+          "y1": 225,
+          "x2": 268,
+          "y2": 225
+        },
+        {
+          "id": "a1",
+          "type": "line",
+          "x1": 470,
+          "y1": 225,
+          "x2": 498,
+          "y2": 225
+        },
+        {
+          "id": "a2",
+          "type": "line",
+          "x1": 700,
+          "y1": 225,
+          "x2": 728,
+          "y2": 225
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 330,
+          "text": "Jede Stufe hat eine Zahl und eine Toleranz.",
+          "size": 20
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 380,
+          "text": "Der Test entsteht vor dem Code. Sonst beschreibt er nur, was zufällig da ist.",
+          "size": 18
+        },
+        {
+          "id": "r0",
+          "type": "line",
+          "x1": 830,
+          "y1": 280,
+          "x2": 830,
+          "y2": 470,
+          "dash": "6 6"
+        },
+        {
+          "id": "r1",
+          "type": "line",
+          "x1": 830,
+          "y1": 470,
+          "x2": 140,
+          "y2": 470,
+          "dash": "6 6"
+        },
+        {
+          "id": "r2",
+          "type": "line",
+          "x1": 140,
+          "y1": 470,
+          "x2": 140,
+          "y2": 280,
+          "dash": "6 6"
+        },
+        {
+          "id": "r3",
+          "type": "text",
+          "x": 500,
+          "y": 505,
+          "text": "Die Messung korrigiert die Spezifikation — nicht umgekehrt.",
+          "size": 18
+        }
+      ]
+    },
+    {
+      "caption": "Eine Spezifikation ohne Toleranz ist ein Wunsch. Erst die Toleranz macht aus „102 Samples“ eine prüfbare Aussage.",
+      "duration": 4800,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "Die Spezifikation ist eine Zahl mit Toleranz",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "r0",
+          "type": "rect",
+          "x": 80,
+          "y": 120,
+          "w": 840,
+          "h": 62,
+          "rx": 8,
+          "label": "Ceiling   −1,0 dBTP   ±0,05 dB"
+        },
+        {
+          "id": "r1",
+          "type": "rect",
+          "x": 80,
+          "y": 200,
+          "w": 840,
+          "h": 62,
+          "rx": 8,
+          "label": "Latenz   102 Samples   ±1 Sample"
+        },
+        {
+          "id": "r2",
+          "type": "rect",
+          "x": 80,
+          "y": 280,
+          "w": 840,
+          "h": 62,
+          "rx": 8,
+          "label": "PLR   6–8 dB   (Zielkorridor)"
+        },
+        {
+          "id": "r3",
+          "type": "rect",
+          "x": 80,
+          "y": 360,
+          "w": 840,
+          "h": 62,
+          "rx": 8,
+          "label": "Alias   ≤ −60 dBc   (einseitige Schwelle)"
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 470,
+          "text": "Toleranz größer als das Messrauschen, kleiner als der kleinste Fehler.",
+          "size": 19
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 515,
+          "text": "−120 dBFS Golden-File-Toleranz liegt 24 dB unter dem 16-Bit-LSB.",
+          "size": 17
+        }
+      ]
+    },
+    {
+      "caption": "Der Test war zuerst da und war rot. Nicht die Toleranz wird geweitet, sondern der Code korrigiert.",
+      "duration": 4800,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "Rot zuerst",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "l0",
+          "type": "rect",
+          "x": 60,
+          "y": 140,
+          "w": 400,
+          "h": 180,
+          "rx": 10
+        },
+        {
+          "id": "l1",
+          "type": "text",
+          "x": 260,
+          "y": 190,
+          "text": "Test",
+          "size": 22,
+          "weight": 700
+        },
+        {
+          "id": "l2",
+          "type": "text",
+          "x": 260,
+          "y": 240,
+          "text": "erwartet: 102 Samples",
+          "size": 19
+        },
+        {
+          "id": "l3",
+          "type": "text",
+          "x": 260,
+          "y": 285,
+          "text": "check.sh: FAIL",
+          "size": 19
+        },
+        {
+          "id": "r0",
+          "type": "rect",
+          "x": 540,
+          "y": 140,
+          "w": 400,
+          "h": 180,
+          "rx": 10
+        },
+        {
+          "id": "r1",
+          "type": "text",
+          "x": 740,
+          "y": 190,
+          "text": "Code",
+          "size": 22,
+          "weight": 700
+        },
+        {
+          "id": "r2",
+          "type": "text",
+          "x": 740,
+          "y": 240,
+          "text": "meldet: 104 Samples",
+          "size": 19
+        },
+        {
+          "id": "r3",
+          "type": "text",
+          "x": 740,
+          "y": 285,
+          "text": "2 Samples daneben",
+          "size": 19
+        },
+        {
+          "id": "a0",
+          "type": "line",
+          "x1": 460,
+          "y1": 230,
+          "x2": 538,
+          "y2": 230
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 380,
+          "text": "Der Test darf rot sein. Der Commit darf es nicht.",
+          "size": 20
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 435,
+          "text": "Toleranz bleibt ±1 Sample. Der Code wird geändert, nicht die Prüfung.",
+          "size": 18
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 485,
+          "text": "Danach: 102 gemessen, 102 gemeldet.",
+          "size": 18
+        }
+      ]
+    },
+    {
+      "caption": "Sechs unabhängige Messungen. Keine einzelne davon beweist Klang — zusammen beweisen sie, dass die Maschine spezifikationsgemäß arbeitet.",
+      "duration": 5200,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "Die Messung schließt den Kreis",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "c0",
+          "type": "rect",
+          "x": 80,
+          "y": 130,
+          "w": 280,
+          "h": 80,
+          "rx": 8,
+          "label": "13/13  Messkette"
+        },
+        {
+          "id": "c1",
+          "type": "rect",
+          "x": 360,
+          "y": 130,
+          "w": 280,
+          "h": 80,
+          "rx": 8,
+          "label": "10/10  Plugin"
+        },
+        {
+          "id": "c2",
+          "type": "rect",
+          "x": 640,
+          "y": 130,
+          "w": 280,
+          "h": 80,
+          "rx": 8,
+          "label": "−105,4 dBc  Alias"
+        },
+        {
+          "id": "c3",
+          "type": "rect",
+          "x": 80,
+          "y": 250,
+          "w": 280,
+          "h": 80,
+          "rx": 8,
+          "label": "5/5  Loudness"
+        },
+        {
+          "id": "c4",
+          "type": "rect",
+          "x": 360,
+          "y": 250,
+          "w": 280,
+          "h": 80,
+          "rx": 8,
+          "label": "20/20  host_sim"
+        },
+        {
+          "id": "c5",
+          "type": "rect",
+          "x": 640,
+          "y": 250,
+          "w": 280,
+          "h": 80,
+          "rx": 8,
+          "label": "0/0  validate.py"
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 390,
+          "text": "13 Prüfungen der Messkette · 10 Plugin-Prüfungen · 5 Loudness-Prüfungen",
+          "size": 18
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 440,
+          "text": "Kein einzelnes Gate trägt die Wahrheit. Die Summe der unabhängigen Gates tut es.",
+          "size": 18
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 495,
+          "text": "Was nicht messbar ist, ist nicht gebaut.",
+          "size": 20,
+          "weight": 700
+        }
+      ]
+    }
+  ]
+}

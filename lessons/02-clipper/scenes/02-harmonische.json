@@ -1,0 +1,790 @@
+{
+  "width": 1000,
+  "height": 560,
+  "steps": [
+    {
+      "caption": "Ein reiner 997-Hz-Ton hat genau eine Spektrallinie. Der Clipper fügt Linien hinzu, er verschiebt den Grundton nicht.",
+      "duration": 4600,
+      "objects": [
+        {
+          "id": "s2a-title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Ein Sinus ist eine Linie",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s2a-sub",
+          "type": "text",
+          "x": 500,
+          "y": 76,
+          "text": "997 Hz, ein Grundton, keine Harmonischen",
+          "size": 18,
+          "weight": 400
+        },
+        {
+          "id": "s2a-xaxis",
+          "type": "line",
+          "x1": 80,
+          "y1": 450,
+          "x2": 940,
+          "y2": 450,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 2
+        },
+        {
+          "id": "s2a-yaxis",
+          "type": "line",
+          "x1": 80,
+          "y1": 120,
+          "x2": 80,
+          "y2": 450,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 2
+        },
+        {
+          "id": "s2a-ylab",
+          "type": "text",
+          "x": 44,
+          "y": 132,
+          "text": "Pegel",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2a-tick0",
+          "type": "line",
+          "x1": 80.0,
+          "y1": 450,
+          "x2": 80.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2a-ticklab0",
+          "type": "text",
+          "x": 80.0,
+          "y": 475,
+          "text": "0",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2a-tick5000",
+          "type": "line",
+          "x1": 275.0,
+          "y1": 450,
+          "x2": 275.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2a-ticklab5000",
+          "type": "text",
+          "x": 275.0,
+          "y": 475,
+          "text": "5 k",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2a-tick10000",
+          "type": "line",
+          "x1": 470.0,
+          "y1": 450,
+          "x2": 470.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2a-ticklab10000",
+          "type": "text",
+          "x": 470.0,
+          "y": 475,
+          "text": "10 k",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2a-tick15000",
+          "type": "line",
+          "x1": 665.0,
+          "y1": 450,
+          "x2": 665.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2a-ticklab15000",
+          "type": "text",
+          "x": 665.0,
+          "y": 475,
+          "text": "15 k",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2a-tick20000",
+          "type": "line",
+          "x1": 860.0,
+          "y1": 450,
+          "x2": 860.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2a-ticklab20000",
+          "type": "text",
+          "x": 860.0,
+          "y": 475,
+          "text": "20 k",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2a-tick22050",
+          "type": "line",
+          "x1": 940.0,
+          "y1": 450,
+          "x2": 940.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2a-ticklab22050",
+          "type": "text",
+          "x": 940.0,
+          "y": 475,
+          "text": "22 050",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2a-stem",
+          "type": "line",
+          "x1": 118.9,
+          "y1": 450,
+          "x2": 118.9,
+          "y2": 160,
+          "stroke": "#5ac8d8",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2a-freq",
+          "type": "text",
+          "x": 150.9,
+          "y": 152,
+          "text": "997 Hz",
+          "size": 18,
+          "weight": 700
+        },
+        {
+          "id": "s2a-note",
+          "type": "text",
+          "x": 500,
+          "y": 516,
+          "text": "Vor dem Clip: genau eine Spektrallinie.",
+          "size": 18,
+          "weight": 400
+        },
+        {
+          "id": "s2a-note2",
+          "type": "text",
+          "x": 500,
+          "y": 544,
+          "text": "Alles andere wäre schon eine Verzerrung.",
+          "size": 18,
+          "weight": 400
+        }
+      ]
+    },
+    {
+      "caption": "Nach dem Clip entstehen ungerade Harmonische: 2 991 Hz, 4 985 Hz und so weiter. Die 25. liegt bei 24 925 Hz.",
+      "duration": 5600,
+      "objects": [
+        {
+          "id": "s2b-title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Nach dem Clip: ungerade Vielfache",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s2b-sub",
+          "type": "text",
+          "x": 500,
+          "y": 76,
+          "text": "k = 1, 3, 5, … — gerade Vielfache fehlen bei symmetrischem Clip",
+          "size": 18,
+          "weight": 400
+        },
+        {
+          "id": "s2b-xaxis",
+          "type": "line",
+          "x1": 80,
+          "y1": 450,
+          "x2": 940,
+          "y2": 450,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 2
+        },
+        {
+          "id": "s2b-yaxis",
+          "type": "line",
+          "x1": 80,
+          "y1": 120,
+          "x2": 80,
+          "y2": 450,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 2
+        },
+        {
+          "id": "s2b-ylab",
+          "type": "text",
+          "x": 44,
+          "y": 132,
+          "text": "Pegel",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2b-tick0",
+          "type": "line",
+          "x1": 80.0,
+          "y1": 450,
+          "x2": 80.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2b-ticklab0",
+          "type": "text",
+          "x": 80.0,
+          "y": 475,
+          "text": "0",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2b-tick5000",
+          "type": "line",
+          "x1": 275.0,
+          "y1": 450,
+          "x2": 275.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2b-ticklab5000",
+          "type": "text",
+          "x": 275.0,
+          "y": 475,
+          "text": "5 k",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2b-tick10000",
+          "type": "line",
+          "x1": 470.0,
+          "y1": 450,
+          "x2": 470.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2b-ticklab10000",
+          "type": "text",
+          "x": 470.0,
+          "y": 475,
+          "text": "10 k",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2b-tick15000",
+          "type": "line",
+          "x1": 665.0,
+          "y1": 450,
+          "x2": 665.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2b-ticklab15000",
+          "type": "text",
+          "x": 665.0,
+          "y": 475,
+          "text": "15 k",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2b-tick20000",
+          "type": "line",
+          "x1": 860.0,
+          "y1": 450,
+          "x2": 860.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2b-ticklab20000",
+          "type": "text",
+          "x": 860.0,
+          "y": 475,
+          "text": "20 k",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2b-tick22050",
+          "type": "line",
+          "x1": 940.0,
+          "y1": 450,
+          "x2": 940.0,
+          "y2": 457,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2b-ticklab22050",
+          "type": "text",
+          "x": 940.0,
+          "y": 475,
+          "text": "22 050",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2b-stem1",
+          "type": "line",
+          "x1": 118.9,
+          "y1": 450,
+          "x2": 118.9,
+          "y2": 160,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem3",
+          "type": "line",
+          "x1": 196.7,
+          "y1": 450,
+          "x2": 196.7,
+          "y2": 230,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem5",
+          "type": "line",
+          "x1": 274.4,
+          "y1": 450,
+          "x2": 274.4,
+          "y2": 268,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem7",
+          "type": "line",
+          "x1": 352.2,
+          "y1": 450,
+          "x2": 352.2,
+          "y2": 296,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem9",
+          "type": "line",
+          "x1": 430.0,
+          "y1": 450,
+          "x2": 430.0,
+          "y2": 318,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem11",
+          "type": "line",
+          "x1": 507.7,
+          "y1": 450,
+          "x2": 507.7,
+          "y2": 336,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem13",
+          "type": "line",
+          "x1": 585.5,
+          "y1": 450,
+          "x2": 585.5,
+          "y2": 351,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem15",
+          "type": "line",
+          "x1": 663.3,
+          "y1": 450,
+          "x2": 663.3,
+          "y2": 364,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem17",
+          "type": "line",
+          "x1": 741.0,
+          "y1": 450,
+          "x2": 741.0,
+          "y2": 376,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-stem19",
+          "type": "line",
+          "x1": 818.8,
+          "y1": 450,
+          "x2": 818.8,
+          "y2": 386,
+          "stroke": "#e0a45a",
+          "strokeWidth": 4
+        },
+        {
+          "id": "s2b-l1",
+          "type": "text",
+          "x": 118.9,
+          "y": 146,
+          "text": "1.",
+          "size": 16,
+          "weight": 700
+        },
+        {
+          "id": "s2b-l3",
+          "type": "text",
+          "x": 196.7,
+          "y": 216,
+          "text": "3.",
+          "size": 16,
+          "weight": 700
+        },
+        {
+          "id": "s2b-l5",
+          "type": "text",
+          "x": 274.4,
+          "y": 254,
+          "text": "5.",
+          "size": 16,
+          "weight": 700
+        },
+        {
+          "id": "s2b-l19",
+          "type": "text",
+          "x": 818.8,
+          "y": 372,
+          "text": "19.",
+          "size": 16,
+          "weight": 700
+        },
+        {
+          "id": "s2b-note",
+          "type": "text",
+          "x": 500,
+          "y": 516,
+          "text": "Die Amplituden fallen mit 1/k; die Ordnungen bleiben aber stehen.",
+          "size": 18,
+          "weight": 400
+        },
+        {
+          "id": "s2b-note2",
+          "type": "text",
+          "x": 500,
+          "y": 544,
+          "text": "Die 25. liegt bei 24 925 Hz — rechts außerhalb dieses Plots.",
+          "size": 18,
+          "weight": 400
+        }
+      ]
+    },
+    {
+      "caption": "Die hohen Ordnungen werden leiser, aber nicht null. Die 25. bleibt übrig und liegt über 22 050 Hz.",
+      "duration": 5200,
+      "objects": [
+        {
+          "id": "s2c-title",
+          "type": "text",
+          "x": 500,
+          "y": 40,
+          "text": "Amplituden fallen, verschwinden nicht",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "s2c-sub",
+          "type": "text",
+          "x": 500,
+          "y": 76,
+          "text": "schematisch: hart geclippt ~ 1/k, weich geclippt schneller",
+          "size": 18,
+          "weight": 400
+        },
+        {
+          "id": "s2c-xaxis",
+          "type": "line",
+          "x1": 90,
+          "y1": 460,
+          "x2": 930,
+          "y2": 460,
+          "stroke": "#8a9aa5",
+          "strokeWidth": 2
+        },
+        {
+          "id": "s2c-ylab",
+          "type": "text",
+          "x": 42,
+          "y": 150,
+          "text": "Pegel",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar0",
+          "type": "rect",
+          "x": 110,
+          "y": 200,
+          "w": 44,
+          "h": 260,
+          "rx": 3,
+          "fill": "#e0a45a",
+          "stroke": "#e0a45a",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k0",
+          "type": "text",
+          "x": 132,
+          "y": 484,
+          "text": "1",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar1",
+          "type": "rect",
+          "x": 188,
+          "y": 310,
+          "w": 44,
+          "h": 150,
+          "rx": 3,
+          "fill": "#e0a45a",
+          "stroke": "#e0a45a",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k1",
+          "type": "text",
+          "x": 210,
+          "y": 484,
+          "text": "3",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar2",
+          "type": "rect",
+          "x": 266,
+          "y": 350,
+          "w": 44,
+          "h": 110,
+          "rx": 3,
+          "fill": "#e0a45a",
+          "stroke": "#e0a45a",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k2",
+          "type": "text",
+          "x": 288,
+          "y": 484,
+          "text": "5",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar3",
+          "type": "rect",
+          "x": 344,
+          "y": 372,
+          "w": 44,
+          "h": 88,
+          "rx": 3,
+          "fill": "#e0a45a",
+          "stroke": "#e0a45a",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k3",
+          "type": "text",
+          "x": 366,
+          "y": 484,
+          "text": "7",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar4",
+          "type": "rect",
+          "x": 422,
+          "y": 386,
+          "w": 44,
+          "h": 74,
+          "rx": 3,
+          "fill": "#e0a45a",
+          "stroke": "#e0a45a",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k4",
+          "type": "text",
+          "x": 444,
+          "y": 484,
+          "text": "9",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar5",
+          "type": "rect",
+          "x": 500,
+          "y": 396,
+          "w": 44,
+          "h": 64,
+          "rx": 3,
+          "fill": "#e0a45a",
+          "stroke": "#e0a45a",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k5",
+          "type": "text",
+          "x": 522,
+          "y": 484,
+          "text": "11",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar6",
+          "type": "rect",
+          "x": 578,
+          "y": 404,
+          "w": 44,
+          "h": 56,
+          "rx": 3,
+          "fill": "#e0a45a",
+          "stroke": "#e0a45a",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k6",
+          "type": "text",
+          "x": 600,
+          "y": 484,
+          "text": "13",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar7",
+          "type": "rect",
+          "x": 656,
+          "y": 410,
+          "w": 44,
+          "h": 50,
+          "rx": 3,
+          "fill": "#e0a45a",
+          "stroke": "#e0a45a",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k7",
+          "type": "text",
+          "x": 678,
+          "y": 484,
+          "text": "15",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-klab",
+          "type": "text",
+          "x": 430,
+          "y": 512,
+          "text": "Ordnung k",
+          "size": 16,
+          "weight": 400
+        },
+        {
+          "id": "s2c-bar25",
+          "type": "rect",
+          "x": 850,
+          "y": 424,
+          "w": 44,
+          "h": 36,
+          "rx": 3,
+          "fill": "#5ac8d8",
+          "stroke": "#5ac8d8",
+          "strokeWidth": 1
+        },
+        {
+          "id": "s2c-k25",
+          "type": "text",
+          "x": 872,
+          "y": 484,
+          "text": "25",
+          "size": 16,
+          "weight": 700
+        },
+        {
+          "id": "s2c-f25",
+          "type": "text",
+          "x": 872,
+          "y": 410,
+          "text": "24 925 Hz",
+          "size": 14,
+          "weight": 400
+        },
+        {
+          "id": "s2c-note",
+          "type": "text",
+          "x": 500,
+          "y": 540,
+          "text": "Die 25. ist ungerade und damit Teil des Clipper-Spektrums.",
+          "size": 16,
+          "weight": 400
+        }
+      ]
+    }
+  ]
+}

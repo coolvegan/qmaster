@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Der Clip-Regler steht auf 55 %. Welche Treiberverstärkung ergibt das?",
+    "options": [
+      "3,6 dB",
+      "5,4 dB",
+      "6,6 dB",
+      "12,0 dB"
+    ],
+    "answer": 2,
+    "explanation": "clipToDb rechnet Prozent · 0,12. Für 55 % sind das 55 · 0,12 = 6,6 dB, also einen Gain von 10^(6,6/20) = 2,14."
+  },
+  {
+    "question": "Das Knie des Clippers liegt bei 0,96. Welchem Pegel entspricht das?",
+    "options": [
+      "−0,18 dBFS",
+      "−0,35 dBFS",
+      "−0,96 dBFS",
+      "−1,00 dBFS"
+    ],
+    "answer": 1,
+    "explanation": "20 · log10(0,96) = −0,35 dBFS. Der Clipper beginnt also 0,35 dB unter Vollaussteuerung zu arbeiten."
+  },
+  {
+    "question": "Warum läuft der Clipper bei 2× Oversampling?",
+    "options": [
+      "Weil 2× die Latenz halbiert",
+      "Weil die Harmonischen bei 88,2 kHz bis 44,1 kHz Platz haben und vor der Dezimierung gefiltert werden können",
+      "Weil 2× die Loudness verdoppelt",
+      "Weil der Limiter einen 4×-Detektor braucht"
+    ],
+    "answer": 1,
+    "explanation": "Bei 44,1 kHz liegt Nyquist bei 22 050 Hz. Bei 2× (88,2 kHz) liegt Nyquist bei 44 100 Hz; die Harmonischen oberhalb von 22 050 Hz existieren dort und werden vom 31-Tap-Halfband entfernt, bevor auf 44,1 kHz dezimiert wird."
+  },
+  {
+    "question": "Die 25. Harmonische eines 997-Hz-Tons liegt bei 24 925 Hz. Auf welche Frequenz faltet sie sich bei 44,1 kHz?",
+    "options": [
+      "1 229 Hz",
+      "18 943 Hz",
+      "19 175 Hz",
+      "24 925 Hz"
+    ],
+    "answer": 2,
+    "explanation": "24 925 Hz liegt über Nyquist (22 050 Hz). Bei 44,1 kHz faltet sich der Anteil auf 44 100 − 24 925 = 19 175 Hz. Genau diese Frequenz meldet der Alias-Test als stärksten Nicht-Harmonischen."
+  },
+  {
+    "question": "Der Alias-Test misst bei Clip 0 % −120,0 dBc und bei Clip 100 % −105,4 dBc. Um wie viel steigt der stärkste Alias?",
+    "options": [
+      "5,4 dB",
+      "14,6 dB",
+      "105,4 dB",
+      "120,0 dB"
+    ],
+    "answer": 1,
+    "explanation": "−105,4 − (−120,0) = 14,6 dB. Der Treiber von 0 auf 12 dB erhöht den stärksten gefalteten Anteil um 14,6 dB."
+  },
+  {
+    "question": "Ein Bandpass mit Q = 30 zeigt bei 1229 Hz einen „Alias“ von −25,3 dBFS, obwohl der Grundton bei 997 Hz und −3,2 dBFS liegt. Was ist die Ursache?",
+    "options": [
+      "Der Grundton selbst",
+      "Die Dämpfung von etwa 22 dB bei 232 Hz Abstand ist zu gering — das ist Leckage",
+      "Ein echter Alias bei 1229 Hz",
+      "Die 25. Harmonische"
+    ],
+    "answer": 1,
+    "explanation": "1229 Hz ist 997 + 232 Hz. Ein Bandpass zweiter Ordnung mit Q = 30 dämpft einen 232 Hz entfernten Ton nur um etwa 22 dB. Aus −3,2 dBFS wird so −25,2 dBFS, gemessen −25,3 dBFS. Die FFT zeigt den echten Alias erst bei −105,4 dBc."
+  },
+  {
+    "question": "Wie breit ist ein FFT-Bin bei 44 100 Hz Abtastrate und 65 536 Punkten?",
+    "options": [
+      "0,34 Hz",
+      "0,67 Hz",
+      "1,49 Hz",
+      "21,5 Hz"
+    ],
+    "answer": 1,
+    "explanation": "Die Bin-Breite ist fs / N = 44 100 / 65 536 = 0,6729 Hz, gerundet 0,67 Hz."
+  },
+  {
+    "question": "Ein Loop hat −1,01 dBFS Sample Peak und +0,90 dBTP. Wie groß ist die Überschreitung zwischen den Samples?",
+    "options": [
+      "0,11 dB",
+      "1,91 dB",
+      "2,01 dB",
+      "3,01 dB"
+    ],
+    "answer": 1,
+    "explanation": "+0,90 − (−1,01) = 1,91 dB. Der True Peak liegt 1,91 dB über dem Sample-Peak; deshalb ist der Deckel −1,0 dBTP und nicht −1,0 dBFS."
+  },
+  {
+    "question": "Eine Bandpass-Messung zeigt bei 15 und bei 31 Taps denselben „Alias“ bei −25,3 dBFS. Was ist die richtige Reaktion?",
+    "options": [
+      "Dem DSP-Fehler glauben und den Oversampler umbauen",
+      "Die Messung anzweifeln, weil sich das Ergebnis nicht ändert, wenn sich das System ändert",
+      "Die Taps auf 63 erhöhen",
+      "Den Clip-Regler auf 0 drehen"
+    ],
+    "answer": 1,
+    "explanation": "Ein Ergebnis, das unverändert bleibt, obwohl man das System ändert, ist verdächtig. Die FFT zeigte später, dass der Wert bei −25,3 dBFS Leckage des Bandpasses war und der echte Alias bei −105,4 dBc liegt."
+  },
+  {
+    "question": "Wann sollte man den Clip-Regler senken?",
+    "options": [
+      "Wenn der PLR unter 6 fällt oder die Mitten relativ zum Sub 3–5,6 dB verlieren",
+      "Wenn der True Peak unter −1,0 dBTP liegt",
+      "Wenn die Samplerate 44,1 kHz beträgt",
+      "Wenn Clip auf 0 % steht"
+    ],
+    "answer": 0,
+    "explanation": "PLR unter 6 bedeutet zu viel Dichte; A10 zeigt zusätzlich 3–5,6 dB Mittenverlust relativ zum Sub durch starkes Master-Clipping. Dann hilft Clip 45 und eine tiefere Ceiling-Decke von −1,6 dBTP, nicht weiteres Drehen am Clip-Regler."
+  }
+]

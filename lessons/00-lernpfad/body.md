@@ -8,9 +8,6 @@ Diese Lektionen sind kein Marketing. Sie sind der Versuch, die Mathematik und
 den Code hinter dem Plugin so zu erklären, dass man beides selbst prüfen kann.
 Jede Zahl stammt aus einem Messlauf, jede Behauptung hat einen Test.
 
-> **Status: Draft.** Die Lektionen werden während der Entwicklung geschrieben
-> und erst veröffentlicht, wenn alle Teile fertig und geprüft sind.
-
 ## Wie du liest
 
 Jedes Kapitel hat sechs Schritte:
@@ -41,12 +38,12 @@ er das nächste Mal anders aussieht.
 
 | # | Lektion | Frage | Was du danach kannst |
 |---|---|---|---|
-| 01 | **Lautheit** | Warum ist −14 LUFS kein Mastering-Ziel? | LUFS, True Peak und PLR messen und einordnen |
-| 02 | **Clipper** | Warum klingt laut oft billig? | Harmonische und Aliasing vorhersagen, Oversampling begründen |
-| 03 | **Limiter** | Wie folgt ein Gain ohne zu pumpen? | Attack, Release und Lookahead dimensionieren |
-| 04 | **Filter und Mono** | Warum verschwindet der Bass auf dem Handy? | Biquads, Pole und M/S verstehen |
-| 05 | **Code-Generierung** | Wie kontrolliert man einen Agenten? | Spezifikation, Testvertrag und Review beherrschen |
-| 06 | **Capstone** | Klingt es wirklich? | Einen Beat mastern und die Ziele nachweisen |
+| 01 | [**Lautheit**](https://marcokittel.de/lesson/19c51f56-cdc1-4610-b883-b1ea29cc4540) | Warum ist −14 LUFS kein Mastering-Ziel? | LUFS, True Peak und PLR messen und einordnen |
+| 02 | [**Clipper**](https://marcokittel.de/lesson/482db70e-d09d-4d6f-b54c-183b64972491) | Warum klingt laut oft billig? | Harmonische und Aliasing vorhersagen, Oversampling begründen |
+| 03 | [**Limiter**](https://marcokittel.de/lesson/f8d09145-6f1e-4b59-98a0-3ddff283ca3a) | Wie folgt ein Gain ohne zu pumpen? | Attack, Release und Lookahead dimensionieren |
+| 04 | [**Filter und Mono**](https://marcokittel.de/lesson/eda3d6ed-27cd-4a80-b946-5c09808f854a) | Warum verschwindet der Bass auf dem Handy? | Biquads, Pole und M/S verstehen |
+| 05 | [**Code-Generierung**](https://marcokittel.de/lesson/ddfe2add-5451-4b3d-a48c-866c2b6215f3) | Wie kontrolliert man einen Agenten? | Spezifikation, Testvertrag und Review beherrschen |
+| 06 | [**Capstone**](https://marcokittel.de/lesson/94f4b4a8-23ad-4751-8778-59e8fc2c8f8f) | Klingt es wirklich? | Einen Beat mastern und die Ziele nachweisen |
 
 ## Die zwei Spuren
 
@@ -65,3 +62,5 @@ Kein „so klingt highend", sondern eine überprüfbare Kette:
 - und ein Mix, der auch leise noch funktioniert.
 
 Der Rest ist Musik.
+
+Alle Teile sind veröffentlicht: die Links stehen in der Tabelle oben.

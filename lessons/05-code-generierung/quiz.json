@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Der Grundton eines Testtons liegt bei −1,2 dBFS, der stärkste Alias bei −106,6 dBFS. Wie hoch ist der Alias relativ zum Grundton?",
+    "options": [
+      "−105,4 dBc",
+      "−107,8 dBc",
+      "−104,4 dBc",
+      "−108,0 dBc"
+    ],
+    "answer": 0,
+    "explanation": "dBc ist ein Verhältnis: −106,6 − (−1,2) = −105,4 dBc. Der Alias liegt 105,4 dB unter dem Grundton. Die absolute Zahl −106,6 dBFS würde sich bei einer Pegeländerung mitverschieben, der dBc-Wert nicht."
+  },
+  {
+    "question": "Ein Rohmix misst −0,6 dBTP und −18,3 LUFS. Er wird um 0,7 dB angehoben. Welche Werte erwartet man ohne Dynamikbearbeitung?",
+    "options": [
+      "−17,6 LUFS und PLR 17,7",
+      "−7,6 LUFS und PLR 7,7",
+      "−17,6 LUFS und PLR 7,7",
+      "−7,6 LUFS und PLR 17,7"
+    ],
+    "answer": 0,
+    "explanation": "Eine reine Verstärkung verschiebt True Peak und Loudness gemeinsam: −18,3 + 0,7 = −17,6 LUFS, TP +0,1 dBTP. Der PLR bleibt 17,7 dB, weil sich die Differenz nicht ändert. Die alten Exporte lagen dagegen bei −7,6 LUFS und PLR 7,7 — die fehlenden 10 dB sind Limiter-Arbeit."
+  },
+  {
+    "question": "QMaster meldet eine Latenz von 102 Samples bei 44,1 kHz. Wie lang ist die Verzögerung?",
+    "options": [
+      "1,16 ms",
+      "2,31 ms",
+      "4,63 ms",
+      "23,1 ms"
+    ],
+    "answer": 1,
+    "explanation": "102 / 44100 = 0,002313 s = 2,31 ms. Der Impuls-Test legt den Dirac bei 0,05 s auf Sample 2205 und erwartet den Ausgangs-Peak bei 2205 + 102 = 2307."
+  },
+  {
+    "question": "Ein Testlauf erzeugt in sechs Ladevorgängen 48 audioMasterAutomate-Aufrufe. Wie viele Parameter hat das Plugin?",
+    "options": [
+      "6",
+      "8",
+      "12",
+      "48"
+    ],
+    "answer": 1,
+    "explanation": "48 Automate / 6 Ladevorgänge = 8 Parameter. Das Plugin hat Mode, Trim, Tilt, Clip, Transient, Ceiling, Release und Mono. Ein einzelner Programmwechsel sendet 8 Automate und 1 UpdateDisplay; der Test verlangt mindestens 8 und 1."
+  },
+  {
+    "question": "Der 24-Bit-Writer schreibt statt des niederwertigsten Bytes das Byte s >> 8. Um wie viel ist das Ergebnis zu leise?",
+    "options": [
+      "6 dB",
+      "12 dB",
+      "24 dB",
+      "48 dB"
+    ],
+    "answer": 3,
+    "explanation": "Das Signal wird effektiv durch 256 geteilt. 20·log10(256) = 48,2 dB. Gefunden wurde der Fehler nicht durch Hören, sondern durch den Vergleich mit dem erwarteten Peak des Testsignals."
+  },
+  {
+    "question": "In einem alten Export liegen 309 Samples bei 0,99. Was folgt daraus?",
+    "options": [
+      "Der Export wurde normalisiert",
+      "Ein Limiter hält eine Decke über mehrere Millisekunden",
+      "Die Datei ist mono",
+      "Der True Peak wurde nicht gemessen"
+    ],
+    "answer": 1,
+    "explanation": "309 Samples bei 44,1 kHz sind 7,0 ms. Eine Normalisierung setzt genau den einen höchsten Sample auf Vollaussteuerung; sie erzeugt keine 7 ms lange Decke. Zusammen mit PLR 7,7 statt 17,7 beweist das einen Limiter, keine Pegelanhebung."
+  },
+  {
+    "question": "Welcher Test verhindert, dass ein geteilter FFT-Puffer zwischen links und rechts zurückkehrt?",
+    "options": [
+      "Null-Test bei 0 dB",
+      "Crosstalk L≠R < −100 dB",
+      "Loudness-Ziel −8 ±1 LUFS",
+      "Peak-Zeitpunkt bei 5 ms"
+    ],
+    "answer": 1,
+    "explanation": "Ein Signal nur links darf rechts nichts erzeugen. Der Crosstalk-Test verlangt, dass der Unterschied zwischen den Kanälen unter −100 dB bleibt. Ein gemeinsamer Spektrum-Puffer würde den rechten Kanal mit dem Spektrum des linken überschreiben und den Test rot machen."
+  },
+  {
+    "question": "Ein Dirac liegt bei 0,05 s im Eingang; die Kette meldet 102 Samples Latenz. Bei welchem Sample muss der Peak im Ausgang liegen?",
+    "options": [
+      "2205",
+      "2306",
+      "2307",
+      "2409"
+    ],
+    "answer": 2,
+    "explanation": "0,05 · 44100 = 2205, plus 102 Samples Latenz ergibt 2307. Weicht der Peak ab, ist entweder die Latenz falsch oder ein OLA-Ring um einen Offset verschoben."
+  },
+  {
+    "question": "Der globale Peak eines Masters liegt bei 5 ms, obwohl das Signal über 20 s läuft. Was ist die wahrscheinlichste Ursache?",
+    "options": [
+      "Der Track ist zu kurz",
+      "Der Ceiling-Smoother startet mit dem rohen Wert",
+      "Der True Peak wurde nicht oversampled",
+      "Die Samplerate ist falsch"
+    ],
+    "answer": 1,
+    "explanation": "Ein ungeguardeter Glätter startet auf dem rohen Ceiling-Wert und ist in den ersten 20 ms 0,25 dB zu heiß. Der Peak in der Einschwingphase ist das Symptom; der Test prüft deshalb den Zeitpunkt des globalen Peaks, nicht nur seinen Pegel."
+  },
+  {
+    "question": "QDSSD nutzt 1024 Punkte, Hop 256 und ein Hann-Fenster. Welche OLA-Normierung ist bei exakter Rekonstruktion richtig?",
+    "options": [
+      "0,25",
+      "0,5",
+      "1,0",
+      "2,0"
+    ],
+    "answer": 1,
+    "explanation": "Bei 75 % Overlap ist die COLA-Summe des Hann-Fensters 2. Die overlap-add-Normierung ist deshalb 0,5, damit die Summe der gewichteten Fenster 1 ergibt. Ein Ring-Offset um einen Platz macht die Naht hörbar und den Impuls-Test rot."
+  }
+]

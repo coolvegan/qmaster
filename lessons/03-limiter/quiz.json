@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Wie groß ist der Attack-Koeffizient bei 0,3 ms und 44,1 kHz?",
+    "options": [
+      "0,0032",
+      "0,0310",
+      "0,0728",
+      "0,3000"
+    ],
+    "answer": 2,
+    "explanation": "α = 1 − exp(−1 / (τ · fs)). Mit τ · fs = 0,0003 · 44100 = 13,23 folgt α = 1 − exp(−1/13,23) = 0,0728. Der Gain ist damit nach 13,23 Samples zu 63 % unten."
+  },
+  {
+    "question": "Release 45 %: Welche Zeitkonstante ergibt die Kennlinie 30 ms · (800/30)^(x/100)?",
+    "options": [
+      "30 ms",
+      "131 ms",
+      "300 ms",
+      "800 ms"
+    ],
+    "answer": 1,
+    "explanation": "30 · 26,667^0,45 = 30 · 4,382 = 131,5 ms. Das sind 5797 Samples bei 44,1 kHz und ein Koeffizient von 1,73 · 10⁻⁴. Der Regler bildet 0 % auf 30 ms und 100 % auf 800 ms ab."
+  },
+  {
+    "question": "Wie lang sind 88 Samples Lookahead bei 44,1 kHz?",
+    "options": [
+      "0,30 ms",
+      "1,00 ms",
+      "2,00 ms",
+      "2,31 ms"
+    ],
+    "answer": 2,
+    "explanation": "88 / 44100 = 1,995 ms, also rund 2,0 ms. Die gesamte Latenz ist länger: 102 Samples sind 2,31 ms, weil das Halfband-Paar 14 Samples beiträgt."
+  },
+  {
+    "question": "Warum liest das gleitende Maximum 89 Werte, obwohl der Lookahead 88 Samples ist?",
+    "options": [
+      "Weil der aktuelle Peak mitgezählt wird; der Abstand zwischen erstem und letztem Wert ist trotzdem 88",
+      "Weil der Detektor 4× rechnet",
+      "Weil die Fenstergröße 128 ist",
+      "Weil der Release 89 Samples braucht"
+    ],
+    "answer": 0,
+    "explanation": "Die Schleife läuft k = 0 … 88 und liest den gerade geschriebenen Peak plus die 88 davor. Der Zeitabstand zwischen dem neuesten und dem ältesten gelesenen Wert ist genau der Lookahead von 88 Samples."
+  },
+  {
+    "question": "Ceiling −1,0 dBTP, Guard 0,40 dB: Welcher lineare Faktor wird intern verglichen?",
+    "options": [
+      "0,851",
+      "0,891",
+      "0,944",
+      "0,759"
+    ],
+    "answer": 0,
+    "explanation": "Der Guard verschiebt die Decke auf −1,40 dBTP. Linear: c = 10^(−1,40/20) = 0,8511. Ohne Guard wären es 10^(−1,0/20) = 0,8913 — genau 0,40 dB mehr."
+  },
+  {
+    "question": "Warum reicht ein 2×-Detektor nicht für die Decke?",
+    "options": [
+      "Weil 2× zu viel Latenz erzeugt",
+      "Weil bei 2× die zweite Halfband-Stufe fehlt: Der TP blieb bei −0,10 dBTP, obwohl der Sample-Peak −1,25 dBFS war",
+      "Weil 2× nur negative Pegel messen kann",
+      "Weil 2× nur für 48 kHz definiert ist"
+    ],
+    "answer": 1,
+    "explanation": "Bei 2× gibt es pro 1×-Sample nur einen Zwischenwert. Die Spitze lag 1,15 dB über dem Sample-Peak und fiel zwischen die Stützstellen. Erst zwei 31-Tap-Halfbands (1×→2×→4×) sehen sie."
+  },
+  {
+    "question": "A4: Der PLR fällt von 11,9 auf 7,4, der TP von +0,90 auf −1,10 dBTP. Um wie viel dB ändert sich der PLR?",
+    "options": [
+      "2,0 dB",
+      "2,5 dB",
+      "4,5 dB",
+      "6,9 dB"
+    ],
+    "answer": 2,
+    "explanation": "PLR = TP − LUFS. ΔTP = −2,0 dB, ΔLUFS = +2,5 dB, also ΔPLR = −2,0 − 2,5 = −4,5 dB. Die Probe: 11,9 − 4,5 = 7,4."
+  },
+  {
+    "question": "A6, Trim +8 / Clip 55: TP −1,40 dBTP, Integrated −8,1 LUFS. Wie groß ist der PLR?",
+    "options": [
+      "5,5 dB",
+      "6,7 dB",
+      "7,0 dB",
+      "7,4 dB"
+    ],
+    "answer": 1,
+    "explanation": "PLR = −1,40 − (−8,1) = 6,7 dB. Das liegt im Korridor 6–8. Der Wert 5,5 gehört zu Trim +10 / Clip 55 (−6,9 LUFS), 7,0 zu +7,5 / 56."
+  },
+  {
+    "question": "Wie lang ist die gemeldete Latenz von 102 Samples bei 44,1 kHz?",
+    "options": [
+      "1,16 ms",
+      "2,00 ms",
+      "2,31 ms",
+      "3,09 ms"
+    ],
+    "answer": 2,
+    "explanation": "102 / 44100 = 2,313 ms. Davon sind 88 Samples (2,00 ms) Lookahead; die restlichen 14 Samples stehen als kUpDownLatency im Code. Der Bus-Modus hat dieselben 102 Samples."
+  },
+  {
+    "question": "„Seele“ misst mit Ceiling −1,0 dBTP einen TP von −0,40 dBTP. Was ist die richtige Reaktion?",
+    "options": [
+      "Ceiling auf −1,0 lassen, weil der Guard von 0,40 dB reicht",
+      "Ceiling auf −1,6 dBTP senken, weil 0,6 dB fehlen",
+      "Trim um 0,6 dB erhöhen, dann steigt der PLR",
+      "Den Detektor auf 8× stellen, ohne die Decke zu ändern"
+    ],
+    "answer": 1,
+    "explanation": "−1,0 − (−0,4) = 0,6 dB. Ceiling −1,6 dBTP verschiebt den TP auf etwa −1,0 und kostet 0,6 dB Lautheit. Der 0,40-dB-Guard reicht für dieses basslastige Material nicht; ein 8×-Detektor wäre ein Produktwechsel, keine Einstellung."
+  }
+]

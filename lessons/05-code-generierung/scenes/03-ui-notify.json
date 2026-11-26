@@ -1,0 +1,486 @@
+{
+  "width": 1000,
+  "height": 560,
+  "steps": [
+    {
+      "caption": "Ein Programmwechsel kommt vom Host. Das Plugin setzt acht Werte — und muss dem Host sagen, dass es sie gesetzt hat.",
+      "duration": 4800,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "Programmwechsel kommt vom Host",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "h0",
+          "type": "rect",
+          "x": 70,
+          "y": 150,
+          "w": 240,
+          "h": 110,
+          "rx": 10,
+          "label": "Host / MPC"
+        },
+        {
+          "id": "p0",
+          "type": "rect",
+          "x": 690,
+          "y": 150,
+          "w": 240,
+          "h": 110,
+          "rx": 10,
+          "label": "QMaster"
+        },
+        {
+          "id": "a0",
+          "type": "line",
+          "x1": 312,
+          "y1": 205,
+          "x2": 688,
+          "y2": 205
+        },
+        {
+          "id": "c0",
+          "type": "text",
+          "x": 500,
+          "y": 185,
+          "text": "effSetProgram(1)",
+          "size": 18
+        },
+        {
+          "id": "c1",
+          "type": "text",
+          "x": 500,
+          "y": 232,
+          "text": "CD Loud",
+          "size": 18
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 315,
+          "text": "Acht Parameter ändern sich:",
+          "size": 19
+        },
+        {
+          "id": "k0",
+          "type": "rect",
+          "x": 70,
+          "y": 350,
+          "w": 200,
+          "h": 45,
+          "rx": 8,
+          "label": "Mode"
+        },
+        {
+          "id": "k1",
+          "type": "rect",
+          "x": 290,
+          "y": 350,
+          "w": 200,
+          "h": 45,
+          "rx": 8,
+          "label": "Trim"
+        },
+        {
+          "id": "k2",
+          "type": "rect",
+          "x": 510,
+          "y": 350,
+          "w": 200,
+          "h": 45,
+          "rx": 8,
+          "label": "Tilt"
+        },
+        {
+          "id": "k3",
+          "type": "rect",
+          "x": 730,
+          "y": 350,
+          "w": 200,
+          "h": 45,
+          "rx": 8,
+          "label": "Clip"
+        },
+        {
+          "id": "k4",
+          "type": "rect",
+          "x": 70,
+          "y": 405,
+          "w": 200,
+          "h": 45,
+          "rx": 8,
+          "label": "Transient"
+        },
+        {
+          "id": "k5",
+          "type": "rect",
+          "x": 290,
+          "y": 405,
+          "w": 200,
+          "h": 45,
+          "rx": 8,
+          "label": "Ceiling"
+        },
+        {
+          "id": "k6",
+          "type": "rect",
+          "x": 510,
+          "y": 405,
+          "w": 200,
+          "h": 45,
+          "rx": 8,
+          "label": "Release"
+        },
+        {
+          "id": "k7",
+          "type": "rect",
+          "x": 730,
+          "y": 405,
+          "w": 200,
+          "h": 45,
+          "rx": 8,
+          "label": "Mono"
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 495,
+          "text": "Der Host kennt nur den Programmindex, nicht die neuen Werte.",
+          "size": 18
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 535,
+          "text": "Ohne Meldung: Klang neu, Knöpfe alt.",
+          "size": 18
+        }
+      ]
+    },
+    {
+      "caption": "Acht audioMasterAutomate-Aufrufe, ein audioMasterUpdateDisplay. Erst die Werte, dann das Redraw — in dieser Reihenfolge.",
+      "duration": 4800,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "Achtmal Automate, einmal UpdateDisplay",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "h0",
+          "type": "rect",
+          "x": 70,
+          "y": 150,
+          "w": 240,
+          "h": 110,
+          "rx": 10,
+          "label": "Host / MPC"
+        },
+        {
+          "id": "p0",
+          "type": "rect",
+          "x": 690,
+          "y": 150,
+          "w": 240,
+          "h": 110,
+          "rx": 10,
+          "label": "QMaster"
+        },
+        {
+          "id": "a0",
+          "type": "line",
+          "x1": 688,
+          "y1": 190,
+          "x2": 312,
+          "y2": 190
+        },
+        {
+          "id": "a1",
+          "type": "line",
+          "x1": 688,
+          "y1": 235,
+          "x2": 312,
+          "y2": 235,
+          "dash": "6 6"
+        },
+        {
+          "id": "c0",
+          "type": "text",
+          "x": 500,
+          "y": 170,
+          "text": "audioMasterAutomate × 8",
+          "size": 18
+        },
+        {
+          "id": "c1",
+          "type": "text",
+          "x": 500,
+          "y": 262,
+          "text": "audioMasterUpdateDisplay × 1",
+          "size": 18
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 330,
+          "text": "ein Aufruf pro Parameter, danach ein Redraw",
+          "size": 18
+        },
+        {
+          "id": "f0",
+          "type": "text",
+          "x": 500,
+          "y": 405,
+          "text": "8 Parameter  →  8 Automate  +  1 UpdateDisplay",
+          "size": 22
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 465,
+          "text": "Der Host muss die neuen Werte kennen und die Oberfläche neu zeichnen.",
+          "size": 18
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 510,
+          "text": "Ohne den zweiten Aufruf zeigt die MPC weiter die alten Knopfpositionen.",
+          "size": 18
+        }
+      ]
+    },
+    {
+      "caption": "Der Simulator zählt die Host-Aufrufe. 48 und 6 sind keine Magic Numbers, sondern 6 Programme mal 8 Parameter.",
+      "duration": 4800,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "48 Automate, 6 UpdateDisplay",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "l0",
+          "type": "rect",
+          "x": 80,
+          "y": 130,
+          "w": 380,
+          "h": 130,
+          "rx": 10
+        },
+        {
+          "id": "l1",
+          "type": "text",
+          "x": 270,
+          "y": 190,
+          "text": "6 × 8 = 48",
+          "size": 34,
+          "weight": 700
+        },
+        {
+          "id": "l2",
+          "type": "text",
+          "x": 270,
+          "y": 232,
+          "text": "Automatisierungen",
+          "size": 18
+        },
+        {
+          "id": "r0",
+          "type": "rect",
+          "x": 540,
+          "y": 130,
+          "w": 380,
+          "h": 130,
+          "rx": 10
+        },
+        {
+          "id": "r1",
+          "type": "text",
+          "x": 730,
+          "y": 190,
+          "text": "6 × 1 = 6",
+          "size": 34,
+          "weight": 700
+        },
+        {
+          "id": "r2",
+          "type": "text",
+          "x": 730,
+          "y": 232,
+          "text": "Redraws",
+          "size": 18
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 310,
+          "text": "Init · CD Loud · CD Dynamic · Streaming Safe · Bus Drums · Bus 808",
+          "size": 18
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 365,
+          "text": "Test: ≥ 8 Automate und ≥ 1 UpdateDisplay",
+          "size": 18
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 415,
+          "text": "Gemessen: 48 / 6 — bestanden.",
+          "size": 19
+        },
+        {
+          "id": "s3",
+          "type": "text",
+          "x": 500,
+          "y": 470,
+          "text": "Der Simulator geht beim Laden über alle sechs Programme.",
+          "size": 18
+        },
+        {
+          "id": "s4",
+          "type": "text",
+          "x": 500,
+          "y": 515,
+          "text": "Sechs Programmwchsel, jeder mit acht Parametern und einem Redraw.",
+          "size": 17
+        }
+      ]
+    },
+    {
+      "caption": "Chunk-Load ist derselbe Pfad: Werte laden, alle Automate senden, Redraw anfordern. Eine Regel, zwei Wege.",
+      "duration": 4800,
+      "objects": [
+        {
+          "id": "t",
+          "type": "text",
+          "x": 500,
+          "y": 50,
+          "text": "Chunk-Load: derselbe Pfad",
+          "size": 26,
+          "weight": 700
+        },
+        {
+          "id": "b0",
+          "type": "rect",
+          "x": 60,
+          "y": 150,
+          "w": 240,
+          "h": 110,
+          "rx": 10,
+          "label": "Projekt / Preset"
+        },
+        {
+          "id": "b1",
+          "type": "rect",
+          "x": 380,
+          "y": 150,
+          "w": 240,
+          "h": 110,
+          "rx": 10,
+          "label": "QMaster"
+        },
+        {
+          "id": "b2",
+          "type": "rect",
+          "x": 700,
+          "y": 150,
+          "w": 240,
+          "h": 110,
+          "rx": 10,
+          "label": "MPC-UI"
+        },
+        {
+          "id": "a0",
+          "type": "line",
+          "x1": 302,
+          "y1": 205,
+          "x2": 378,
+          "y2": 205
+        },
+        {
+          "id": "a1",
+          "type": "line",
+          "x1": 622,
+          "y1": 205,
+          "x2": 698,
+          "y2": 205
+        },
+        {
+          "id": "c0",
+          "type": "text",
+          "x": 340,
+          "y": 185,
+          "text": "effSetChunk",
+          "size": 16
+        },
+        {
+          "id": "c1",
+          "type": "text",
+          "x": 660,
+          "y": 185,
+          "text": "Automate + Redraw",
+          "size": 16
+        },
+        {
+          "id": "s0",
+          "type": "text",
+          "x": 500,
+          "y": 330,
+          "text": "alle Werte laden  →  alle Automate senden  →  UpdateDisplay anfordern",
+          "size": 19
+        },
+        {
+          "id": "s1",
+          "type": "text",
+          "x": 500,
+          "y": 390,
+          "text": "Ohne Meldung: Klang neu, Knöpfe alt.",
+          "size": 18
+        },
+        {
+          "id": "s2",
+          "type": "text",
+          "x": 500,
+          "y": 445,
+          "text": "Der Test prüft den Programmwechsel; der Chunk-Load nutzt denselben Code.",
+          "size": 18
+        },
+        {
+          "id": "s3",
+          "type": "text",
+          "x": 500,
+          "y": 500,
+          "text": "Eine Regel, zwei Wege.",
+          "size": 20,
+          "weight": 700
+        }
+      ]
+    }
+  ]
+}

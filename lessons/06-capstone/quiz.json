@@ -1,0 +1,112 @@
+[
+  {
+    "question": "Ein Rohmix liegt bei −18,3 LUFS, der Zielpunkt bei −8,1 LUFS. Wie groß ist die Lautheitsdifferenz?",
+    "options": [
+      "8,0 dB",
+      "10,2 dB",
+      "18,3 dB",
+      "26,4 dB"
+    ],
+    "answer": 1,
+    "explanation": "−8,1 − (−18,3) = +10,2 dB. Das ist die Lautheitsdifferenz, nicht die Trim-Zahl: +8 dB Trim ergaben gemessen +10,2 LU."
+  },
+  {
+    "question": "Der Rohmix hat −0,6 dBTP. Eine reine Normalisierung hebt ihn um 10,2 dB. Wo läge der True Peak?",
+    "options": [
+      "−1,0 dBTP",
+      "−0,6 dBTP",
+      "+9,6 dBTP",
+      "+10,2 dBTP"
+    ],
+    "answer": 2,
+    "explanation": "Normalisierung verschiebt Loudness und True Peak gemeinsam: −0,6 + 10,2 = +9,6 dBTP. Gemessen wurden nach der Kette −1,40 dBTP — der Unterschied ist die Spitzenkontrolle."
+  },
+  {
+    "question": "Ein Master liegt bei −8,1 LUFS und −1,40 dBTP. Wie groß ist der PLR?",
+    "options": [
+      "5,5 dB",
+      "6,7 dB",
+      "7,4 dB",
+      "9,5 dB"
+    ],
+    "answer": 1,
+    "explanation": "PLR = True Peak − Integrated = −1,40 − (−8,1) = 6,7 dB. Das liegt im Zielkorridor 6–8 dB."
+  },
+  {
+    "question": "Welche Werte gehören zum gemessenen Programm CD Loud?",
+    "options": [
+      "Trim +7,5, Clip 56",
+      "Trim +8, Clip 55",
+      "Trim +5, Clip 45",
+      "Trim +10, Clip 30"
+    ],
+    "answer": 1,
+    "explanation": "CD Loud ist Trim +8, Clip 55, Ceiling −1, Release 45, Mono 120. Gemessen: −8,1 LUFS, −1,40 dBTP, PLR 6,7. Trim +7,5 / Clip 56 ist CD Dynamic."
+  },
+  {
+    "question": "Welches Sweep-Ergebnis ist zu heiß und verlässt den Korridor?",
+    "options": [
+      "Trim +8 / Clip 55: −8,1 LUFS, PLR 6,7",
+      "Trim +10 / Clip 45: −7,6 LUFS, PLR 6,2",
+      "Trim +10 / Clip 55: −6,9 LUFS, PLR 5,5",
+      "Trim +6 / Clip 65: −8,6 LUFS, PLR 7,2"
+    ],
+    "answer": 2,
+    "explanation": "Trim +10 / Clip 55 liegt mit −6,9 LUFS über dem Korridor und mit PLR 5,5 unter 6. Es ist 1,2 dB lauter und 1,2 dB dichter als die Empfehlung +8 / 55."
+  },
+  {
+    "question": "„Seele“: alte Kette +1,40 dBTP, neue Kette −0,40 dBTP. Wie groß ist der Unterschied?",
+    "options": [
+      "0,4 dB",
+      "1,0 dB",
+      "1,8 dB",
+      "2,4 dB"
+    ],
+    "answer": 2,
+    "explanation": "+1,40 − (−0,40) = 1,8 dB. Die neue Kette ist deutlich sicherer, liegt aber mit −0,4 dBTP noch 0,6 dB über dem Ziel −1,0 dBTP."
+  },
+  {
+    "question": "Warum beweist ein Peak bei −0,09 dBFS nicht, dass die MPC normalisiert?",
+    "options": [
+      "Weil die MPC nur mono exportiert",
+      "Weil der PLR bei einer Normalisierung gleich bliebe, hier aber 7,7 statt 17,7 beträgt und hunderte Samples auf 0,99 liegen",
+      "Weil −0,09 dBFS unter dem True Peak liegt",
+      "Weil der Export nur 16 Bit hat"
+    ],
+    "answer": 1,
+    "explanation": "Normalisierung verschiebt Loudness und Peak gemeinsam und lässt den PLR unverändert. Die alten Exporte hatten PLR 7,7 gegen 17,7 beim Rohmix; 309 bzw. 261 Samples lagen bei 0,99. Das ist die Decke des Maximizers."
+  },
+  {
+    "question": "Der True Peak soll ≤ −1,0 dBTP sein. Auf „Seele“ misst die neue Kette −0,40 dBTP. Um wie viel wird der Deckel verfehlt?",
+    "options": [
+      "0,4 dB",
+      "0,6 dB",
+      "1,0 dB",
+      "1,4 dB"
+    ],
+    "answer": 1,
+    "explanation": "−0,40 liegt 0,6 dB über −1,0. Der 0,40-dB-Guard reicht für dieses Material nicht; auf „Under One Sun“ lag der True Peak bei −1,40 dBTP."
+  },
+  {
+    "question": "Was zeigt „Seele“ für die Regel „Ein Master kann nicht mischen“?",
+    "options": [
+      "Die alte Kette war 1,6 dB lauter",
+      "Die neue Kette hat +1,4 dBTP",
+      "Die neue Kette bleibt bei −10,9 LUFS und die Mitten liegen 3–5,6 dB tiefer",
+      "Die LRA der neuen Kette ist 1,3 LU"
+    ],
+    "answer": 2,
+    "explanation": "Die neue Kette wird 1,6 dB lauter und 3,4 dB dichter, verfehlt aber den Korridor: −10,9 LUFS, PLR 10,5. Die Mitten liegen relativ zum Sub 3–5,6 dB tiefer. Der Master kann Pegel und Spitzen kontrollieren, aber kein Arrangement nachholen."
+  },
+  {
+    "question": "Welches Programm liefert gemessen −8,4 LUFS bei PLR 7,0?",
+    "options": [
+      "CD Loud",
+      "CD Dynamic",
+      "A9 mit Bus Drums plus CD Loud",
+      "Trim +10 / Clip 55"
+    ],
+    "answer": 1,
+    "explanation": "CD Dynamic ist Trim +7,5, Clip 56 und misst −8,4 LUFS bei PLR 7,0. CD Loud liegt bei −8,1 / 6,7, die A9-Kombination bei −7,8 / 6,5."
+  }
+]

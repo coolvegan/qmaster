@@ -1,0 +1,7 @@
+{
+  "title": "Limiter: Wie ein Gain den Spitzen folgt, ohne zu pumpen",
+  "summary": "Warum der Ziel-Gain 88 Samples vor der Spitze feststeht, wie aus 0,3 ms Attack und 131 ms Release ein Ein-Pol-Glied wird, warum das gleitende Maximum genau den Lookahead abdecken muss, wie der 4×-True-Peak-Detektor aus zwei 31-Tap-Halfbands entsteht und warum 0,40 dB Guard bei 102 Samples Latenz für die meisten, aber nicht für alle Songs reichen.",
+  "tags": ["dsp", "audio", "mpc", "limiter", "true-peak", "dynamik", "mathematik"],
+  "level": "fortgeschritten",
+  "status": "final"
+}
