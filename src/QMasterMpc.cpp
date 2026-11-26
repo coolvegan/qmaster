@@ -39,7 +39,7 @@ constexpr int kLatency = 102;  // measured with the impulse test
 
 constexpr float kClipKnee = 0.96f;       // -0.35 dBFS
 constexpr float kOutputGuard = 0.995f;   // decimation safety
-constexpr float kCeilingGuardDb = 0.25f; // detector margin for heavy clipping
+constexpr float kCeilingGuardDb = 0.40f; // detector margin for heavy clipping
 
 // ---------------------------------------------------------------------------
 // 2x oversampling (15-tap halfband), separated into up and down stages
@@ -136,59 +136,86 @@ inline float softClipKnee (float x, float knee)
 class TruePeak4x
 {
 public:
-    static constexpr int N = 31;
-    static constexpr int Ring = 64;
-
-    TruePeak4x() { build(); }
-
     void reset()
     {
-        up.fill (0.0f);
-        write = 0;
+        first.reset();
+        second.reset();
     }
 
     float peak (float x)
     {
-        up[(size_t) write] = x;
-        up[(size_t) ((write + 1) & (Ring - 1))] = 0.0f;
+        float a0, a1;
+        first.process (x, a0, a1);
 
-        float y0 = 0.0f, y1 = 0.0f;
-        for (int k = 0; k < N; ++k)
-        {
-            const int a = (write - k) & (Ring - 1);
-            const int b = (write + 1 - k) & (Ring - 1);
-            y0 += h[(size_t) k] * up[(size_t) a];
-            y1 += h[(size_t) k] * up[(size_t) b];
-        }
-        write = (write + 2) & (Ring - 1);
-        return 2.0f * std::max (std::fabs (y0), std::fabs (y1));
+        float b0, b1, c0, c1;
+        second.process (a0, b0, b1);
+        second.process (a1, c0, c1);
+
+        return std::max (std::max (std::fabs (b0), std::fabs (b1)),
+                         std::max (std::fabs (c0), std::fabs (c1)));
     }
 
 private:
-    void build()
+    class HalfbandUp
     {
-        const int M = N / 2;
-        double sum = 0.0;
-        for (int n = 0; n < N; ++n)
-        {
-            const double x = (double) (n - M);
-            const double sinc = std::fabs (x) < 1.0e-9 ? 1.0
-                             : std::sin (kPi * 0.5 * x) / (kPi * 0.5 * x);
-            const double w = 0.42
-                           - 0.5 * std::cos (2.0 * kPi * n / (N - 1))
-                           + 0.08 * std::cos (4.0 * kPi * n / (N - 1));
-            h[(size_t) n] = (float) (0.5 * sinc * w);
-            sum += h[(size_t) n];
-        }
-        if (sum > 1.0e-9)
-            for (float& v : h)
-                v = (float) (v / sum);
-        reset();
-    }
+    public:
+        static constexpr int N = 31;
+        static constexpr int Ring = 64;
 
-    std::array<float, N> h {};
-    std::array<float, Ring> up {};
-    int write = 0;
+        HalfbandUp() { build(); }
+
+        void reset()
+        {
+            up.fill (0.0f);
+            write = 0;
+        }
+
+        void process (float x, float& u0, float& u1)
+        {
+            up[(size_t) write] = x;
+            up[(size_t) ((write + 1) & (Ring - 1))] = 0.0f;
+
+            float y0 = 0.0f, y1 = 0.0f;
+            for (int k = 0; k < N; ++k)
+            {
+                const int a = (write - k) & (Ring - 1);
+                const int b = (write + 1 - k) & (Ring - 1);
+                y0 += h[(size_t) k] * up[(size_t) a];
+                y1 += h[(size_t) k] * up[(size_t) b];
+            }
+            u0 = y0 * 2.0f;
+            u1 = y1 * 2.0f;
+            write = (write + 2) & (Ring - 1);
+        }
+
+    private:
+        void build()
+        {
+            const int M = N / 2;
+            double sum = 0.0;
+            for (int n = 0; n < N; ++n)
+            {
+                const double x = (double) (n - M);
+                const double sinc = std::fabs (x) < 1.0e-9 ? 1.0
+                                 : std::sin (kPi * 0.5 * x) / (kPi * 0.5 * x);
+                const double w = 0.42
+                               - 0.5 * std::cos (2.0 * kPi * n / (N - 1))
+                               + 0.08 * std::cos (4.0 * kPi * n / (N - 1));
+                h[(size_t) n] = (float) (0.5 * sinc * w);
+                sum += h[(size_t) n];
+            }
+            if (sum > 1.0e-9)
+                for (float& v : h)
+                    v = (float) (v / sum);
+            reset();
+        }
+
+        std::array<float, N> h {};
+        std::array<float, Ring> up {};
+        int write = 0;
+    };
+
+    HalfbandUp first, second;
 };
 
 // ---------------------------------------------------------------------------
@@ -485,7 +512,7 @@ public:
 
         trimSmooth.snap (dbToGain (get (pTrim)));
         driveSmooth.snap (dbToGain (clipToDb (get (pClip))));
-        ceilingSmooth.snap (dbToGain (get (pCeiling)));
+        ceilingSmooth.snap (dbToGain (get (pCeiling) - kCeilingGuardDb));
         lastMode = getInt (pMode);
     }
 

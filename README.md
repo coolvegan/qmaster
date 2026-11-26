@@ -32,7 +32,10 @@ Device verification (install, CPU, state round-trip) is still open.
 
 ```bash
 ./scripts/build-mpc.sh          # native test, UI, cross-compile, validate, zip
-./scripts/check.sh              # measurement chain + plugin + alias checks
+./scripts/check.sh              # measurement chain + plugin + alias + loudness
+
+# a file through the native plugin (normalised --set values, 0..1)
+build/render build/native/qmaster.so in.wav out.wav --program 1
 
 python3 tools/make-signals.py /tmp/qm-signals
 python3 tools/measure.py /tmp/qm-signals/loud_loop.wav

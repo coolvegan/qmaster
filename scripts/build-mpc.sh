@@ -23,6 +23,7 @@ mkdir -p "$BUILD/native"
     -o "$BUILD/native/qmaster.so" "$ROOT/src/QMasterMpc.cpp"
 
 "$CXX" -std=c++17 -O2 -o "$BUILD/host_sim" "$ROOT/tools/host-sim/host_sim.cpp"
+"$CXX" -std=c++17 -O2 -I "$ROOT/framework" -o "$BUILD/render" "$ROOT/tools/render.cpp"
 "$BUILD/host_sim" "$BUILD/native/qmaster.so" test --seconds 3 --wav "$BUILD/qmaster-test.wav"
 "$BUILD/host_sim" "$BUILD/native/qmaster.so" dump > "$ROOT/params.json"
 

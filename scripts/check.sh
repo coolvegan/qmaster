@@ -27,6 +27,7 @@ echo "== Plugin (nativ)"
 if [ -x build/host_sim ] && [ -f build/native/qmaster.so ]; then
     python3 tests/plugin-check.py
     python3 tests/alias-check.py 997 --clip 1.0
+    python3 tests/loudness-check.py
 else
     echo "  übersprungen (kein Build; erst ./scripts/build-mpc.sh)"
 fi

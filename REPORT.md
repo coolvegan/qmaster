@@ -142,8 +142,41 @@ Messkette mit, nicht nur das Plugin.
   nicht die eines Zwischensignals.
 - **4×-Detektor** — interpoliert zwischen den 1×-Samples und sieht damit die
   Spitzen, die ein Sample-Peak-Meter verpasst.
-- **0,25 dB Guard** — deckt den Restfehler des Detektors bei starker
+- **0,40 dB Guard** — deckt den Restfehler des Detektors bei starker
   Übersteuerung ab.
+
+## Phase 1 — End-to-End (synthetischer Loop, 2026-11-26)
+
+`tools/render.cpp` schickt eine WAV-Datei durch den nativen Build und
+kompensiert die gemeldete Latenz. Damit lässt sich die Kette ohne MPC prüfen.
+
+Loop durch das Programm „CD Loud“:
+
+| Größe | vorher | nachher |
+|---|---|---|
+| Integrated | −11,0 LUFS | **−8,5 LUFS** |
+| True Peak | +0,90 dBTP | **−1,10 dBTP** |
+| PLR | 11,9 dB | **7,4 dB** |
+| Clipping | 0 | 0 |
+
+Das ist kein Beweis für echte Musik, aber der Beweis, dass die Kette die
+Zielwerte erreicht: −8 ±1 LUFS, TP ≤ −1,0, PLR 6–8.
+
+### Drei Fehler, die der End-to-End-Test gefunden hat
+
+1. **24-Bit-WAV falsch geschrieben.** Der Renderer schrieb `s >> 8` statt
+   `s & 0xff` als erstes Byte — das Ergebnis war 48 dB zu leise und sah wie
+   Stille aus. Gefunden durch Vergleich mit dem erwarteten Peak.
+2. **Ceiling-Smoother startete ungeguardet.** `reset()` setzte den Glätter auf
+   den rohen Ceiling-Wert; die ersten 20 ms waren dadurch 0,25 dB zu heiß.
+   Gefunden, weil der globale Peak bei 5 ms lag.
+3. **Der „4×“-Detektor war nur 2×.** Nach dem Umzug des Limiters auf 1× wurde
+   der Detektor nicht mitgezogen: TP blieb bei −0,1 dBTP, obwohl der
+   Sample-Peak bei −1,25 lag. Behoben mit zwei Halfband-Stufen (1×→2×→4×) und
+   0,40 dB Guard.
+
+Alle drei wären auf der MPC als „klingt irgendwie leise/falsch“ aufgefallen —
+ohne die Offline-Messung hätte die Ursache Tage gekostet.
 
 ## Offen (Phase 1)
 
