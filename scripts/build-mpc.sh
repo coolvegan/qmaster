@@ -127,12 +127,18 @@ Both modes: 102 samples (about 2.1 ms at 44.1 kHz), reported to the host.
 
 Programs
 --------
-Init, CD Loud, Streaming Safe, Bus Drums, Bus 808.
+Init, CD Loud, CD Dynamic, Streaming Safe, Bus Drums, Bus 808.
+
+CD Loud     Trim +8.0, Clip 55, Ceiling -1.0, Release 45, Mono 120
+CD Dynamic  Trim +7.5, Clip 56, Ceiling -1.0, Release 45, Mono 120
+
+A program change reports every parameter to the host (audioMasterAutomate)
+and requests a redraw (audioMasterUpdateDisplay), so the MPC knobs follow.
 
 Measurement
 -----------
 The ceiling is a target, not a guess. The limiter detects peaks with a 4x
-interpolator and keeps a 0.25 dB guard for heavy clipping. Verify the result
+interpolator and keeps a 0.40 dB guard for heavy clipping. Verify the result
 offline with tools/measure.py.
 EOF
 

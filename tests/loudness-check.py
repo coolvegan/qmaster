@@ -36,7 +36,10 @@ def main() -> int:
                        stdout=subprocess.DEVNULL)
         source = os.path.join(tmp, "loud_loop.wav")
         mastered = os.path.join(tmp, "mastered.wav")
-        subprocess.run([RENDER, LIB, source, mastered, "--program", "1"],
+        subprocess.run([RENDER, LIB, source, mastered,
+                        "--set", "Mode=0", "--set", "Trim=0.5", "--set", "Tilt=0.5",
+                        "--set", "Clip=0.45", "--set", "Ceiling=0.5",
+                        "--set", "Release=0.45", "--set", "Mono=0.6"],
                        check=True, stdout=subprocess.DEVNULL)
 
         before = measure(source)
@@ -58,7 +61,7 @@ def main() -> int:
     check("Clipping", after["clipped_samples"] == 0,
           "%d Samples ≥ 0.999" % after["clipped_samples"])
 
-    print("End-to-End: synthetischer Loop durch QMaster (Programm „CD Loud“)")
+    print("End-to-End: synthetischer Loop durch QMaster (Trim 0, Clip 45)")
     print("  vorher:  %6.1f LUFS  %6.2f dBTP  PLR %5.2f" %
           (before["lufs_i"], before["true_peak_dbtp"], before["plr_db"]))
     print("  nachher: %6.1f LUFS  %6.2f dBTP  PLR %5.2f" %

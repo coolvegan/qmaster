@@ -79,13 +79,18 @@ Fundstelle, Ursache und dem Test, der ihn verhindert.
 
 ## Programm- und Werkzeugkatalog
 
-| Programm | Zweck | Gemessen |
+| Programm | Werte | Gemessen |
 |---|---|---|
-| Init | neutraler Ausgangspunkt | — |
-| CD Loud | −8 LUFS, dichter Master | −8,5 LUFS, −1,10 dBTP, PLR 7,4 (synthetischer Loop) |
-| Streaming Safe | mehr Headroom | noch nicht gemessen |
-| Bus Drums | Drum-Bus, Punch | noch nicht gemessen |
-| Bus 808 | Sub-Bus, Dichte | noch nicht gemessen |
+| Init | Clip 0, Ceiling −1, Mono 120 | neutral |
+| CD Loud | Trim +8, Clip 55, Ceiling −1, Release 45, Mono 120 | **−8,1 LUFS, −1,40 dBTP, PLR 6,7** |
+| CD Dynamic | Trim +7,5, Clip 56, sonst wie CD Loud | **−8,4 LUFS, PLR 7,0** |
+| Streaming Safe | Trim +5, Clip 45, Ceiling −1,5, Release 60 | noch nicht gemessen |
+| Bus Drums | Mode Bus, Clip 45, Transient 45 | noch nicht gemessen |
+| Bus 808 | Mode Bus, Clip 55, Transient 20 | noch nicht gemessen |
+
+Ein Programmwechsel meldet dem Host alle Parameter (`audioMasterAutomate`) und
+fordert ein Redraw an (`audioMasterUpdateDisplay`). Ohne diese Meldungen bleibt
+die MPC-UI auf den alten Knopfpositionen stehen.
 
 | Werkzeug | Aufgabe | Lektion |
 |---|---|---|

@@ -539,6 +539,11 @@ public:
         }
         uint32_t extraLen = 0;
         if (getU32(extraLen) && pos + extraLen <= size && extraLen > 0) loadExtraState(data + pos, extraLen);
+
+        // A project/preset chunk replaces every value; the editor has to see it.
+        for (int i = 0; i < numParams(); ++i) notifyHostParameterChanged(i);
+        requestDisplayUpdate();
+
         stateLoadPending_.store(true, std::memory_order_release);
         return true;
     }
@@ -557,6 +562,14 @@ public:
         currentProgram_ = i;
         const Program& p = programs_[(size_t)i];
         for (int k = 0; k < numParams() && k < (int)p.plainValues.size(); ++k) set(k, p.plainValues[(size_t)k]);
+
+        // A program change comes from the host, not from the user turning a
+        // knob. Tell it about every parameter so the editor redraws, then ask
+        // for a display refresh. Without this the MPC keeps showing the old
+        // knob positions after a preset change.
+        for (int k = 0; k < numParams(); ++k) notifyHostParameterChanged(k);
+        requestDisplayUpdate();
+
         stateLoadPending_.store(true, std::memory_order_release);
     }
 

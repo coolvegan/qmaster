@@ -647,18 +647,31 @@ private:
 
     void addPrograms()
     {
-        program ("Init", {});
+        // Program 0 is what the MPC selects after loading.
+        program ("Init", {
+            { pClip, 0.0f }, { pCeiling, -1.0f }, { pRelease, 50.0f }, { pMono, 120.0f },
+        });
+        // Measured on the raw "Under One Sun" export: -8,1 LUFS, PLR 6,7.
         program ("CD Loud", {
-            { pClip, 45.0f }, { pCeiling, -1.0f }, { pRelease, 45.0f }, { pMono, 110.0f },
+            { pTrim, 8.0f }, { pClip, 55.0f }, { pCeiling, -1.0f },
+            { pRelease, 45.0f }, { pMono, 120.0f },
         });
+        // Same mix, a little more dynamics: -8,4 LUFS, PLR 7,0.
+        program ("CD Dynamic", {
+            { pTrim, 7.5f }, { pClip, 56.0f }, { pCeiling, -1.0f },
+            { pRelease, 45.0f }, { pMono, 120.0f },
+        });
+        // More headroom for lossy playback; not measured yet.
         program ("Streaming Safe", {
-            { pClip, 25.0f }, { pCeiling, -1.5f }, { pRelease, 65.0f },
+            { pTrim, 5.0f }, { pClip, 45.0f }, { pCeiling, -1.5f },
+            { pRelease, 60.0f }, { pMono, 120.0f },
         });
+        // Distributed gain reduction for the old four-plugin feel; not measured.
         program ("Bus Drums", {
-            { pMode, 1.0f }, { pClip, 55.0f }, { pTransient, 60.0f }, { pMono, 0.0f },
+            { pMode, 1.0f }, { pClip, 45.0f }, { pTransient, 45.0f }, { pMono, 0.0f },
         });
         program ("Bus 808", {
-            { pMode, 1.0f }, { pClip, 70.0f }, { pTransient, 20.0f }, { pMono, 0.0f },
+            { pMode, 1.0f }, { pClip, 55.0f }, { pTransient, 20.0f }, { pMono, 0.0f },
         });
     }
 

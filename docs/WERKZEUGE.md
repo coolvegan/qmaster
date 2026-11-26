@@ -149,3 +149,4 @@ PUBLISH_CONFIRM=yes ./scripts/publish-lessons.sh
 | Export plötzlich laut | andere Master-Kette oder anderer Projektstand | PLR und Sample-Verteilung prüfen; die MPC normalisiert nicht |
 | Mono-Pegel über 0 dBFS | Downmix summiert Kanäle | Stereo-Peak messen |
 | Bass verschwindet auf dem Handy | Side-Anteil unter 120 Hz | `measure.py`, Mono-Zeile |
+| Preset ändert die UI nicht | Programmwechsel meldet keine Automate-/UpdateDisplay-Aufrufe | `host_sim`-Zeile „Automate / UpdateDisplay“ prüfen |

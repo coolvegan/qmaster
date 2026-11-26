@@ -74,7 +74,7 @@ def main() -> int:
           ", ".join(names))
     check("Mode nicht automatisierbar", dump["params"][0]["automatable"] is False,
           "automatable=%s" % dump["params"][0]["automatable"])
-    check("Programme", dump["numPrograms"] == 5,
+    check("Programme", dump["numPrograms"] == 6,
           ", ".join(dump["programs"]))
 
     with tempfile.TemporaryDirectory(prefix="qmaster-check-") as tmp:
@@ -89,17 +89,24 @@ def main() -> int:
         check("Latenz Bus", bus_delay == master_delay,
               "Bus %d, Master %d" % (bus_delay, master_delay))
 
-        default = measure(render(tmp, "default", []))
+        info = run([HOST, LIB, "test", "--seconds", "1", "--program", "1"])
+        m = re.search(r"Automate (\d+), UpdateDisplay (\d+)", info)
+        automate = int(m.group(1)) if m else 0
+        display = int(m.group(2)) if m else 0
+        check("UI-Update bei Programmwechsel", automate >= 8 and display >= 1,
+              "%d Automate, %d UpdateDisplay" % (automate, display))
+
+        default = measure(render(tmp, "default", ["--program", "1"]))
         check("True Peak default", default["true_peak_dbtp"] <= -1.0,
               "%.2f dBTP" % default["true_peak_dbtp"])
         check("Peak default", default["peak_dbfs"] <= -1.0,
               "%.2f dBFS" % default["peak_dbfs"])
 
-        hot = measure(render(tmp, "clip100", ["--set", "Clip=1"]))
+        hot = measure(render(tmp, "clip100", ["--program", "1", "--set", "Clip=1"]))
         check("True Peak Clip 100", hot["true_peak_dbtp"] <= -1.0,
               "%.2f dBTP" % hot["true_peak_dbtp"])
 
-        low = measure(render(tmp, "ceil-2", ["--set", "Ceiling=0"]))
+        low = measure(render(tmp, "ceil-2", ["--program", "1", "--set", "Ceiling=0"]))
         check("Ceiling -2", -2.4 <= low["true_peak_dbtp"] <= -1.9,
               "%.2f dBTP" % low["true_peak_dbtp"])
 
