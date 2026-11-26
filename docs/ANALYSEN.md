@@ -17,6 +17,7 @@ sie erzählt wird.
 | A7 | Bandpass-Leckage vs. FFT | 26.11.2026 | −25 dBFS war Leckage | 02 |
 | A8 | Fehlinterpretation „Normalisierung“ | 26.11.2026 | PLR 7,7 ≠ 17,7 | 01, 05 |
 | A9 | CD-Loud-Export, verteilte Kette | 26.11.2026 | −7,8 LUFS, PLR 6,5 | 03, 06 |
+| A10 | „Seele“ alt vs. neu | 26.11.2026 | −12,5 → −10,9 LUFS, TP +1,4 → −0,4 | 03, 06 |
 
 ---
 
@@ -214,6 +215,56 @@ LRA 1,3 ist kein Fehler: Der Ausschnitt ist 19,5 s und repetitiv; die alten
 Referenzen lagen ebenfalls bei 1,2–1,4.
 
 **Lektion:** 06 (Capstone), 03 (Gain-Reduction-Verteilung).
+
+---
+
+## A10 — „Seele“: alte Vierer-Kette vs. QMaster
+
+**Quellen:** `0089-Seele-Check-alte kette.wav` und
+`0089-Seele-Check-Neue-kette.wav`, 44,1 kHz, 24 Bit, 106,67 s.
+Die alte Kette ist dieselbe Vierer-Kette (Kompressor, Clipper, Maximizer);
+die neue ist QMaster **Bus Drums** auf dem Drum-Bus plus **CD Loud** auf dem
+Master.
+
+| Größe | alte Kette | neue Kette |
+|---|---|---|
+| Integrated | −12,5 LUFS | **−10,9 LUFS** |
+| True Peak | **+1,40 dBTP** | −0,40 dBTP |
+| PLR | 13,9 | 10,5 |
+| LRA | 6,1 LU | 7,6 LU |
+| Mono Side−Mid | −29,8 dB | −37,4 dB |
+
+### Befunde
+
+1. **Die neue Kette ist 1,6 dB lauter und 3,4 dB dichter.** Der Korridor
+   (−8 ±1, PLR 6–8) wird auf diesem Song nicht erreicht: Er ist dynamischer
+   als „Under One Sun“, und die Presets wurden dort eingemessen.
+2. **True Peak: +1,4 dBTP alt, −0,4 dBTP neu.** Die neue Kette ist deutlich
+   sicherer, liegt aber noch 0,6 dB über dem Ziel −1,0. Der 0,40-dB-Guard
+   reicht für dieses Material nicht.
+3. **Die Mitten sind relativ zum Sub 3–5,6 dB leiser** (204 Hz bis 13 kHz).
+   Die neue Kette ist basslastiger und mittiger leer. Bei „Under One Sun“ war
+   sie noch 1–3 dB heller — die Wirkung ist materialabhängig.
+4. Der Unterschied entsteht vermutlich durch das starke Master-Clipping:
+   Sub-Sinuswellen passieren, Mittenspitzen werden abgeschnitten.
+
+### Empfehlung
+
+- **Ceiling auf −1,6 dBTP** für diesen Song, dann liegt der TP bei ≈ −1,0;
+  kostet 0,6 dB Lautheit.
+- **Clip auf 45, Trim auf +6, Tilt +1,0 … +1,5**, um die Mitten
+  zurückzuholen; die Lautheit kommt dann aus dem Bus, nicht aus dem Master.
+- Für eine exakte Einmessung fehlt ein **Roh-Export von „Seele“ ohne
+  Master-Kette**.
+
+### Produktfolgen
+
+- Der TP-Guard von 0,40 dB ist nicht materialunabhängig. Nächster Schritt:
+  Guard auf 0,8–1,0 dB erhöhen oder den 4×-Detektor auf 8× erweitern.
+- Presets sind Startpunkte, keine Garantie. Ein Preset pro Songtyp wäre
+  sinnvoller als ein „CD Loud“ für alles.
+
+**Lektion:** 03 (Limiter, Guard), 06 (Capstone, materialabhängige Ziele).
 
 ---
 

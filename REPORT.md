@@ -256,6 +256,32 @@ werden. Das ist die Obergrenze des Materials. Ein dichterer Mix (Busse 4–6 dB
 lauter, weniger Crest) klingt im selben Korridor deutlich besser. Bei PLR unter
 6 ist es zu viel — dann `release-check.sh` ernst nehmen.
 
+## Zweiter Song: „Seele“ (106 s, 2026-11-26)
+
+Alte Vierer-Kette gegen QMaster (Bus Drums + CD Loud).
+
+| Größe | alt | neu |
+|---|---|---|
+| Integrated | −12,5 LUFS | **−10,9 LUFS** |
+| True Peak | **+1,40 dBTP** | −0,40 dBTP |
+| PLR | 13,9 | 10,5 |
+| LRA | 6,1 LU | 7,6 LU |
+| Mono Side−Mid | −29,8 dB | −37,4 dB |
+
+Drei Dinge stehen fest:
+
+1. Die neue Kette ist lauter und dichter, verfehlt aber den Korridor: Der Song
+   ist dynamischer als „Under One Sun“, die Presets wurden dort eingemessen.
+2. Der True Peak ist von +1,4 auf −0,4 dBTP gefallen — deutlich besser, aber
+   noch 0,6 dB über dem Ziel. Der 0,40-dB-Guard reicht für dieses Material nicht.
+3. Die Mitten liegen relativ zum Sub 3–5,6 dB tiefer. Das starke Master-Clipping
+   lässt den Sub passieren und kappt die Mittenspitzen. Bei „Under One Sun“ war
+   es umgekehrt (1–3 dB heller) — die Wirkung ist materialabhängig.
+
+Nächste Schritte: Ceiling −1,6 für diesen Song, Clip 45 / Trim +6 / Tilt +1,0
+… +1,5, und ein Roh-Export ohne Master-Kette zum exakten Einmessen. Der Guard
+gehört auf 0,8–1,0 dB oder der Detektor auf 8×.
+
 ## Offen (Phase 1)
 
 | Punkt | Warum blockiert | Nächster Schritt |
