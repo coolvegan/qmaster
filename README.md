@@ -54,6 +54,8 @@ PLAN.md              scope, phases, acceptance criteria, QA
 REPORT.md            measured baseline and open items
 docs/ANALYSEN.md     every measurement, with lesson mapping
 docs/WERKZEUGE.md    tools, shell recipes, conventions
+docs/QMaster-Mathematik.xlsx   live-formula workbook for the lessons
+docs/build_qmaster_sheet.py    regenerates the workbook
 tools/               measure.py, make-signals.py
 scripts/             release-check.sh, codec-check.sh, publish-lessons.sh
 tests/               selftest.py (tests the measurement chain)
@@ -70,6 +72,13 @@ the mistakes: [Lernpfad](https://marcokittel.de/lesson/4ca48031-1624-4d83-9042-4
 [Filter und Mono](https://marcokittel.de/lesson/eda3d6ed-27cd-4a80-b946-5c09808f854a),
 [Code-Generierung](https://marcokittel.de/lesson/ddfe2add-5451-4b3d-a48c-866c2b6215f3),
 [Capstone](https://marcokittel.de/lesson/94f4b4a8-23ad-4751-8778-59e8fc2c8f8f).
+
+## Workbook
+
+[docs/QMaster-Mathematik.xlsx](docs/QMaster-Mathematik.xlsx) is a Gridcraft/Excel
+workbook with the maths of the series as live formulas: dB, RMS, LUFS gating,
+true peak, clipper transfer, limiter coefficients, biquad magnitude, mono maker,
+the target corridor and the measured data. Yellow cells are inputs.
 
 ## Documentation
 
