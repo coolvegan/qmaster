@@ -178,6 +178,51 @@ Zielwerte erreicht: −8 ±1 LUFS, TP ≤ −1,0, PLR 6–8.
 Alle drei wären auf der MPC als „klingt irgendwie leise/falsch“ aufgefallen —
 ohne die Offline-Messung hätte die Ursache Tage gekostet.
 
+## Erste echte Exporte — „90 Under One Sun“ (2026-11-26)
+
+Vier Dateien von der MPC/SSD, 44,1 kHz, 24 Bit, 19,46 s. Die alten Referenzen
+(`Fx`, `NoFx`) stammen noch aus der normalisierten Zeit; die beiden neuen
+`master`-Exporte sind unnormalisiert.
+
+| Datei | Modus | Integrated | True Peak | PLR | LRA | Mono Side−Mid |
+|---|---|---|---|---|---|---|
+| `NoFx` (alt) | ohne FX | −7,6 LUFS | +0,1 dBTP | 7,7 | 1,2 | −29,0 dB |
+| `Fx` (alt) | mit FX | −8,0 LUFS | +0,2 dBTP | 8,2 | 1,4 | −30,4 dB |
+| `FX-master` | Bus | −18,3 LUFS | −0,6 dBTP | 17,7 | 3,1 | −23,9 dB |
+| `FX-master-2` | Master | −14,0 LUFS | −0,5 dBTP | 13,5 | 2,4 | −41,0 dB |
+
+### Befunde
+
+1. **Die alten Referenzen waren normalisiert.** Beide peakten exakt bei
+   −0,09 dBFS. Die neuen Exporte peaken bei −0,53 und −0,64 dBFS — also
+   tatsächlich unnormalisiert. Der rohe Mix liegt damit bei etwa **−18 LUFS**,
+   nicht bei −8.
+2. **Bus-Modus auf dem Master ist keine Finishing-Kette.** Ohne Limiter
+   bleiben die Spitzen stehen: PLR 17,7, 4,3 dB leiser als der Master-Export.
+3. **Master-Modus arbeitet, aber der Eingang ist zu leise.** Ceiling −0,1 wird
+   eingehalten (−0,5 dBTP inkl. Guard), Trim +3,8 und Clip 18 reichen aber nur
+   für −14 LUFS. Für −8 fehlen rund 6 dB.
+4. **Mono 200 Hz ist sehr aggressiv.** Side−Mid fällt auf −41 dB; alles unter
+   200 Hz ist mono. 110–120 Hz reichen für Bass-Kompatibilität.
+
+### Gegenprobe mit stärkerem Master
+
+Der Bus-Export wurde durch den Master-Modus geschickt:
+
+| Einstellung | Integrated | True Peak | PLR |
+|---|---|---|---|
+| Trim +8, Clip 55, Ceiling −1, Release 45, Mono 120 | **−8,1 LUFS** | −1,4 dBTP | **6,7** |
+| Trim +12, Clip 60, Ceiling −1, Release 45, Mono 120 | −5,5 LUFS | −1,3 dBTP | 4,2 |
+
+Die erste Kombination trifft den Korridor. Die zweite zeigt die Grenze: Ab
+PLR 4 klingt es nicht mehr nach Master, sondern nach Brei.
+
+### Empfehlung
+
+Den Mix selbst um etwa 6 dB anheben (Busse/Pegel), dann reicht auf dem Master:
+Trim +4…+6, Clip 45…55, Ceiling −1,0, Release 45, Mono 110–120. Prüfen mit
+`release-check.sh`; bei PLR unter 6 ist es zu viel.
+
 ## Offen (Phase 1)
 
 | Punkt | Warum blockiert | Nächster Schritt |
