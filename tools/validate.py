@@ -11,6 +11,8 @@ Checks (printed as OK / WARN / ERROR lines; exit code 1 when any ERROR, --strict
   * each .so: ELF magic, class, machine (ARM / AArch64), ET_DYN, DT_NEEDED libraries, GLIBC / GLIBCXX
     symbol-version requirements, exported VSTPluginMain   (pure-python ELF parsing, no dependencies)
   * params.json (what the binary reports) agrees with plugin.json: uid, name, vendor, kind, I/O counts
+  * MPC Sample Knob FX: shortName, knobs / shiftKnobs (up to 3 each, parameter indices in range, labels),
+    printed as the resolved knob -> parameter mapping
   * Plugin Skins: TUI.json / Q-Links.json structure, parameter handles in range, Q-Link values, tabs, images
   * version.xml: parses; <uiversion> must be <= 0.1.0.0
 
@@ -411,6 +413,106 @@ def check_params(rep, params_path, pj):
 
 
 # --------------------------------------------------------------------------------------------
+# MPC Sample Knob FX (plugin.json "shortName", "knobs", "shiftKnobs"; see docs/knob-fx.md)
+# --------------------------------------------------------------------------------------------
+KNOBS_PER_STATE = 3
+SHORT_NAME_MAX = 12
+KNOB_LABEL_WARN = 8
+
+
+def check_knob_fx(rep, pj, params):
+    """params is the parsed params.json, or None when it is not available."""
+    if pj is None:
+        return
+    is_effect = pj.get("kind") == "effect"
+    keys = [k for k in ("shortName", "knobs", "shiftKnobs") if k in pj]
+    if not is_effect:
+        if keys:
+            rep.warn("plugin.json %s: only effects are loaded as Knob FX on the MPC Sample, which does not load "
+                     "instruments; these keys are ignored" % ", ".join('"%s"' % k for k in keys))
+        return
+
+    if "shortName" in pj:
+        short = pj["shortName"]
+        if not isinstance(short, str) or not short.strip():
+            rep.error('plugin.json "shortName" must be a non-empty string')
+        elif len(short) > SHORT_NAME_MAX:
+            rep.warn('plugin.json "shortName" %s is %d characters; the MPC Sample shows it uncut where there is '
+                     'room for about %d' % (json.dumps(short), len(short), SHORT_NAME_MAX))
+
+    if "knobs" not in pj and "shiftKnobs" not in pj:
+        rep.warn('plugin.json has no "knobs" or "shiftKnobs": on the MPC Sample the Knob FX knobs will control '
+                 'parameters 0-5 labelled "Param 1".."Param 6". Map the 6 most useful parameters (docs/knob-fx.md)')
+        return
+
+    plist = params.get("params") if isinstance(params, dict) else None
+    if not isinstance(plist, list):
+        plist = None
+        rep.warn("params.json not available; Knob FX parameter indices not checked against the binary")
+
+    seen = {}
+    any_shift = False
+    for key, state in (("knobs", ""), ("shiftKnobs", "SHIFT ")):
+        if key not in pj:
+            continue
+        knobs = pj[key]
+        if not isinstance(knobs, list):
+            rep.error('plugin.json "%s" must be an array of up to %d objects' % (key, KNOBS_PER_STATE))
+            continue
+        if len(knobs) > KNOBS_PER_STATE:
+            rep.error('plugin.json "%s" has %d entries; the MPC Sample has %d knobs and ignores the rest'
+                      % (key, len(knobs), KNOBS_PER_STATE))
+        for i, entry in enumerate(knobs[:KNOBS_PER_STATE]):
+            where = '%sknob %d (%s[%d])' % (state, i + 1, key, i)
+            if not isinstance(entry, dict):
+                rep.error('%s must be an object such as {"parameter": 0, "label": "Drive"}, got %s'
+                          % (where, json.dumps(entry)))
+                continue
+            unknown = sorted(set(entry) - {"parameter", "label"})
+            if unknown:
+                rep.warn("%s has unknown key%s %s; only \"parameter\" and \"label\" are read"
+                         % (where, "" if len(unknown) == 1 else "s", ", ".join(json.dumps(k) for k in unknown)))
+            label = entry.get("label")
+            if label is not None and not isinstance(label, str):
+                rep.error("%s label must be a string, got %s" % (where, json.dumps(label)))
+                label = None
+            if "parameter" not in entry:
+                if label:
+                    rep.warn("%s has a label but no parameter, so it is unassigned and the label is not shown" % where)
+                else:
+                    rep.ok("%s: unassigned" % where)
+                continue
+            index = entry["parameter"]
+            if isinstance(index, bool) or not isinstance(index, int) or index < 0:
+                rep.error('%s "parameter" must be a whole number >= 0 (0-based parameter index), got %s; '
+                          'the MPC Sample leaves the knob unassigned' % (where, json.dumps(index)))
+                continue
+            if key == "shiftKnobs":
+                any_shift = True
+            if index in seen:
+                rep.warn("%s controls parameter %d, which %s also controls" % (where, index, seen[index]))
+            seen.setdefault(index, where)
+            if not label:
+                rep.warn('%s has no label: the MPC Sample shows "Param %d", not the parameter\'s name' % (where, index + 1))
+            elif len(label) > KNOB_LABEL_WARN:
+                rep.warn("%s label %s is %d characters; three knobs share a 320-pixel screen, keep labels to about %d"
+                         % (where, json.dumps(label), len(label), KNOB_LABEL_WARN))
+            if plist is None:
+                rep.ok("%s -> parameter %d %s" % (where, index, json.dumps(label or "Param %d" % (index + 1))))
+                continue
+            if index >= len(plist):
+                rep.error("%s -> parameter %d, but the plugin has %d parameters (0-%d); the knob would be unassigned"
+                          % (where, index, len(plist), len(plist) - 1))
+                continue
+            p = plist[index] if isinstance(plist[index], dict) else {}
+            rep.ok('%s -> [%d] %s, label %s, value "%s"'
+                   % (where, index, json.dumps(p.get("name", "")), json.dumps(label or "Param %d" % (index + 1)),
+                      p.get("display", "")))
+    if "shiftKnobs" in pj and not any_shift:
+        rep.ok("no SHIFT knobs assigned (the MPC Sample hides its SHIFT indicator)")
+
+
+# --------------------------------------------------------------------------------------------
 # Plugin Skins
 # --------------------------------------------------------------------------------------------
 PARAM_HANDLE_RE = re.compile(r"(?:^|/)Parameter (\d+)$")
@@ -680,6 +782,7 @@ def validate(target, params_path=None, strict=False):
                 check_binary(rep, full, want64, key)
 
     nparams = None
+    params = None
     if params_path is None and default_params and os.path.isfile(default_params):
         params_path = default_params
     if params_path:
@@ -689,6 +792,8 @@ def validate(target, params_path=None, strict=False):
                 nparams = len(params["params"])
         else:
             rep.warn("params.json not found at %s; skipping binary/manifest comparison" % params_path)
+
+    check_knob_fx(rep, pj, params)
 
     skins = os.path.join(folder, "Plugin Skins")
     has_skins = os.path.isdir(skins)

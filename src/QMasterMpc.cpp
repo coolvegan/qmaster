@@ -499,42 +499,12 @@ public:
 
     void reset() override
     {
-        hp1L.reset(); hp1R.reset(); hp2L.reset(); hp2R.reset();
-        tilt.reset();
-        mono.reset();
-        transient.reset();
-        limiter.reset();
-        pad.reset();
-        detL.reset();
-        detR.reset();
-        osL.reset();
-        osR.reset();
+        resetTopology();
 
         trimSmooth.snap (dbToGain (get (pTrim)));
         driveSmooth.snap (dbToGain (clipToDb (get (pClip))));
         ceilingSmooth.snap (dbToGain (get (pCeiling) - kCeilingGuardDb));
         lastMode = getInt (pMode);
-    }
-
-    void parameterChanged (int index, float plainValue) override
-    {
-        (void) plainValue;
-        if (index == pMode)
-        {
-            // Deliberate mode switch: clear the state so no stale filter or
-            // limiter gain leaks into the other topology.
-            hp1L.reset(); hp1R.reset(); hp2L.reset(); hp2R.reset();
-            tilt.reset();
-            mono.reset();
-            transient.reset();
-            limiter.reset();
-            pad.reset();
-            detL.reset();
-            detR.reset();
-            osL.reset();
-            osR.reset();
-            lastMode = getInt (pMode);
-        }
     }
 
     void process (mpc::ProcessContext& ctx) override
@@ -553,7 +523,10 @@ public:
         const int mode = getInt (pMode);
 
         if (mode != lastMode)
-            parameterChanged (pMode, (float) mode);
+        {
+            resetTopology();
+            lastMode = mode;
+        }
 
         const float trimTarget = dbToGain (get (pTrim));
         const float driveTarget = dbToGain (clipToDb (get (pClip)));
@@ -624,6 +597,24 @@ public:
     }
 
 private:
+    // Clear every stateful stage. Called from reset() and from process() when
+    // the mode actually changes. NOT from parameterChanged(): the MPC nudges
+    // parameter 0 on every prepare, and with Mode at index 0 that would reset
+    // the filters twice at load.
+    void resetTopology()
+    {
+        hp1L.reset(); hp1R.reset(); hp2L.reset(); hp2R.reset();
+        tilt.reset();
+        mono.reset();
+        transient.reset();
+        limiter.reset();
+        pad.reset();
+        detL.reset();
+        detR.reset();
+        osL.reset();
+        osR.reset();
+    }
+
     static float clipToDb (float percent)
     {
         return clamp (percent, 0.0f, 100.0f) * 0.12f;   // 0..12 dB drive

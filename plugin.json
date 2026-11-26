@@ -8,6 +8,17 @@
   "numInputs": 2,
   "numOutputs": 2,
   "category": "Effect",
+  "shortName": "QMaster",
+  "knobs": [
+    { "parameter": 3, "label": "Clip" },
+    { "parameter": 1, "label": "Trim" },
+    { "parameter": 5, "label": "Ceiling" }
+  ],
+  "shiftKnobs": [
+    { "parameter": 6, "label": "Release" },
+    { "parameter": 7, "label": "Mono" },
+    { "parameter": 2, "label": "Tilt" }
+  ],
   "file32": "VST/qmaster-arm32.so",
   "file64": "VST/qmaster-arm64.so",
   "description": "Master and bus processor for the MPC: trim, tilt, mono maker, 2x oversampled clipper and true-peak limiter in Master mode; trim, transient and clipper in Bus mode. Identical latency in both modes, 102 samples.",

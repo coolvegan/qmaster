@@ -56,6 +56,7 @@ docs/ANALYSEN.md     every measurement, with lesson mapping
 docs/WERKZEUGE.md    tools, shell recipes, conventions
 docs/QMaster-Mathematik.xlsx   live-formula workbook for the lessons
 docs/build_qmaster_sheet.py    regenerates the workbook
+docs/MPC-SDK-2026-11.md        analysis of the official inMusic SDK
 tools/               measure.py, make-signals.py
 scripts/             release-check.sh, codec-check.sh, publish-lessons.sh
 tests/               selftest.py (tests the measurement chain)
