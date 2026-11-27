@@ -7,7 +7,7 @@ QMaster exists to make a dense rap mix reach competitive CD loudness without
 destroying it — and to do it on a device that has no loudness meter and no
 sidechain bus. Everything is measured offline; nothing is guessed.
 
-**Status: Phase 1** — Master and Bus modes are built and natively verified.
+**Status: Phase 1.1** — Master and Bus modes are built and natively verified.
 Device verification (install, CPU, state round-trip) is still open.
 
 ## Targets
@@ -27,6 +27,19 @@ Device verification (install, CPU, state round-trip) is still open.
   true-peak limiter.
 - **Bus** — trim, transient, 2× oversampled clipper. Identical latency to
   Master; no limiter.
+
+## Presets, Trim and input level
+
+The factory programs are calibrated for **Trim 0 dB and peaks around −1 dBFS**
+(about −11 LUFS). That is a normal finished MPC beat. Quiet mixes need positive
+Trim; mixes that are already loud need less Clip.
+
+The clipper has a real **2 dB soft knee referenced to Ceiling**: below
+`ceiling − 2 dB` it is bit-transparent, above it saturates smoothly to the
+ceiling. It is not a hard clipper. The old 1.0.2 presets used Trim +8 dB and
+Clip 55 %, i.e. +14.6 dB into a 0.35 dB knee; that hard-clipped the kick and
+produced 29 % THD at 55 Hz. The new CD Loud setting reaches the same −8.4 LUFS
+with the kick harmonics 57–68 dB lower.
 
 ## Quick start
 

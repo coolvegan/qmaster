@@ -97,7 +97,7 @@ shifts the timing.
 EOF
 
 cat > "$PKG/README.txt" <<'EOF'
-QMaster 1.0.2 - master and bus processor for Akai MPC
+QMaster 1.0.3 - master and bus processor for Akai MPC
 =====================================================
 
 QMaster is the finish stage for a dense rap mix: a 2x oversampled clipper and
@@ -151,7 +151,7 @@ echo "== 6/6  validate and zip"
 import os, shutil, sys
 pkg = sys.argv[1]
 root = os.path.dirname(os.path.dirname(pkg))
-archive = os.path.join(root, "r3d0xStyle - VST - QMaster-1.0.2")
+archive = os.path.join(root, "r3d0xStyle - VST - QMaster-1.0.3")
 shutil.make_archive(archive, "zip", os.path.dirname(pkg), os.path.basename(pkg))
 print("wrote " + archive + ".zip")
 PY

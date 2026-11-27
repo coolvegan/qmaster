@@ -303,7 +303,7 @@ width("B:B", 18)
 width("C:C", 20)
 width("D:D", 20)
 title("Clipper: Knie, Transferfunktion und Aliasing",
-      "Der Clipper arbeitet bei 2×; das Knie liegt bei 0,96 (−0,35 dBFS).")
+      "Der Clipper arbeitet bei 2×; das Knie ist 2 dB breit und endet am Ceiling (0,851 bei −1 dBTP).")
 
 section(4, "1. Drive")
 header(5, ["Clip %", "dB", "linear", ""])
@@ -325,7 +325,7 @@ header(14, ["x", "linear", "y (clipped)", "Gain y/x"])
 xs = [round(-1.2 + 0.1 * i, 1) for i in range(25)]
 vals("A15", [[x, f"=A{r}", None, None] for x, r in zip(xs, range(15, 40))])
 for r in range(15, 40):
-    vals(f"C{r}", [[f"=IF(ABS(A{r})<=0.96,A{r},SIGN(A{r})*(0.96+(1-0.96)*TANH((ABS(A{r})-0.96)/(1-0.96))))"]])
+    vals(f"C{r}", [[f"=IF(ABS(A{r})<=0.6757,A{r},SIGN(A{r})*(0.6757+0.1753*TANH((ABS(A{r})-0.6757)/0.1753)))"]])
     vals(f"D{r}", [[f'=IF(A{r}=0,"",C{r}/A{r})']])
 inputs("A15:A39")
 results("C15:D39")
@@ -339,12 +339,12 @@ cmd("insert.chart", range="A14:C39", type="line", subtype="markers",
 section(41, "3. Gemessen")
 header(42, ["Fall", "Wert", "Einheit", "Quelle"])
 vals("A43", [["Alias Clip 0", -120.0, "dBc", "A3"],
-             ["Alias Clip 100", -105.4, "dBc", "A3"],
+             ["Alias Clip 100", -95.8, "dBc", "A3"],
              ["Loop Sample Peak", -1.01, "dBFS", "A2"],
              ["Loop True Peak", 0.90, "dBTP", "A2"],
              ["Überschreitung", "=B46-B45", "dB", "TP − Peak"],
              ["Bandpass-Fake", -25.3, "dBFS", "A7"],
-             ["FFT-Wahrheit", -105.4, "dBc", "A7"]])
+             ["FFT-Wahrheit", -95.8, "dBc", "A7"]])
 results("B47")
 numfmt("B43:B44", "0.00")
 numfmt("B45:B48", "0.00")
@@ -352,17 +352,20 @@ border("A42:D49")
 
 section(51, "4. Anwendung")
 header(52, ["Programm", "Clip %", "Drive dB", ""])
-vals("A53", [["CD Loud", 55, "=B53*0.12", ""],
-             ["CD Dynamic", 56, "=B54*0.12", ""],
-             ["Bus Drums", 45, "=B55*0.12", ""]])
+vals("A53", [["CD Loud", 40, "=B53*0.12", ""],
+             ["CD Dynamic", 30, "=B54*0.12", ""],
+             ["Bus Drums", 30, "=B55*0.12", ""],
+             ["Bus 808", 35, "=B56*0.12", ""]])
 inputs("B53:B55")
 results("C53:C55")
-numfmt("B53:B55", "0")
-numfmt("C53:C55", "0.00")
+numfmt("B53:B56", "0")
+numfmt("C53:C56", "0.00")
 border("A52:D55")
 
 note(57, "Ein Ergebnis, das sich nicht ändert, wenn man das System ändert, ist verdächtig. "
-         "Der Bandpass zeigte −25,3 dBFS bei 1229 Hz; die FFT zeigte −105,4 dBc.")
+         "Der Bandpass zeigte −25,3 dBFS bei 1229 Hz; die FFT zeigte −95,8 dBc. "
+         "1.0.3: Knie von 0,35 auf 2 dB verbreitert, Schwelle ans Ceiling gekoppelt; "
+         "Presets von Trim +8/Clip 55 auf Trim 0/Clip 40. Kick-Klirr fiel um 57–68 dB.")
 freeze("A4")
 
 # ===========================================================================
@@ -671,8 +674,8 @@ header(14, ["Prüfung", "Wert", "Einheit"])
 vals("A15", [["Latenz Master", 102, "Samples"],
              ["Latenz Bus", 102, "Samples"],
              ["TP default", -1.40, "dBTP"],
-             ["TP Clip 100", -1.20, "dBTP"],
-             ["Alias Clip 100", -105.4, "dBc"]])
+             ["TP Clip 100", -1.10, "dBTP"],
+             ["Alias Clip 100", -95.8, "dBc"]])
 numfmt("B15:B16", "0")
 numfmt("B17:B19", "0.00")
 border("A14:C19")

@@ -1,5 +1,5 @@
 {
-  "name": "QMaster", "vendor": "r3d0xStyle", "uid": "qmst", "uidInt": 1902998388, "version": 1002,
+  "name": "QMaster", "vendor": "r3d0xStyle", "uid": "qmst", "uidInt": 1902998388, "version": 1003,
   "isInstrument": false, "numInputs": 2, "numOutputs": 2, "numPrograms": 6,
   "programs": ["Init", "CD Loud", "CD Dynamic", "Streaming Safe", "Bus Drums", "Bus 808"],
   "params": [

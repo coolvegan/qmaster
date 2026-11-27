@@ -292,3 +292,43 @@ gehört auf 0,8–1,0 dB oder der Detektor auf 8×.
 | Echte Beats durch QMaster | kein WAV-Renderer im Harness | Renderer-Tool oder MPC-Export |
 | −8 LUFS aus einem echten Mix | braucht die Beats | Release-Check auf dem Export |
 
+## Phase 1.1 — Clipper-Korrektur (2026-11-27)
+
+**Befund.** Der Clipper hatte ein Knie von 0,35 dB (`knee = 0.96`). Das ist ein
+Hard-Clipper. Zusammen mit den Presets (Trim +8 dB, Clip 55 % = +14,6 dB
+Gesamtdrive) wurde jede Kick hart gekappt:
+
+| Prüfung (Kick, −1 dBFS Peak, CD Loud) | 1.0.2 | 1.0.3 |
+|---|---|---|
+| 120–500 Hz relativ zum Grundton | −17,7 dB | **−75,4 dB** |
+| 0,5–2 kHz | −41,0 dB | **−106,7 dB** |
+| 2–8 kHz | −63,9 dB | **−131,8 dB** |
+| 55-Hz-Sinus, THD | −10,7 dB | **−35,5 dB** |
+| Loop: Integrated | −8,5 LUFS | −8,4 LUFS |
+| Loop: True Peak | −1,10 dBTP | −1,10 dBTP |
+| Loop: PLR | 7,4 dB | 7,3 dB |
+
+**Ursache.** Zwei Fehler griffen zusammen:
+
+1. Das Knie war mit 0,35 dB praktisch eine harte Begrenzung. Die Harmonischen
+des Tieftons reichten bis in die Mitten und Höhen — das „Kratzen“.
+2. Die Presets waren auf einen Rohmix mit −18,3 LUFS und Trim +8 dB
+eingemessen. Bei normalem Material (Peak −1 dBFS) bedeutete das +14,6 dB
+Clipper-Drive; selbst Clip 0 % klang noch verzerrt, weil Trim allein den
+Clipper übersteuerte.
+
+**Korrektur.**
+
+- Knie auf 2 dB verbreitert, Schwelle an das Ceiling gekoppelt
+  (`start = ceiling · 10^(−2/20)`, Ausgang nie über dem Ceiling).
+- Bus-Modus bekommt ein eigenes Ceiling von −1,0 dBFS, weil er keinen Limiter
+  hat; der Clipper ist dort die Decke.
+- Presets auf Trim 0 kalibriert: CD Loud = Clip 40, CD Dynamic = 30,
+  Streaming Safe = 20, Bus Drums = 30, Bus 808 = 35.
+- Das Ceiling wird jetzt vor dem Clipper geglättet und für Clipper und Limiter
+gemeinsam benutzt; vorher lag der Clipper fest bei −0,35 dBFS, egal was der
+Nutzer als Ceiling einstellte.
+
+**Grenze.** Ein Preset kann nicht jeden Eingangspegel kennen. Für einen
+−18-LUFS-Rohmix bleibt Trim nötig; wer einen bereits lauten Mix weiter
+drückt, senkt Clip. Die Presets sind Startpunkte, keine Pegel-Automatik.

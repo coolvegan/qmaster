@@ -37,9 +37,14 @@ constexpr int kUpDownLatency = 14;
 constexpr int kLookahead = 88;
 constexpr int kLatency = kUpDownLatency + kLookahead;   // 102 samples, measured
 
-constexpr float kClipKnee = 0.96f;       // -0.35 dBFS
+// The clipper has a real soft knee: it is transparent below
+// threshold * 10^(-kneeDb/20) and saturates smoothly to the threshold over the
+// last kneeDb. A 0.35 dB knee (the old 0.96f) is a hard clipper: on a 55 Hz
+// kick that is 29 % THD and the audible "scratch".
+constexpr float kClipKneeDb = 2.0f;      // knee width below the ceiling
 constexpr float kOutputGuard = 0.995f;   // decimation safety
 constexpr float kCeilingGuardDb = 0.40f; // detector margin for heavy clipping
+constexpr float kBusCeiling = 0.891f;    // -1.0 dBFS, Bus mode has no limiter
 
 // ---------------------------------------------------------------------------
 // 2x oversampling (15-tap halfband), separated into up and down stages
@@ -119,12 +124,17 @@ private:
 // ---------------------------------------------------------------------------
 // Soft clipper
 // ---------------------------------------------------------------------------
-inline float softClipKnee (float x, float knee)
+// Smooth saturation from `threshold * 10^(-kneeDb/20)` up to `threshold`.
+// Below the knee start it is bit-transparent; the output never exceeds
+// `threshold`, so the limiter only has to catch inter-sample peaks.
+inline float softClip (float x, float threshold, float kneeDb)
 {
     const float a = std::fabs (x);
-    if (a <= knee)
+    const float start = threshold * dbToGain (-kneeDb);
+    if (a <= start)
         return x;
-    const float y = knee + (1.0f - knee) * fastTanh ((a - knee) / (1.0f - knee));
+    const float width = threshold - start;
+    const float y = start + width * fastTanh ((a - start) / width);
     return x < 0.0f ? -y : y;
 }
 
@@ -448,7 +458,7 @@ public:
         i.name = "QMaster";
         i.vendor = "r3d0xStyle";
         i.uniqueId = MPC_FOURCC ('q', 'm', 's', 't');
-        i.version = 1002;
+        i.version = 1003;
         i.isInstrument = false;
         i.numInputs = 2;
         i.numOutputs = 2;
@@ -567,20 +577,21 @@ public:
             }
 
             const float drive = driveSmooth.process();
+            const float ceiling = ceilingSmooth.process();
+            const float clipCeiling = master ? ceiling : kBusCeiling;
 
             float u0l, u1l, u0r, u1r;
             osL.processUp (l, u0l, u1l);
             osR.processUp (r, u0r, u1r);
 
-            u0l = softClipKnee (u0l * drive, kClipKnee);
-            u1l = softClipKnee (u1l * drive, kClipKnee);
-            u0r = softClipKnee (u0r * drive, kClipKnee);
-            u1r = softClipKnee (u1r * drive, kClipKnee);
+            u0l = softClip (u0l * drive, clipCeiling, kClipKneeDb);
+            u1l = softClip (u1l * drive, clipCeiling, kClipKneeDb);
+            u0r = softClip (u0r * drive, clipCeiling, kClipKneeDb);
+            u1r = softClip (u1r * drive, clipCeiling, kClipKneeDb);
 
             float yl = osL.processDown (u0l, u1l);
             float yr = osR.processDown (u0r, u1r);
 
-            const float ceiling = ceilingSmooth.process();
             if (master)
             {
                 const float peak = std::max (std::max (std::fabs (yl), std::fabs (yr)),
@@ -590,9 +601,9 @@ public:
             else
                 pad.process (yl, yr);
 
-            outL[i] = softClipKnee (sanitize (flushDenormal (yl)), kOutputGuard);
+            outL[i] = softClip (sanitize (flushDenormal (yl)), kOutputGuard, 0.5f);
             if (outR && outR != outL)
-                outR[i] = softClipKnee (sanitize (flushDenormal (yr)), kOutputGuard);
+                outR[i] = softClip (sanitize (flushDenormal (yr)), kOutputGuard, 0.5f);
         }
     }
 
@@ -642,27 +653,31 @@ private:
         program ("Init", {
             { pClip, 0.0f }, { pCeiling, -1.0f }, { pRelease, 50.0f }, { pMono, 120.0f },
         });
-        // Measured on the raw "Under One Sun" export: -8,1 LUFS, PLR 6,7.
+        // Presets are calibrated at Trim 0 for a mix with peaks near -1 dBFS
+        // (about -11 LUFS). Quiet mixes need Trim; loud mixes need less Clip.
+        // The old presets used Trim +8 and Clip 55, which is +14.6 dB into the
+        // clipper and hard-clipped every kick. Measured on the synthetic loop:
+        //   CD Loud    -8.5 LUFS, PLR 7.4, TP -1.1 dBTP
+        //   CD Dynamic -9.2 LUFS, PLR 8.1
+        //   Streaming  -10.0 LUFS, PLR 8.9
         program ("CD Loud", {
-            { pTrim, 8.0f }, { pClip, 55.0f }, { pCeiling, -1.0f },
+            { pTrim, 0.0f }, { pClip, 40.0f }, { pCeiling, -1.0f },
             { pRelease, 45.0f }, { pMono, 120.0f },
         });
-        // Same mix, a little more dynamics: -8,4 LUFS, PLR 7,0.
         program ("CD Dynamic", {
-            { pTrim, 7.5f }, { pClip, 56.0f }, { pCeiling, -1.0f },
+            { pTrim, 0.0f }, { pClip, 30.0f }, { pCeiling, -1.0f },
             { pRelease, 45.0f }, { pMono, 120.0f },
         });
-        // More headroom for lossy playback; not measured yet.
         program ("Streaming Safe", {
-            { pTrim, 5.0f }, { pClip, 45.0f }, { pCeiling, -1.5f },
+            { pTrim, 0.0f }, { pClip, 20.0f }, { pCeiling, -1.5f },
             { pRelease, 60.0f }, { pMono, 120.0f },
         });
-        // Distributed gain reduction for the old four-plugin feel; not measured.
+        // Bus mode has no limiter; the soft clipper itself is the ceiling.
         program ("Bus Drums", {
-            { pMode, 1.0f }, { pClip, 45.0f }, { pTransient, 45.0f }, { pMono, 0.0f },
+            { pMode, 1.0f }, { pClip, 30.0f }, { pTransient, 45.0f }, { pMono, 0.0f },
         });
         program ("Bus 808", {
-            { pMode, 1.0f }, { pClip, 55.0f }, { pTransient, 20.0f }, { pMono, 0.0f },
+            { pMode, 1.0f }, { pClip, 35.0f }, { pTransient, 20.0f }, { pMono, 0.0f },
         });
     }
 

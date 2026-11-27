@@ -1,7 +1,7 @@
 {
   "name": "QMaster",
   "manufacturer": "r3d0xStyle",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "format": "vst2",
   "kind": "effect",
   "uid": "qmst",

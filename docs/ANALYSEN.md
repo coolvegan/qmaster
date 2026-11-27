@@ -323,3 +323,31 @@ build/render build/native/qmaster.so in.wav out.wav --program 1
 
 Die Rohdaten der Exporte liegen nicht im Repo (Musik, Größe). Die Tabellen
 enthalten alle Werte, die für die Lektionen gebraucht werden.
+
+## A7 — Clipper-Knie und Preset-Drive (27.11.2026)
+
+**Frage:** Warum kratzt die Kick im Bass, obwohl der Limiter sauber arbeitet?
+
+**Messung:** Synthetischer Kick (−1 dBFS, 45–120 Hz Sweep) und 55-Hz-Sinus
+durch den nativen Build, Programm „CD Loud“ (alt: Trim +8, Clip 55; neu:
+Trim 0, Clip 40). Analyse per FFT (8192 Punkte, Hann) relativ zum Grundton.
+
+| Größe | alt | neu |
+|---|---|---|
+| Kick 120–500 Hz | −17,7 dB | −75,4 dB |
+| Kick 0,5–2 kHz | −41,0 dB | −106,7 dB |
+| Kick 2–8 kHz | −63,9 dB | −131,8 dB |
+| 55 Hz THD | −10,7 dB | −35,5 dB |
+| Loop-Lautheit | −8,5 LUFS | −8,4 LUFS |
+| Loop-PLR | 7,4 dB | 7,3 dB |
+
+**Ursache:** Knie 0,35 dB = Hard-Clip; Preset-Drive +14,6 dB. Der Clipper
+begrenzt bei 0,96, unabhängig vom eingestellten Ceiling (−1 bis −2 dBTP).
+
+**Korrektur:** Knie 2 dB, Schwelle = Ceiling; Presets auf Trim 0 und Clip
+20–40 neu eingemessen. Bus-Modus: eigenes Ceiling −1,0 dBFS.
+
+**Offen:** Ein Preset bleibt pegelabhängig. Ein Auto-Trim (langsamer
+Peak-Detektor vor dem Clipper) wäre die nächste Stufe, ist aber noch nicht
+implementiert.
+
